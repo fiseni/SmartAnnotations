@@ -30,9 +30,9 @@ steps:
     custom: '--version'
 
 - task: NuGetToolInstaller@0
-  displayName: 'Use NuGet 4.9.3'
+  displayName: 'Use NuGet 5.9.0'
   inputs:
-    versionSpec: 4.9.3
+    versionSpec: 5.9.0
 
 - task: NuGetCommand@2
   inputs:
@@ -57,20 +57,20 @@ steps:
     projects: 'tests/**/*.csproj'
     nobuild: true
 
-- task: Palmmedia.reportgenerator.reportgenerator-build-release-task.reportgenerator@4
-  displayName: ReportGenerator
-  inputs:
-    reports: '$(Build.SourcesDirectory)/tests/**/coverage.cobertura.xml'
-    targetdir: '$(Build.SourcesDirectory)/CodeCoverage'
-    reporttypes: 'HtmlInline_AzurePipelines;Cobertura;Badges'
-    assemblyfilters: '-xunit*'
+# - task: Palmmedia.reportgenerator.reportgenerator-build-release-task.reportgenerator@4
+  # displayName: ReportGenerator
+  # inputs:
+    # reports: '$(Build.SourcesDirectory)/tests/**/coverage.cobertura.xml'
+    # targetdir: '$(Build.SourcesDirectory)/CodeCoverage'
+    # reporttypes: 'HtmlInline_AzurePipelines;Cobertura;Badges'
+    # assemblyfilters: '-xunit*'
 
-- task: PublishCodeCoverageResults@1
-  displayName: 'Publish code coverage'
-  inputs:
-    codeCoverageTool: Cobertura
-    summaryFileLocation: '$(Build.SourcesDirectory)/CodeCoverage/Cobertura.xml'
-#    reportDirectory: '$(Build.SourcesDirectory)/CodeCoverage'
+# - task: PublishCodeCoverageResults@1
+  # displayName: 'Publish code coverage'
+  # inputs:
+    # codeCoverageTool: Cobertura
+    # summaryFileLocation: '$(Build.SourcesDirectory)/CodeCoverage/Cobertura.xml'
+# #    reportDirectory: '$(Build.SourcesDirectory)/CodeCoverage'
 
 - task: CopyFiles@2
   displayName: 'Copy *.nupkg Files'
