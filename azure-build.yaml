@@ -41,8 +41,8 @@ steps:
 # Build    
 - task: DotNetCoreCLI@2
   inputs:
-    command: build
-    arguments: '--configuration $(BuildConfiguration)
+    command: 'build'
+    arguments: '--configuration $(BuildConfiguration)'
     outputDir: '$(Build.ArtifactStagingDirectory)'
     # projects: |
       # src/SmartAnnotations/SmartAnnotations.csproj 
