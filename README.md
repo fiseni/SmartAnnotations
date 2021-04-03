@@ -8,7 +8,9 @@ A library for .NET that uses source generators to automatically generate data an
 
 ## Motivation
 
-Data Annotations are attributes that are applied to the class or members that specify validation rules and how the data is displayed. They've been around for a long time, and there is great support across various frameworks in the .NET ecosystem. There is built-in support in Winform/WPF controls (e.g., grid controls, edit forms), ASP.NET MVC/Razor Pages, EntityFramework, Blazor (support for validation attributes was added recently), and many other frameworks. If you're applying localization in your applications, annotations are a great mechanism to localize the labels for your properties and define how the data will be formatted and displayed (e.g., date formats, numeric formats). Keeping these concerns bundled with your models might simplify the usage significantly and you'll avoid duplication throughout your code. Having said all that, I'm a fan of annotations and tend to use them wherever possible. But, there is a "huge" downside of utilizing them. Your models become cluttered with these extra attributes. For example, let's take this very simple model.
+Data Annotations are attributes that are applied to the class or members that specify validation rules and how the data is displayed. They've been around for a long time, and there is great support across various frameworks in the .NET ecosystem. There is built-in support in Winform/WPF controls (e.g., grid controls, edit forms), ASP.NET MVC/Razor Pages, EntityFramework, Blazor (support for validation attributes was added recently), and many other frameworks. If you're applying localization in your applications, annotations are a great mechanism to localize the labels for your properties and define how the data will be formatted and displayed (e.g., date formats, numeric formats). Keeping these concerns bundled with your models might simplify the usage significantly and you'll avoid duplication throughout your code. 
+
+Having said all that, I'm a fan of annotations and tend to use them wherever possible. But, there is a "huge" downside of utilizing them. Your models become cluttered with these extra attributes. For example, let's take this very simple model.
 
 ```c#
 public class Login
@@ -31,7 +33,7 @@ public class Login
 
 There is way too much noise in this code. In real-world applications where your models may contain several properties, it gets a challenge to work and maintain these constructs. That's exactly what this library tries to address. You can keep your models clean, and define the annotations in a strongly typed manner in separate constructs. The library will analyze your definitions and produce adequate metadata constructs for your models. <strong>Practically, you'll get the best of both approaches, data annotations, and fluent-like configurations.</strong>
 
-### Why should I use this library instead of manually creating the metadata classes?
+#### Why should I use this library instead of manually creating the metadata classes?
 
 You indeed can manually create the metadata for your models. But, maintaining them is really hard and keeping these constructs in sync is a tedious task. By using this library you'll get the following advantages:
 - All annotations are defined in a strongly typed manner. Therefore, it's much easier to refactor your models (e.g., renaming properties), and you'll get compile-time exceptions if anything is misconfigured or gets out of sync.
@@ -53,7 +55,7 @@ The library has support for `NET Framework` and `.NET`, and can be installed on 
 <CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GeneratedFiles</CompilerGeneratedFilesOutputPath>
 ```
 
-### Important notice!
+#### Important notice!
 
 Sadly, there are few caveats, mostly related to the environment and the runtime support.
 
