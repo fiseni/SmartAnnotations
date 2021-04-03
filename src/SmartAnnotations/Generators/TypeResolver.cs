@@ -24,10 +24,11 @@ namespace SmartAnnotations.Generators
         {
             Type[] output = Array.Empty<Type>();
 
-            var appDomain = AppDomain.CurrentDomain;
-            appDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+            //var appDomain = AppDomain.CurrentDomain;
+            //appDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
 
             var assembly = GetAssembly();
+            LoadReferencedAssemblies();
 
             if (assembly != null)
             {
@@ -44,7 +45,7 @@ namespace SmartAnnotations.Generators
             // Also CreateInstanceAndUnwrap is not available on .NET Standard 2.0
             // This sucks :)
 
-            //AppDomain.Unload(this.appDomain);
+            // AppDomain.Unload(this.appDomain);
         }
 
         private Type[] GetLoadableTypes(Assembly assembly)
@@ -77,6 +78,31 @@ namespace SmartAnnotations.Generators
             return assembly;
         }
 
+        // Loading the assemblies through the event is terrible in VS, since it's subscribed to the main AppDomain events.
+        // If there are several solutions (or even instances) of VS, the all operate in the same domain, and the handler will be serving all resolving events.
+        // Here we're trying to eagerly load only the compilation references.
+        private void LoadReferencedAssemblies()
+        {
+            var loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies().Select(x=>x.GetName().Name.ToUpper()).ToList();
+
+            foreach (var reference in this.metadataReferences)
+            {
+                if (reference.Display != null && !loadedAssemblies.Any(x => reference.Display.ToUpper().Contains($"{x}.DLL")))
+                {
+                    try
+                    {
+                        // Some of the assemblies can be loaded for reflection only.
+                        // Also, while running through VS, if the project is .NET5 it will fail to load the runtime.
+                        Assembly.LoadFrom(reference.Display);
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+            }
+        }
+
+        // SHOULD NOT BE USED. It will break VisualStudio.
         // This is a hack, but it's the easiest way to handle this and load referenced assemblies.
         // Any other approach just gets insane (much stuff not available on .NET Standard 2.0).
         // Compilation.References contain all the referenced assemblies, but only the path to them, not the assembly name. So we're trying to match from args.Name.
