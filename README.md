@@ -53,7 +53,7 @@ You indeed can manually create the metadata for your models. But, the maintenanc
 
 ## Getting started
 
-The library has support for `NET Framework` and `.NET`, and can be installed on both platforms. You can find the Nuget package as [SmartAnnotation](https://www.nuget.org/packages/SmartAnnotation) and you may install it through the Visual Studio package manager or the dotnet CLI.
+The library has support for `NET Framework` and `.NET`, and can be installed on both platforms. You can find the Nuget package as [SmartAnnotations](https://www.nuget.org/packages/SmartAnnotations) and you may install it through the Visual Studio package manager or the dotnet CLI.
 
 - Add the Nuget package to each of your projects that contain the models and the annotators. Source generators are project scoped, and the generation will occur for each project containing the package.
 - Add the required references for data annotations (`System.ComponentModel` and `System.ComponentModel.DataAnnotations` namespaces). This is no different from using the attributes manually. For `.NET Framework` projects you may reference the required assembly or add the `System.ComponentModel.Annotations` Nuget package. Same for the `.NET` projects. This library just generates the content and does not constrain you with specific references. This is a deliberate decision, not to interfere with your configuration, so you can configure your dependencies based on your TFM.
