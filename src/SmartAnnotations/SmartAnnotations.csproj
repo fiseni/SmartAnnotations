@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>SmartAnnotations</PackageId>
+    <Version>1.0.0-beta1</Version>
+    <Authors>Fati Iseni</Authors>
+    <Company>Pozitron Group LLC</Company>
+    <Product>Smart Annotations</Product>
+    <Title>SmartAnnotations</Title>
+    <Description>A library that uses source generators to automatically generate data annotations for your models. It provides a strongly-typed mechanism to define your annotation rules.</Description>
+    <Summary>A library that uses source generators to automatically generate data annotations for your models.</Summary>
+    <Copyright>Copyright © 2021 Pozitron Group LLC</Copyright>
+    <PackageReleaseNotes>Preview release</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/fiseni/SmartAnnotations</PackageProjectUrl>
+    <PackageIconUrl>https://pozitrongroup.com/PozitronLogo.png</PackageIconUrl>
+    <PackageIcon>pozitronicon.png</PackageIcon>
+    <PackageTags>annotation attribute source generator validation</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/fiseni/SmartAnnotations</RepositoryUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <!--<DocumentationFile>bin\$(Configuration)\SmartAnnotations.xml</DocumentationFile>-->
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="3.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="../../docs/pozitronicon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
+    <None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+  </ItemGroup>
+</Project>
