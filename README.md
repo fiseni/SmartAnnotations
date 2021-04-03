@@ -1,11 +1,5 @@
 <img align="left" src="docs/pozitronlogo.png" width="120" height="120">
 
-&nbsp; [![NuGet](https://img.shields.io/nuget/v/SmartAnnotations.svg)](https://www.nuget.org/packages/SmartAnnotations)[![NuGet](https://img.shields.io/nuget/dt/SmartAnnotations.svg)](https://www.nuget.org/packages/SmartAnnotations)
-
-&nbsp; [![Build Status](https://dev.azure.com/pozitrondev/SmartAnnotations/_apis/build/status/SmartAnnotations_BuildPackage?branchName=master)](https://dev.azure.com/pozitrondev/SmartAnnotations/_build/latest?definitionId=11&branchName=master)
-
-&nbsp; [![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/pozitrondev/SmartAnnotations/11)](https://dev.azure.com/pozitrondev/SmartAnnotations/_build/latest?definitionId=11&branchName=master&view=codecoverage-tab)
-
 &nbsp;
 
 # SmartAnnotations
