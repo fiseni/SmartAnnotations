@@ -8,9 +8,9 @@ A library for .NET that uses source generators to automatically generate data an
 
 ## Motivation
 
-Data Annotations are attributes that are applied to the class or members that specify validation rules and how the data is displayed. They've been around for a long time, and there is great support across various frameworks in the .NET ecosystem. There is built-in support in Winform/WPF controls (e.g., grid controls, edit forms), ASP.NET MVC/Razor Pages, EntityFramework, Blazor (support for validation attributes was added recently), and many other frameworks. If you're applying localization in your applications, annotations are a great mechanism to localize the labels for your properties and define how the data will be formatted and displayed (e.g., date formats, numeric formats). Keeping these concerns bundled with your models might simplify the usage significantly and you'll avoid duplication throughout your code. 
+Data annotations are attributes that are applied to the class or members that specify validation rules and how the data is displayed. They've been around for a long time, and there is great support across various frameworks in the .NET ecosystem. There is built-in support in Winform/WPF controls (e.g., grid controls, edit forms), ASP.NET MVC/Razor Pages, EntityFramework, Blazor (support for validation attributes was added recently), and many other frameworks. If you're applying localization in your applications, annotations are a great mechanism to localize the labels for your properties and define how the data will be formatted and displayed (e.g., date formats, numeric formats). Keeping these concerns bundled with your models might simplify the usage significantly and you'll avoid duplication throughout your code. 
 
-Having said all that, I'm a fan of annotations and tend to use them wherever possible. But, there is a "huge" downside of utilizing them. Your models become cluttered with these extra attributes. For example, let's take this very simple model.
+Having said that, I'm a fan of annotations and tend to use them wherever possible. But, the "huge" downside is that your models become cluttered with these extra attributes. For example, let's take this very simple model.
 
 ```c#
 public class Login
@@ -31,28 +31,32 @@ public class Login
 }
 ```
 
-There is way too much noise in this code. In real-world applications where your models may contain several properties, it gets a challenge to work and maintain these constructs. That's exactly what this library tries to address. You can keep your models clean, and define the annotations in a strongly typed manner in separate constructs. The library will analyze your definitions and produce adequate metadata constructs for your models. <strong>Practically, you'll get the best of both approaches, data annotations, and fluent-like configurations.</strong>
+There is way too much noise in this code. In real-world applications where your models may contain several properties, it becomes a challenge to work and maintain these constructs. 
 
-#### Why should I use this library instead of manually creating the metadata classes?
+That's exactly what this library tries to address. You can keep your models clean, and define the annotations in a strongly typed manner in separate constructs. The library will analyze your definitions and produce adequate metadata constructs for your models. <strong>Practically, you'll get the best of both approaches, data annotations, and fluent-like configurations.</strong>
 
-You indeed can manually create the metadata for your models. But, maintaining them is really hard and keeping these constructs in sync is a tedious task. By using this library you'll get the following advantages:
+### Why should I use this library instead of manually creating the metadata classes?
+
+You indeed can manually create the metadata for your models. But, the maintenance is really hard and keeping them in sync is a tedious task. By using this library you'll get the following advantages:
 - All annotations are defined in a strongly typed manner. Therefore, it's much easier to refactor your models (e.g., renaming properties), and you'll get compile-time exceptions if anything is misconfigured or gets out of sync.
-- One of the biggest issues with annotations is that you have to provide the `ResourceType = typeof(YourResourceFileType)` for each and single attribute for all your properties in your model. It's even worse for the validation attributes, you have to provide `ErrorMessageResourceType = typeof(YourResourceFileType))` and `ErrorMessageResourceType = "ResourceKey"`. These definitions create a huge mess in your models. Now, you'll be able to define your resource file once, and it will be added for all the attributes automatically (wherever it is required).
+- One of the biggest issues with annotations is that you have to provide the `ResourceType = typeof(YourResourceFileType)` for each and single attribute for all your properties in your model (if you're applying localization). It's even worse for the validation attributes, you have to provide `ErrorMessageResourceType = typeof(YourResourceFileType))` and `ErrorMessageResourceType = "ResourceKey"`. These definitions create a huge mess in your models. Now, you'll be able to define your resource file once, and it will be added for all the attributes automatically (wherever it is required).
 - We do plan to add global definitions in the next versions. For example, you'll be able to define your resource file for all your models in the application.
 - In future releases, we might add a feature for convention-based global definitions. For example, define annotations for a property called "Name" in any of your models (list of models might be configured explicitly, or just annotate them with class attribute).
-- Once you have defined your annotations, we may also provide an API to manually validate your models if required. We don't see this as a replacement for any other validation libraries. FluentValidation is an awesome and fully featured library. You may want to utilize those alternatives for validation concerns.
+- Once you have defined your annotations, we may also provide an API to manually validate your models if required. We see this as a complementary, not a replacement for any other validation library. FluentValidation is an awesome and fully featured library. You may want to utilize those alternatives for validation concerns.
 
 
 ## Getting started
 
-The library has support for `NET Framework` and `.NET`, and can be installed on both platforms. You can find the Nuget package as `SmartAnnotation` and you may install it through the Visual Studio package manager or the dotnet CLI.
+The library has support for `NET Framework` and `.NET`, and can be installed on both platforms. You can find the Nuget package as [SmartAnnotation](https://www.nuget.org/packages/SmartAnnotation) and you may install it through the Visual Studio package manager or the dotnet CLI.
 
 - Add the Nuget package to each of your projects that contain the models and the annotators. Source generators are project scoped, and the generation will occur for each project containing the package.
-- Add the required references for data annotations (`System.ComponentModel` and `System.ComponentModel.DataAnnotations` namespaces). This is no different from adding the attributes manually. For `.NET Framework` projects you may reference the required assembly or add the `System.ComponentModel.Annotations` Nuget package. Same for the `.NET` projects. This library just generates the content and does not constrain you with specific references. This is a deliberate decision, not to interfere with your configuration, so you can configure your dependencies based on your TFM.
+- Add the required references for data annotations (`System.ComponentModel` and `System.ComponentModel.DataAnnotations` namespaces). This is no different from using the attributes manually. For `.NET Framework` projects you may reference the required assembly or add the `System.ComponentModel.Annotations` Nuget package. Same for the `.NET` projects. This library just generates the content and does not constrain you with specific references. This is a deliberate decision, not to interfere with your configuration, so you can configure your dependencies based on your TFM.
 - If you want to see the generated content, edit your project file and add the following section. The generated files will be written under `obj` directory.
 ```c#
-<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
-<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GeneratedFiles</CompilerGeneratedFilesOutputPath>
+<PropertyGroup>
+	<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+	<CompilerGeneratedFilesOutputPath>$(BaseIntermediateOutputPath)\GeneratedFiles</CompilerGeneratedFilesOutputPath>
+</PropertyGroup>
 ```
 
 #### Important notice!
@@ -68,7 +72,7 @@ The source generation feature is still in its infancy, and I do believe there wi
 
 ## Usage
 
-The usage is quite straightforward, and we tried to provide a nice API for building the annotations.
+The usage is quite straightforward, and we tried to provide a nice fluent API for building the annotations.
 - Define your models as `partial`
 - Create annotators for your models by inheriting from `Annotator<>` base class. We suggest you keep the models and the annotators in the same assembly.
 
@@ -143,7 +147,7 @@ You can find more samples under `sample` folder in this repository.
 
 ## Features
 
-In the preview version, initially, there is support for the following features.
+Initially, there is support for the following features.
 - Ability to specify a single resource file per model.
 - Display attribute support (Order, Name, ShortName, Description, Prompt, GroupName, AutogeneratedField, AutogeneratedFilter, ResourceType).
 - Required attribute support (ErrorMessage, ResourceType, and ResourceKey).
