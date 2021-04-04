@@ -1,10 +1,10 @@
 trigger:
   branches:
       include:
-      - master
+      - main
       - refs/tags/*
 pr:
-- master
+- main
 
 pool:
   vmImage: 'windows-2019'
