@@ -78,9 +78,9 @@ namespace SmartAnnotations.Generators
             return assembly;
         }
 
-        // Loading the assemblies through the event is terrible in VS, since it's subscribed to the main AppDomain events.
-        // If there are several solutions (or even instances) of VS, the all operate in the same domain, and the handler will be serving all resolving events.
-        // Here we're trying to eagerly load only the compilation references.
+        // Switched to eager loading the missing compilation references.
+        // Handling it though AssemblyResolve event is not a smart idea.
+        // If there are several open solutions in VS, they all operate in the same app domain, and the handler will be serving all AssemblyResolve events.
         private void LoadReferencedAssemblies()
         {
             var loadedAssemblies = AppDomain.CurrentDomain.GetAssemblies().Select(x=>x.GetName().Name.ToUpper()).ToList();
@@ -102,11 +102,11 @@ namespace SmartAnnotations.Generators
             }
         }
 
-        // SHOULD NOT BE USED. It will break VisualStudio.
         // This is a hack, but it's the easiest way to handle this and load referenced assemblies.
         // Any other approach just gets insane (much stuff not available on .NET Standard 2.0).
         // Compilation.References contain all the referenced assemblies, but only the path to them, not the assembly name. So we're trying to match from args.Name.
         // Also, doing it this way, we don't have to care for the assemblies' TFMs, since the compilation already has handled that part and contains the correct path.
+        // EDIT: Shouldn't be used. It will break VisualStudio since everything runs in CurrentDomain, and this will handle all AssemblyResolve events!
         private Assembly CurrentDomain_AssemblyResolve(object sender, ResolveEventArgs args)
         {
             var loadedAssembly = AppDomain.CurrentDomain.GetAssemblies().FirstOrDefault(x => x.FullName.Equals(args.Name));
