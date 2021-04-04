@@ -110,7 +110,7 @@ public class FooAnnotator : Annotator<Foo>
 
         // You can define your resource file per attribute too.
         DefineFor(x => x.Weight).Required().Message("This is my message, not a key to my resourceFile")
-                                .Display(typeof(AppResources)).Order(2).Name("PriceX")
+                                .Display(typeof(AppResources)).Order(2).Name("WeightKey")
                                 .DisplayFormat().FormatString("{0:n2} Kg").ApplyFormatInEditMode();
     }
 }
