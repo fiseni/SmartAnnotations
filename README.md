@@ -2,7 +2,7 @@
 
 &nbsp; [![NuGet](https://img.shields.io/nuget/v/SmartAnnotations.svg)](https://www.nuget.org/packages/SmartAnnotations)[![NuGet](https://img.shields.io/nuget/dt/SmartAnnotations.svg)](https://www.nuget.org/packages/SmartAnnotations)
 
-&nbsp; [![Build Status](https://dev.azure.com/pozitrondev/SmartAnnotations/_apis/build/status/SmartAnnotations_BuildPackage?branchName=master)](https://dev.azure.com/pozitrondev/SmartAnnotations/_build/latest?definitionId=16&branchName=master)
+&nbsp; [![Build Status](https://dev.azure.com/pozitrondev/SmartAnnotations/_apis/build/status/SmartAnnotations_BuildPackage?branchName=main)](https://dev.azure.com/pozitrondev/SmartAnnotations/_build/latest?definitionId=16&branchName=main)
 
 &nbsp;
 
