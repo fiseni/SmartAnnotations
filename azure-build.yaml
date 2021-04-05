@@ -44,9 +44,10 @@ steps:
     command: 'build'
     arguments: '--configuration $(BuildConfiguration)'
     outputDir: '$(Build.ArtifactStagingDirectory)'
+    projects: '$(solution)'
     # projects: |
       # src/SmartAnnotations/SmartAnnotations.csproj 
-      # SmartAnnotations.sln.sln
+      # SmartAnnotations.sln
 
 # Run tests and create coverage report
 - task: DotNetCoreCLI@2
