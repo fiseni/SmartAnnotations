@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SmartAnnotations.Generators
+namespace SmartAnnotations
 {
     internal class FileContentGenerator : IContentGenerator
     {

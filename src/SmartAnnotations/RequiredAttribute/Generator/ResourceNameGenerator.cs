@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SmartAnnotations.Generators.Required
+namespace SmartAnnotations.RequiredAttribute
 {
-    internal class ResourceTypeGenerator : IContentGenerator
+    internal class ResourceNameGenerator : IContentGenerator
     {
         private readonly RequiredAttributeDescriptor descriptor;
 
-        internal ResourceTypeGenerator(RequiredAttributeDescriptor descriptor)
+        internal ResourceNameGenerator(RequiredAttributeDescriptor descriptor)
         {
             this.descriptor = descriptor;
         }
@@ -18,9 +18,7 @@ namespace SmartAnnotations.Generators.Required
             if (descriptor.ResourceType == null && descriptor.ModelResourceType == null) return string.Empty;
             if (string.IsNullOrEmpty(descriptor.ErrorMessageResourceName)) return string.Empty;
 
-            var typeName = descriptor.ResourceType?.Name ?? descriptor.ModelResourceType?.Name;
-
-            return $"ErrorMessageResourceType = typeof({typeName})";
+            return $"ErrorMessageResourceName = \"{descriptor.ErrorMessageResourceName}\"";
         }
     }
 }

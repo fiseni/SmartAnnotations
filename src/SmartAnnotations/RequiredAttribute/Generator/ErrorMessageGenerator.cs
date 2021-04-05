@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SmartAnnotations.Generators.Required
+namespace SmartAnnotations.RequiredAttribute
 {
     internal class ErrorMessageGenerator : IContentGenerator
     {

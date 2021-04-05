@@ -1,11 +1,11 @@
-﻿using SmartAnnotations.Generators.Display;
-using SmartAnnotations.Generators.ReadOnly;
-using SmartAnnotations.Generators.Required;
+﻿using SmartAnnotations.DisplayAttribute;
+using SmartAnnotations.ReadOnlyAttribute;
+using SmartAnnotations.RequiredAttribute;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SmartAnnotations.Generators
+namespace SmartAnnotations
 {
     internal class AttributeGeneratorProvider
     {

@@ -7,7 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace SmartAnnotations.Generators
+namespace SmartAnnotations
 {
     internal class TypeResolver : MarshalByRefObject
     {

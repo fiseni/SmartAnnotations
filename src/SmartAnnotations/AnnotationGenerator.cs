@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SmartAnnotations.Generators
+namespace SmartAnnotations
 {
     internal class AnnotationGenerator : IContentGenerator
     {

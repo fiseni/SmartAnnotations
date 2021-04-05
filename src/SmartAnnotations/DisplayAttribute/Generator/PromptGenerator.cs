@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SmartAnnotations.Generators.Display
+namespace SmartAnnotations.DisplayAttribute
 {
     internal class PromptGenerator : IContentGenerator
     {

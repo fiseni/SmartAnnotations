@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SmartAnnotations.Generators.Display
+namespace SmartAnnotations.RequiredAttribute
 {
     internal class ResourceTypeGenerator : IContentGenerator
     {
-        private readonly DisplayAttributeDescriptor descriptor;
+        private readonly RequiredAttributeDescriptor descriptor;
 
-        internal ResourceTypeGenerator(DisplayAttributeDescriptor descriptor)
+        internal ResourceTypeGenerator(RequiredAttributeDescriptor descriptor)
         {
             this.descriptor = descriptor;
         }
@@ -16,12 +16,11 @@ namespace SmartAnnotations.Generators.Display
         public string GetContent()
         {
             if (descriptor.ResourceType == null && descriptor.ModelResourceType == null) return string.Empty;
-            if (descriptor.Name == null && descriptor.ShortName == null && descriptor.Description == null 
-                && descriptor.Prompt == null && descriptor.GroupName == null) return string.Empty;
+            if (string.IsNullOrEmpty(descriptor.ErrorMessageResourceName)) return string.Empty;
 
             var typeName = descriptor.ResourceType?.Name ?? descriptor.ModelResourceType?.Name;
 
-            return $"ResourceType = typeof({typeName})";
+            return $"ErrorMessageResourceType = typeof({typeName})";
         }
     }
 }

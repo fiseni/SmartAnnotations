@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SmartAnnotations.Generators.ReadOnly
+namespace SmartAnnotations.ReadOnlyAttribute
 {
     internal class ReadOnlyAttributeGenerator : IContentGenerator
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Reflection;
 
-namespace SmartAnnotations.Generators
+namespace SmartAnnotations
 {
     [Generator]
     public class SourceGenerator : ISourceGenerator
