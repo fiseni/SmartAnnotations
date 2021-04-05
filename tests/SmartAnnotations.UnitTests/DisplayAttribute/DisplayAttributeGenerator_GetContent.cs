@@ -40,7 +40,7 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
         }
 
         [Fact]
-        public void ReturnsMinimalContent_GivenNoParameters()
+        public void ReturnsParameterlessDisplayAttribute_GivenNoParameters()
         {
             var descriptor = new DisplayAttributeDescriptor();
             var context = new AnnotationDescriptor(nameof(TestProperty), typeof(string)) { Display = descriptor };
@@ -48,6 +48,18 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
             var generator = new DisplayAttributeGenerator(context);
 
             var expected = "[Display()]";
+
+            generator.GetContent().Should().Be(expected);
+        }
+
+        [Fact]
+        public void ReturnsEmptyContent_GivenNullDisplayDescriptor()
+        {
+            var context = new AnnotationDescriptor(nameof(TestProperty), typeof(string));
+
+            var generator = new DisplayAttributeGenerator(context);
+
+            var expected = string.Empty;
 
             generator.GetContent().Should().Be(expected);
         }
