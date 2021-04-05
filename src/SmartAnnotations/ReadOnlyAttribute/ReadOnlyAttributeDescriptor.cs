@@ -7,11 +7,11 @@ namespace SmartAnnotations
 {
     internal class ReadOnlyAttributeDescriptor : AttributeDescriptor
     {
-        public bool? IsReadOnly { get; }
-
-        public ReadOnlyAttributeDescriptor(bool? isReadOnly)
+        internal ReadOnlyAttributeDescriptor(bool? isReadOnly)
         {
             this.IsReadOnly = isReadOnly;
         }
+
+        internal bool? IsReadOnly { get; }
     }
 }

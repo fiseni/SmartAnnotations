@@ -7,7 +7,7 @@ namespace SmartAnnotations
 {
     internal class StringLengthAttributeDescriptor : AttributeDescriptor
     {
-        public StringLengthAttributeDescriptor(Type? resourceType = null) : base(resourceType)
+        internal StringLengthAttributeDescriptor(Type? resourceType = null) : base(resourceType)
         {
         }
     }

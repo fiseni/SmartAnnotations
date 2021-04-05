@@ -6,7 +6,7 @@ namespace SmartAnnotations.Internal
     {
         public AnnotationDescriptor Descriptor { get; }
 
-        public AnnotationBuilder(AnnotationDescriptor annotationDescriptor)
+        internal AnnotationBuilder(AnnotationDescriptor annotationDescriptor)
         {
             Descriptor = annotationDescriptor;
         }

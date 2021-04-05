@@ -8,7 +8,7 @@ namespace SmartAnnotations.Internal
     {
         public AnnotationContext Context { get; }
 
-        public ContextBuilder(AnnotationContext context)
+        internal ContextBuilder(AnnotationContext context)
         {
             this.Context = context;
         }

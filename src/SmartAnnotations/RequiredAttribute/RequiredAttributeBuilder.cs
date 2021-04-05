@@ -7,7 +7,7 @@ namespace SmartAnnotations
 {
     internal class RequiredAttributeBuilder<TProperty> : AnnotationBuilder<TProperty>, IRequiredAttributeBuilder<TProperty>
     {
-        public RequiredAttributeBuilder(AnnotationDescriptor annotationDescriptor)
+        internal RequiredAttributeBuilder(AnnotationDescriptor annotationDescriptor)
             : base(annotationDescriptor)
         {
         }
