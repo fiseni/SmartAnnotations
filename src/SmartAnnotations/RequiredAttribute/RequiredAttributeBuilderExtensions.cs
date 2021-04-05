@@ -25,12 +25,7 @@ namespace SmartAnnotations
             if (string.IsNullOrEmpty(resourceKey)) throw new ArgumentNullException(nameof(resourceKey));
             _ = source.Descriptor.Required ?? throw new ArgumentNullException(nameof(source.Descriptor.Display));
 
-            var resourceType = source.Descriptor.Required.ResourceType ?? source.Descriptor.Required.ModelResourceType;
-
-            if (resourceType != null)
-            {
-                source.Descriptor.Required.ErrorMessageResourceName = resourceKey;
-            }
+            source.Descriptor.Required.ErrorMessageResourceName = resourceKey;
 
             return source;
         }

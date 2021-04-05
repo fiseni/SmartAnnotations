@@ -15,12 +15,11 @@ namespace SmartAnnotations.RequiredAttribute
 
         public string GetContent()
         {
-            if (descriptor.ResourceType == null && descriptor.ModelResourceType == null) return string.Empty;
+            if (!descriptor.HasResourceType) return string.Empty;
+
             if (string.IsNullOrEmpty(descriptor.ErrorMessageResourceName)) return string.Empty;
 
-            var typeName = descriptor.ResourceType?.Name ?? descriptor.ModelResourceType?.Name;
-
-            return $"ErrorMessageResourceType = typeof({typeName})";
+            return $"ErrorMessageResourceType = typeof({descriptor.GetResourceTypeName()})";
         }
     }
 }

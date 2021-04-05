@@ -15,7 +15,8 @@ namespace SmartAnnotations.RequiredAttribute
 
         public string GetContent()
         {
-            if (descriptor.ResourceType == null && descriptor.ModelResourceType == null) return string.Empty;
+            if (!descriptor.HasResourceType) return string.Empty;
+
             if (string.IsNullOrEmpty(descriptor.ErrorMessageResourceName)) return string.Empty;
 
             return $"ErrorMessageResourceName = \"{descriptor.ErrorMessageResourceName}\"";

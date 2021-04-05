@@ -15,13 +15,12 @@ namespace SmartAnnotations.DisplayAttribute
 
         public string GetContent()
         {
-            if (descriptor.ResourceType == null && descriptor.ModelResourceType == null) return string.Empty;
+            if (!descriptor.HasResourceType) return string.Empty;
+
             if (descriptor.Name == null && descriptor.ShortName == null && descriptor.Description == null 
                 && descriptor.Prompt == null && descriptor.GroupName == null) return string.Empty;
 
-            var typeName = descriptor.ResourceType?.Name ?? descriptor.ModelResourceType?.Name;
-
-            return $"ResourceType = typeof({typeName})";
+            return $"ResourceType = typeof({descriptor.GetResourceTypeName()})";
         }
     }
 }
