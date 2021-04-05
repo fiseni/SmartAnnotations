@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SmartAnnotations
+namespace SmartAnnotations.Internal
 {
     internal class AttributeGeneratorProvider
     {

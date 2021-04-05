@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SmartAnnotations
+namespace SmartAnnotations.Internal
 {
-    public class ContextBuilder : IContextBuilder
+    internal class ContextBuilder : IContextBuilder
     {
         public AnnotationContext Context { get; }
 

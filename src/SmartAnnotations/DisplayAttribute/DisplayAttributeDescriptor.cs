@@ -1,10 +1,11 @@
-﻿using System;
+﻿using SmartAnnotations.Internal;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace SmartAnnotations
 {
-    public class DisplayAttributeDescriptor : AttributeDescriptor
+    internal class DisplayAttributeDescriptor : AttributeDescriptor
     {
         public DisplayAttributeDescriptor(Type? resourceType = null, Type? modelResourceType = null) 
             : base(resourceType, modelResourceType)

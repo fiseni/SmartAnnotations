@@ -4,7 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 
-namespace SmartAnnotations
+namespace SmartAnnotations.Internal
 {
     internal static class Utils
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace SmartAnnotations
+namespace SmartAnnotations.Internal
 {
-    public class AnnotationBuilder<TProperty> : IAnnotationBuilder<TProperty>
+    internal class AnnotationBuilder<TProperty> : IAnnotationBuilder<TProperty>
     {
         public AnnotationDescriptor Descriptor { get; }
 

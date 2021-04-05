@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SmartAnnotations
+namespace SmartAnnotations.Internal
 {
-    public abstract class AttributeDescriptor
+    internal abstract class AttributeDescriptor
     {
         public Type? ModelResourceType { get; }
         public Type? ResourceType { get; }

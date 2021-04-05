@@ -10,11 +10,11 @@ namespace SmartAnnotations
         public Type PropertyType { get; }
         public Type? ModelResourceType { get; }
 
-        public DisplayAttributeDescriptor? Display { get; internal set; }
-        public DisplayFormatAttributeDescriptor? DisplayFormat { get; internal set; }
-        public RequiredAttributeDescriptor? Required { get; internal set; }
-        public StringLengthAttributeDescriptor? StringLength { get; internal set; }
-        public ReadOnlyAttributeDescriptor? ReadOnly { get; internal set; }
+        internal DisplayAttributeDescriptor? Display { get; set; }
+        internal DisplayFormatAttributeDescriptor? DisplayFormat { get; set; }
+        internal RequiredAttributeDescriptor? Required { get; set; }
+        internal StringLengthAttributeDescriptor? StringLength { get; set; }
+        internal ReadOnlyAttributeDescriptor? ReadOnly { get; set; }
 
         public AnnotationDescriptor(string propertyName, Type propertyType, Type? modelResourceType = null)
         {

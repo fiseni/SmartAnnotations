@@ -1,6 +1,8 @@
-﻿namespace SmartAnnotations
+﻿using SmartAnnotations.Internal;
+
+namespace SmartAnnotations
 {
-    public class DisplayAttributeBuilder<TProperty> : AnnotationBuilder<TProperty>, IDisplayAttributeBuilder<TProperty>
+    internal class DisplayAttributeBuilder<TProperty> : AnnotationBuilder<TProperty>, IDisplayAttributeBuilder<TProperty>
     {
         public DisplayAttributeBuilder(AnnotationDescriptor annotationDescriptor)
             : base(annotationDescriptor)
