@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xunit;
 
 namespace SmartAnnotations.UnitTests.Internal
 {
@@ -18,6 +19,7 @@ namespace SmartAnnotations.UnitTests.Internal
                 : base(attributeResourceType, modelResourceType) { }
         }
 
+        [Fact]
         public void ReturnsAttributeResourceType_GivenAttributeAndModelResourceTypeParameters()
         {
             var descriptor = new TestDescriptor(typeof(AttributeTestResource), typeof(ModelTestResource));
@@ -29,6 +31,7 @@ namespace SmartAnnotations.UnitTests.Internal
             descriptor.GetResourceTypeName().Should().Be(nameof(AttributeTestResource));
         }
 
+        [Fact]
         public void ReturnsAttributeResourceType_GivenOnlyAttributeResourceTypeParameter()
         {
             var descriptor = new TestDescriptor(typeof(AttributeTestResource));
@@ -40,6 +43,7 @@ namespace SmartAnnotations.UnitTests.Internal
             descriptor.GetResourceTypeName().Should().Be(nameof(AttributeTestResource));
         }
 
+        [Fact]
         public void ReturnsModelResourceType_GivenNullAttributeResourceTypeParameter()
         {
             var descriptor = new TestDescriptor(null, typeof(ModelTestResource));
@@ -51,6 +55,7 @@ namespace SmartAnnotations.UnitTests.Internal
             descriptor.GetResourceTypeName().Should().Be(nameof(ModelTestResource));
         }
 
+        [Fact]
         public void ReturnsNull_GivenNoParameters()
         {
             var descriptor = new TestDescriptor();
