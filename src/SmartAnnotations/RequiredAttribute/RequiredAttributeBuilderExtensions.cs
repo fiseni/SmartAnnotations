@@ -11,7 +11,7 @@ namespace SmartAnnotations
             string message)
         {
             if (string.IsNullOrEmpty(message)) throw new ArgumentNullException(nameof(message));
-            _ = source.Descriptor.Required ?? throw new ArgumentNullException(nameof(source.Descriptor.Display));
+            _ = source.Descriptor.Required ?? throw new ArgumentNullException(nameof(source.Descriptor.Required));
 
             source.Descriptor.Required.ErrorMessage = message;
 
@@ -23,7 +23,7 @@ namespace SmartAnnotations
             string resourceKey)
         {
             if (string.IsNullOrEmpty(resourceKey)) throw new ArgumentNullException(nameof(resourceKey));
-            _ = source.Descriptor.Required ?? throw new ArgumentNullException(nameof(source.Descriptor.Display));
+            _ = source.Descriptor.Required ?? throw new ArgumentNullException(nameof(source.Descriptor.Required));
 
             source.Descriptor.Required.ErrorMessageResourceName = resourceKey;
 
