@@ -20,11 +20,11 @@ namespace SmartAnnotations.UnitTests.ValidationAttribute
             var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource));
             var provider = new ValidationPartialGeneratorProvider(descriptor);
 
-            var generators = provider.GetGenerators();
+            var generators = provider.GetGenerators().Select(x=>x.GetType());
 
-            generators.Should().Contain(x => x.GetType().Equals(typeof(ErrorMessageGenerator)));
-            generators.Should().Contain(x => x.GetType().Equals(typeof(ResourceNameGenerator)));
-            generators.Should().Contain(x => x.GetType().Equals(typeof(ResourceTypeGenerator)));
+            generators.Should().Contain(typeof(ErrorMessageGenerator));
+            generators.Should().Contain(typeof(ResourceNameGenerator));
+            generators.Should().Contain(typeof(ResourceTypeGenerator));
         }
     }
 }

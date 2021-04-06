@@ -35,7 +35,7 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
             annotationBuilder.Display(typeof(AttributeTestResource));
 
             descriptor.Display.Should().NotBeNull();
-            descriptor.Display!.AttributeResourceType.Should().Equals(typeof(AttributeTestResource));
+            descriptor.Display!.AttributeResourceType.Should().Be(typeof(AttributeTestResource));
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
             annotationBuilder.Display(typeof(AttributeTestResource));
 
             descriptor.Display.Should().NotBeNull();
-            descriptor.Display!.AttributeResourceType.Should().Equals(typeof(AttributeTestResource));
+            descriptor.Display!.AttributeResourceType.Should().Be(typeof(AttributeTestResource));
         }
 
         [Fact]
@@ -59,7 +59,7 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
             annotationBuilder.Display();
 
             descriptor.Display.Should().NotBeNull();
-            descriptor.Display!.AttributeResourceType.Should().Equals(typeof(AttributeTestResource));
+            descriptor.Display!.ModelResourceType.Should().Be(typeof(ModelTestResource));
         }
     }
 }

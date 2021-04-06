@@ -20,17 +20,17 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
             var descriptor = new DisplayAttributeDescriptor(typeof(AttributeTestResource));
             var provider = new DisplayPartialGeneratorProvider(descriptor);
 
-            var generators = provider.GetGenerators();
+            var generators = provider.GetGenerators().Select(x=>x.GetType());
 
-            generators.Should().Contain(x => x.GetType().Equals(typeof(OrderGenerator)));
-            generators.Should().Contain(x => x.GetType().Equals(typeof(AutoGenerateFieldGenerator)));
-            generators.Should().Contain(x => x.GetType().Equals(typeof(AutoGenerateFilterGenerator)));
-            generators.Should().Contain(x => x.GetType().Equals(typeof(NameGenerator)));
-            generators.Should().Contain(x => x.GetType().Equals(typeof(ShortNameGenerator)));
-            generators.Should().Contain(x => x.GetType().Equals(typeof(PromptGenerator)));
-            generators.Should().Contain(x => x.GetType().Equals(typeof(DescriptionGenerator)));
-            generators.Should().Contain(x => x.GetType().Equals(typeof(GroupNameGenerator)));
-            generators.Should().Contain(x => x.GetType().Equals(typeof(ResourceTypeGenerator)));
+            generators.Should().Contain(typeof(OrderGenerator));
+            generators.Should().Contain(typeof(AutoGenerateFieldGenerator));
+            generators.Should().Contain(typeof(AutoGenerateFilterGenerator));
+            generators.Should().Contain(typeof(NameGenerator));
+            generators.Should().Contain(typeof(ShortNameGenerator));
+            generators.Should().Contain(typeof(PromptGenerator));
+            generators.Should().Contain(typeof(DescriptionGenerator));
+            generators.Should().Contain(typeof(GroupNameGenerator));
+            generators.Should().Contain(typeof(ResourceTypeGenerator));
         }
     }
 }
