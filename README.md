@@ -4,7 +4,7 @@
 
 &nbsp; [![Build Status](https://dev.azure.com/pozitrondev/SmartAnnotations/_apis/build/status/SmartAnnotations_BuildPackage?branchName=main)](https://dev.azure.com/pozitrondev/SmartAnnotations/_build/latest?definitionId=16&branchName=main)
 
-&nbsp;
+&nbsp; [![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/pozitrondev/SmartAnnotations/16)](https://dev.azure.com/pozitrondev/SmartAnnotations/_build/latest?definitionId=16&branchName=main&view=codecoverage-tab)
 
 &nbsp;
 
