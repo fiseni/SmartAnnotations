@@ -26,4 +26,8 @@
     <ProjectReference Include="..\..\src\SmartAnnotations\SmartAnnotations.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="RequiredAttribute\" />
+  </ItemGroup>
+
 </Project>
