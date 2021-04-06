@@ -23,9 +23,9 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
                 ErrorMessage = "SomeErrorMessage",
                 ErrorMessageResourceName = "SomeErrorKey"
             };
-            var context = new AnnotationDescriptor(nameof(TestProperty), typeof(string)) { Required = descriptor };
+            var annotationDescriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string)) { Required = descriptor };
 
-            var generator = new RequiredAttributeGenerator(context);
+            var generator = new RequiredAttributeGenerator(annotationDescriptor);
 
             var expected = $"[Required(ErrorMessage = \"SomeErrorMessage\", ErrorMessageResourceName = \"SomeErrorKey\", ErrorMessageResourceType = typeof(AttributeTestResource))]";
 
@@ -36,9 +36,9 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
         public void ReturnsParameterlessRequiredAttribute_GivenNoParameters()
         {
             var descriptor = new RequiredAttributeDescriptor();
-            var context = new AnnotationDescriptor(nameof(TestProperty), typeof(string)) { Required = descriptor };
+            var annotationDescriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string)) { Required = descriptor };
 
-            var generator = new RequiredAttributeGenerator(context);
+            var generator = new RequiredAttributeGenerator(annotationDescriptor);
 
             var expected = "[Required()]";
 
@@ -48,9 +48,9 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
         [Fact]
         public void ReturnsEmptyContent_GivenNullRequiredDescriptor()
         {
-            var context = new AnnotationDescriptor(nameof(TestProperty), typeof(string));
+            var annotationDescriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string));
 
-            var generator = new RequiredAttributeGenerator(context);
+            var generator = new RequiredAttributeGenerator(annotationDescriptor);
 
             var expected = string.Empty;
 
