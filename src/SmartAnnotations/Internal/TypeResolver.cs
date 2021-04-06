@@ -3,12 +3,15 @@ using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.Emit;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 
 namespace SmartAnnotations.Internal
 {
+    // Not yet sure what the final design will be.
+    [ExcludeFromCodeCoverage]
     internal class TypeResolver : MarshalByRefObject
     {
         private readonly CSharpCompilation compilation;
