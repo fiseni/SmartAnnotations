@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Text;
 
 namespace SmartAnnotations.Internal
 {
+    // Mainly used for debugging.
+    [ExcludeFromCodeCoverage]
     internal static class Utils
     {
         internal static void AttachDebugger()
@@ -27,23 +30,6 @@ namespace SmartAnnotations.Internal
 
             return buffer;
         }
-
-        internal static bool IsSubclassOfRawGeneric(this Type toCheck, Type baseType)
-        {
-            while (toCheck != typeof(object))
-            {
-                Type cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
-                if (baseType == cur)
-                {
-                    return true;
-                }
-
-                toCheck = toCheck.BaseType;
-            }
-
-            return false;
-        }
-
 
         internal static string AddIndent(ushort count)
         {

@@ -22,15 +22,10 @@ namespace SmartAnnotations
             if (context.Compilation is CSharpCompilation compilation)
             {
                 var typeResolver = GetResolver(compilation);
-                var allTypes = typeResolver.GetAllTypes();
+                var annotationContextInstances = typeResolver.GetAnnotationContextInstances();
 
-                //var annotatorTypes = allTypes.Where(x => typeof(AnnotationContext).IsAssignableFrom(x));
-                var annotatorTypes = allTypes.Where(x => x.IsSubclassOfRawGeneric(typeof(Annotator<>)));
-
-                foreach (var annotatorType in annotatorTypes)
+                foreach (var annotationContext in annotationContextInstances)
                 {
-                    var annotationContext = ((AnnotationContext)Activator.CreateInstance(annotatorType));
-
                     context.AddSource($"{annotationContext.Type.FullName}Generated", SourceText.From(new FileContentGenerator(annotationContext).GetContent(), Encoding.Unicode));
                 }
 

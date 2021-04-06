@@ -23,22 +23,11 @@ namespace SmartAnnotations.Internal
             this.metadataReferences = compilation.References.ToList();
         }
 
-        internal Type[] GetAllTypes()
+        internal IEnumerable<AnnotationContext> GetAnnotationContextInstances()
         {
-            Type[] output = Array.Empty<Type>();
+            var annotatorTypes = GetAllTypes().Where(x => IsSubclassOfRawGeneric(x, typeof(Annotator<>)));
 
-            //var appDomain = AppDomain.CurrentDomain;
-            //appDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
-
-            var assembly = GetAssembly();
-            LoadReferencedAssemblies();
-
-            if (assembly != null)
-            {
-                output = GetLoadableTypes(assembly);
-            }
-
-            return output;
+            return annotatorTypes.Select(x => (AnnotationContext)Activator.CreateInstance(x));
         }
 
         internal void UnloadAssemblies()
@@ -49,6 +38,24 @@ namespace SmartAnnotations.Internal
             // This sucks :)
 
             // AppDomain.Unload(this.appDomain);
+        }
+
+        private Type[] GetAllTypes()
+        {
+            Type[] output = Array.Empty<Type>();
+
+            //var appDomain = AppDomain.CurrentDomain;
+            //appDomain.AssemblyResolve += CurrentDomain_AssemblyResolve;
+
+            var assembly = GetAssembly();
+
+            if (assembly != null)
+            {
+                LoadReferencedAssemblies();
+                output = GetLoadableTypes(assembly);
+            }
+
+            return output;
         }
 
         private Type[] GetLoadableTypes(Assembly assembly)
@@ -128,6 +135,22 @@ namespace SmartAnnotations.Internal
             }
 
             return Assembly.Load(args.Name);
+        }
+
+        private bool IsSubclassOfRawGeneric(Type toCheck, Type baseType)
+        {
+            while (toCheck != typeof(object))
+            {
+                Type cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
+                if (baseType == cur)
+                {
+                    return true;
+                }
+
+                toCheck = toCheck.BaseType;
+            }
+
+            return false;
         }
     }
 }
