@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SmartAnnotations.ValidationAttribute;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -12,7 +13,7 @@ namespace SmartAnnotations.RequiredAttribute
         {
             this.generators = descriptor.Required == null
                             ? Array.Empty<IContentGenerator>()
-                            : new RequiredPartialGeneratorProvider(descriptor.Required).GetGenerators();
+                            : new ValidationPartialGeneratorProvider(descriptor.Required).GetGenerators();
         }
         public string GetContent()
         {

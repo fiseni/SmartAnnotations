@@ -40,6 +40,22 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
         }
 
         [Fact]
+        public void ReturnsDisplayAttributeWithNameAndResourceType_GivenNameAndResourceType()
+        {
+            var descriptor = new DisplayAttributeDescriptor(typeof(TestResource))
+            {
+                Name = "SomeName",
+            };
+            var context = new AnnotationDescriptor(nameof(TestProperty), typeof(string)) { Display = descriptor };
+
+            var generator = new DisplayAttributeGenerator(context);
+
+            var expected = $"[Display(Name = \"SomeName\", ResourceType = typeof(TestResource))]";
+
+            generator.GetContent().Should().Be(expected);
+        }
+
+        [Fact]
         public void ReturnsParameterlessDisplayAttribute_GivenNoParameters()
         {
             var descriptor = new DisplayAttributeDescriptor();

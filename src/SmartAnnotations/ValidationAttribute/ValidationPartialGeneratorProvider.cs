@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SmartAnnotations.RequiredAttribute
+namespace SmartAnnotations.ValidationAttribute
 {
-    internal class RequiredPartialGeneratorProvider
+    internal class ValidationPartialGeneratorProvider
     {
-        private readonly RequiredAttributeDescriptor descriptor;
+        private readonly ValidationAttributeDescriptor descriptor;
 
-        internal RequiredPartialGeneratorProvider(RequiredAttributeDescriptor descriptor)
+        internal ValidationPartialGeneratorProvider(ValidationAttributeDescriptor descriptor)
         {
             this.descriptor = descriptor;
         }

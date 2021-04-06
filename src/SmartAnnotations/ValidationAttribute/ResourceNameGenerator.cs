@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SmartAnnotations.RequiredAttribute
+namespace SmartAnnotations.ValidationAttribute
 {
     internal class ResourceNameGenerator : IContentGenerator
     {
-        private readonly RequiredAttributeDescriptor descriptor;
+        private readonly ValidationAttributeDescriptor descriptor;
 
-        internal ResourceNameGenerator(RequiredAttributeDescriptor descriptor)
+        internal ResourceNameGenerator(ValidationAttributeDescriptor descriptor)
         {
             this.descriptor = descriptor;
         }

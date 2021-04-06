@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SmartAnnotations.RequiredAttribute
+namespace SmartAnnotations.ValidationAttribute
 {
     internal class ErrorMessageGenerator : IContentGenerator
     {
-        private readonly RequiredAttributeDescriptor descriptor;
+        private readonly ValidationAttributeDescriptor descriptor;
 
-        internal ErrorMessageGenerator(RequiredAttributeDescriptor descriptor)
+        internal ErrorMessageGenerator(ValidationAttributeDescriptor descriptor)
         {
             this.descriptor = descriptor;
         }
