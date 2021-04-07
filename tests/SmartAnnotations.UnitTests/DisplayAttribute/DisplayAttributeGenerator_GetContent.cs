@@ -56,7 +56,7 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
         }
 
         [Fact]
-        public void ReturnsParameterlessDisplayAttribute_GivenNoParameters()
+        public void ReturnsParameterlessDisplayAttribute_GivenEmptyDisplayDescriptor()
         {
             var descriptor = new DisplayAttributeDescriptor();
             var annotationDescriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string)) { Display = descriptor };

@@ -22,10 +22,27 @@ namespace SmartAnnotations.UnitTests.Internal
         }
 
         [Fact]
+        public void ReturnsDisplayAttribute_GivenDisplayAndreadOnlyDescriptor()
+        {
+            var descriptor = new AnnotationDescriptor("TestProperty", typeof(string))
+            {
+                Display = new DisplayAttributeDescriptor() { Name = "SomeName" },
+                ReadOnly = new ReadOnlyAttributeDescriptor(true)
+            };
+
+            var generator = new AnnotationGenerator(descriptor);
+
+            generator.GetContent().Should().Be(GetContentForDisplayAndReadOnlyAttribute());
+        }
+
+        [Fact]
         public void ReturnsDisplayAttribute_GivenDisplayDescriptor()
         {
-            var descriptor = new AnnotationDescriptor("TestProperty", typeof(string));
-            descriptor.Display = new DisplayAttributeDescriptor() { Name = "SomeName"};
+            var descriptor = new AnnotationDescriptor("TestProperty", typeof(string))
+            {
+                Display = new DisplayAttributeDescriptor() { Name = "SomeName" }
+            };
+
             var generator = new AnnotationGenerator(descriptor);
 
             generator.GetContent().Should().Be(GetContentForDisplayAttribute());
@@ -34,9 +51,12 @@ namespace SmartAnnotations.UnitTests.Internal
         [Fact]
         public void ReturnsDisplayAttribute_GivenDisplayDescriptorAndAdditionalInvalidDescriptor()
         {
-            var descriptor = new AnnotationDescriptor("TestProperty", typeof(string));
-            descriptor.Display = new DisplayAttributeDescriptor() { Name = "SomeName" };
-            descriptor.ReadOnly = new ReadOnlyAttributeDescriptor(null);
+            var descriptor = new AnnotationDescriptor("TestProperty", typeof(string))
+            {
+                Display = new DisplayAttributeDescriptor() { Name = "SomeName" },
+                ReadOnly = new ReadOnlyAttributeDescriptor(null)
+            };
+
             var generator = new AnnotationGenerator(descriptor);
 
             generator.GetContent().Should().Be(GetContentForDisplayAttribute());
@@ -61,6 +81,15 @@ namespace SmartAnnotations.UnitTests.Internal
         {
             return
 @"        [Display(Name = ""SomeName"")]
+        public object TestProperty;
+";
+        }
+
+        private string GetContentForDisplayAndReadOnlyAttribute()
+        {
+            return
+@"        [ReadOnly(true)]
+        [Display(Name = ""SomeName"")]
         public object TestProperty;
 ";
         }

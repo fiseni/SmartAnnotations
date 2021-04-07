@@ -22,7 +22,7 @@ namespace SmartAnnotations.Internal
                 var content = new AnnotationGenerator(descriptor).GetContent();
                 if (!string.IsNullOrEmpty(content))
                 {
-                    output = string.IsNullOrEmpty(output) ? $"{content}" : $"{output}{Environment.NewLine}{content}";
+                    output = string.IsNullOrEmpty(output) ? content : $"{output}{Environment.NewLine}{content}";
                 }
             }
 

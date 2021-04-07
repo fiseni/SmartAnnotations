@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartAnnotations", "src\Sma
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7376411B-4F06-4D99-BF45-4BA602A50B5C}"
 	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
 		azure-build.yaml = azure-build.yaml
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md

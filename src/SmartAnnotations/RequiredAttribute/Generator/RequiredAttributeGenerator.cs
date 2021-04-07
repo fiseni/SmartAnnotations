@@ -26,7 +26,7 @@ namespace SmartAnnotations.RequiredAttribute
                 var content = generator.GetContent();
                 if (!string.IsNullOrEmpty(content))
                 {
-                    output = string.IsNullOrEmpty(output) ? $"{content}" : $"{output}, {content}";
+                    output = string.IsNullOrEmpty(output) ? content : $"{output}, {content}";
                 }
             }
 

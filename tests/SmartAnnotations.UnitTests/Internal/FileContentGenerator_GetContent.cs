@@ -29,10 +29,19 @@ namespace SmartAnnotations.UnitTests.Internal
         }
 
         [Fact]
+        public void ReturnsMetadataWithDisplayAttribute_GivenDisplayNameAndReadOnlyAnnotations()
+        {
+            var generator = new FileContentGenerator(new TestAnnotatorWithDisplayNameAndReadOnly());
+
+            generator.GetContent().Should().Be(GetContentForTestAnnotatorWithDisplayNameAndReadOnly());
+        }
+
+        [Fact]
         public void ReturnsMetadataWithDisplayAttribute_GivenDisplayNameAnnotationAndAdditionalInvalidDescriptor()
         {
             var context = new TestAnnotatorWithDisplayName();
             context.AddDescriptor(new AnnotationDescriptor("someProperty", typeof(string)));
+
             var generator = new FileContentGenerator(context);
 
             generator.GetContent().Should().Be(GetContentForTestAnnotatorWithDisplayName());
@@ -41,6 +50,7 @@ namespace SmartAnnotations.UnitTests.Internal
         private partial class TestType
         {
             public string? TestProperty { get; set; } = null;
+            public string? TestProperty2 { get; set; } = null;
         }
         private class TestAnnotatorEmpty : Annotator<TestType>
         {
@@ -50,6 +60,14 @@ namespace SmartAnnotations.UnitTests.Internal
             public TestAnnotatorWithDisplayName()
             {
                 DefineFor(x => x.TestProperty).Display().Name("SomeName");
+            }
+        }
+        private class TestAnnotatorWithDisplayNameAndReadOnly : Annotator<TestType>
+        {
+            public TestAnnotatorWithDisplayNameAndReadOnly()
+            {
+                DefineFor(x => x.TestProperty).Display().Name("SomeName");
+                DefineFor(x => x.TestProperty2).ReadOnly(true);
             }
         }
 
@@ -92,6 +110,33 @@ namespace SmartAnnotations.UnitTests.Internal
     {
         [Display(Name = ""SomeName"")]
         public object TestProperty;
+
+    }
+}
+";
+        }
+
+        private string GetContentForTestAnnotatorWithDisplayNameAndReadOnly()
+        {
+            return
+@"using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
+namespace SmartAnnotations.UnitTests.Internal
+{
+    [MetadataType(typeof(TestTypeMetaData))]
+    public partial class TestType 
+    {
+    }
+
+    public class TestTypeMetaData 
+    {
+        [Display(Name = ""SomeName"")]
+        public object TestProperty;
+
+        [ReadOnly(true)]
+        public object TestProperty2;
 
     }
 }
