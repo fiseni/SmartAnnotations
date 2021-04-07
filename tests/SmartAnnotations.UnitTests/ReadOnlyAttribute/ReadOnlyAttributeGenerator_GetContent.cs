@@ -25,19 +25,6 @@ namespace SmartAnnotations.UnitTests.ReadOnlyAttribute
         }
 
         [Fact]
-        public void ReturnsEmptyContent_GivenNullParameter()
-        {
-            var descriptor = new ReadOnlyAttributeDescriptor(null);
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { ReadOnly = descriptor };
-
-            var generator = new ReadOnlyAttributeGenerator(annotationDescriptor);
-
-            var expected = string.Empty;
-
-            generator.GetContent().Should().Be(expected);
-        }
-
-        [Fact]
         public void ReturnsEmptyContent_GivenNullReadOnlyDescriptor()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));

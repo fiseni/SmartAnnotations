@@ -8,7 +8,7 @@ namespace SmartAnnotations
     {
         public static IAnnotationBuilder<TProperty> ReadOnly<TProperty>(
             this IAnnotationBuilder<TProperty> source,
-            bool isReadOnly)
+            bool isReadOnly = true)
         {
             source.Descriptor.ReadOnly = new ReadOnlyAttributeDescriptor(isReadOnly);
 

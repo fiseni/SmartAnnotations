@@ -22,5 +22,17 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
             descriptor.ReadOnly.Should().NotBeNull();
             descriptor.ReadOnly!.IsReadOnly.Should().BeTrue();
         }
+
+        [Fact]
+        public void SetsReadOnlyDescriptorWithDefaultValue_GivenNoParameters()
+        {
+            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string));
+            var annotationBuilder = new AnnotationBuilder<string>(descriptor);
+
+            annotationBuilder.ReadOnly();
+
+            descriptor.ReadOnly.Should().NotBeNull();
+            descriptor.ReadOnly!.IsReadOnly.Should().BeTrue();
+        }
     }
 }
