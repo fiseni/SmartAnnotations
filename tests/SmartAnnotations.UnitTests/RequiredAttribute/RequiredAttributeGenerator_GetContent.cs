@@ -13,7 +13,7 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
     public class RequiredAttributeGenerator_GetContent
     {
         [Fact]
-        public void ReturnsRequiredAttribute_GivenAllParameters()
+        public void ReturnsRequiredAttributeWithMessageOnly_GivenAllParameters()
         {
             var descriptor = new RequiredAttributeDescriptor(typeof(AttributeTestResource))
             {
@@ -25,7 +25,90 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
 
             var generator = new RequiredAttributeGenerator(annotationDescriptor);
 
-            var expected = $"[Required(ErrorMessage = \"SomeErrorMessage\", ErrorMessageResourceName = \"SomeErrorKey\", ErrorMessageResourceType = typeof(AttributeTestResource))]";
+            var expected = $"[Required(ErrorMessage = \"SomeErrorMessage\")]";
+
+            generator.GetContent().Should().Be(expected);
+        }
+
+        [Fact]
+        public void ReturnsRequiredAttributeWithMessageOnly_GivenMessageAndResourceType()
+        {
+            var descriptor = new RequiredAttributeDescriptor(typeof(AttributeTestResource))
+            {
+                ErrorMessage = "SomeErrorMessage",
+            };
+
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Required = descriptor };
+
+            var generator = new RequiredAttributeGenerator(annotationDescriptor);
+
+            var expected = $"[Required(ErrorMessage = \"SomeErrorMessage\")]";
+
+            generator.GetContent().Should().Be(expected);
+        }
+
+        [Fact]
+        public void ReturnsRequiredAttributeWithMessageOnly_GivenMessageAndKey()
+        {
+            var descriptor = new RequiredAttributeDescriptor()
+            {
+                ErrorMessage = "SomeErrorMessage",
+                ErrorMessageResourceName = "SomeErrorKey"
+            };
+
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Required = descriptor };
+
+            var generator = new RequiredAttributeGenerator(annotationDescriptor);
+
+            var expected = $"[Required(ErrorMessage = \"SomeErrorMessage\")]";
+
+            generator.GetContent().Should().Be(expected);
+        }
+
+        [Fact]
+        public void ReturnsRequiredAttributeWithKeyAndResourceType_GivenResourceAndKey()
+        {
+            var descriptor = new RequiredAttributeDescriptor(typeof(AttributeTestResource))
+            {
+                ErrorMessageResourceName = "SomeErrorKey"
+            };
+
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Required = descriptor };
+
+            var generator = new RequiredAttributeGenerator(annotationDescriptor);
+
+            var expected = $"[Required(ErrorMessageResourceName = \"SomeErrorKey\", ErrorMessageResourceType = typeof(AttributeTestResource))]";
+
+            generator.GetContent().Should().Be(expected);
+        }
+
+        [Fact]
+        public void ReturnsParameterlessRequiredAttribute_GivenResourceOnly()
+        {
+            var descriptor = new RequiredAttributeDescriptor(typeof(AttributeTestResource));
+
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Required = descriptor };
+
+            var generator = new RequiredAttributeGenerator(annotationDescriptor);
+
+            var expected = $"[Required()]";
+
+            generator.GetContent().Should().Be(expected);
+        }
+
+        [Fact]
+        public void ReturnsParameterlessRequiredAttribute_GivenKeyOnly()
+        {
+            var descriptor = new RequiredAttributeDescriptor()
+            {
+                ErrorMessageResourceName = "SomeErrorKey"
+            };
+
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Required = descriptor };
+
+            var generator = new RequiredAttributeGenerator(annotationDescriptor);
+
+            var expected = $"[Required()]";
 
             generator.GetContent().Should().Be(expected);
         }

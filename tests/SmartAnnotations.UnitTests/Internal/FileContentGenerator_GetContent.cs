@@ -30,7 +30,7 @@ namespace SmartAnnotations.UnitTests.Internal
         }
 
         [Fact]
-        public void ReturnsMetadataWithDisplayAttribute_GivenDisplayNameAnnotationAndAdditionalInvalidDescriptor()
+        public void ReturnsMetadataWithDisplayAttribute_GivenDisplayNameAnnotationAndAdditionalEmptyDescriptor()
         {
             var context = new TestAnnotatorWithDisplayName("SomeName");
             context.AddDescriptor(new AnnotationDescriptor("SomeProperty", typeof(string)));

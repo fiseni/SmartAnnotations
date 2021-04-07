@@ -46,6 +46,22 @@ namespace SmartAnnotations.UnitTests.ValidationAttribute
         }
 
         [Fact]
+        public void ReturnsEmptyContent_GivenHasErrorMessage()
+        {
+            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource), typeof(ModelTestResource))
+            {
+                ErrorMessage = "SomeMessage",
+                ErrorMessageResourceName = "SomeResourceKey"
+            };
+
+            var generator = new ResourceNameGenerator(descriptor);
+
+            var expected = string.Empty;
+
+            generator.GetContent().Should().Be(expected);
+        }
+
+        [Fact]
         public void ReturnsEmptyContent_GivenHasNoResourceType()
         {
             var descriptor = new ValidationAttributeDescriptor();
