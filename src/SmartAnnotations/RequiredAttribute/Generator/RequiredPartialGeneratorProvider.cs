@@ -18,7 +18,8 @@ namespace SmartAnnotations.RequiredAttribute
         {
             return new IContentGenerator[]
             {
-                new ValidationParametersGenerator(descriptor),
+                new AllowEmptyStringsGenerator(descriptor),
+                new ValidationParametersGenerator(descriptor)
             };
         }
     }

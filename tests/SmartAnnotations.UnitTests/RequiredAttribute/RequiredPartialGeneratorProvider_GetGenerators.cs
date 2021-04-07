@@ -22,6 +22,7 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
             var generators = provider.GetGenerators().Select(x=>x.GetType());
 
             generators.Should().ContainInOrder(
+                typeof(AllowEmptyStringsGenerator),
                 typeof(ValidationParametersGenerator));
         }
     }

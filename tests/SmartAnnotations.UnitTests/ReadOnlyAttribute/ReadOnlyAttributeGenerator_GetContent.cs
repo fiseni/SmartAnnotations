@@ -19,7 +19,7 @@ namespace SmartAnnotations.UnitTests.ReadOnlyAttribute
 
             var generator = new ReadOnlyAttributeGenerator(annotationDescriptor);
 
-            var expected = $"[ReadOnly(true)]";
+            var expected = @"[ReadOnly(true)]";
 
             generator.GetContent().Should().Be(expected);
         }

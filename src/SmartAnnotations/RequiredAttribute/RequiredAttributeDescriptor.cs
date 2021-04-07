@@ -10,5 +10,7 @@ namespace SmartAnnotations
             : base(resourceType, modelResourceType)
         {
         }
+
+        internal bool? AllowEmptyStrings { get; set; }
     }
 }

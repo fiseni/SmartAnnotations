@@ -6,6 +6,17 @@ namespace SmartAnnotations
 {
     public static class RequiredAttributeBuilderExtensions
     {
+        public static IRequiredAttributeBuilder<TProperty> AllowEmptyStrings<TProperty>(
+            this IRequiredAttributeBuilder<TProperty> source,
+            bool allowEmptyStrings = true)
+        {
+            _ = source.Descriptor.Required ?? throw new ArgumentNullException(nameof(source.Descriptor.Required));
+
+            source.Descriptor.Required.AllowEmptyStrings = allowEmptyStrings;
+
+            return source;
+        }
+
         public static IRequiredAttributeBuilder<TProperty> Message<TProperty>(
             this IRequiredAttributeBuilder<TProperty> source,
             string message)

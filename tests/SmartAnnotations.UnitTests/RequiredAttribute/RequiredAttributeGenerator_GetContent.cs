@@ -17,6 +17,7 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
         {
             var descriptor = new RequiredAttributeDescriptor(typeof(AttributeTestResource))
             {
+                AllowEmptyStrings = true,
                 ErrorMessage = "SomeErrorMessage",
                 ErrorMessageResourceName = "SomeErrorKey"
             };
@@ -25,7 +26,7 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
 
             var generator = new RequiredAttributeGenerator(annotationDescriptor);
 
-            var expected = $"[Required(ErrorMessage = \"SomeErrorMessage\")]";
+            var expected = @"[Required(AllowEmptyStrings = true, ErrorMessage = ""SomeErrorMessage"")]";
 
             generator.GetContent().Should().Be(expected);
         }
