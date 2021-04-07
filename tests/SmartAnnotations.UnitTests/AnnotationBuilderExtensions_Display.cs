@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using SmartAnnotations.Internal;
+using SmartAnnotations.UnitTests.Fixture;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +12,10 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
 {
     public class AnnotationBuilderExtensions_Display
     {
-        private class AttributeTestResource { }
-        private class ModelTestResource { }
-        public string TestProperty { get; set; } = "SomeString";
-
         [Fact]
         public void SetsDisplayDescriptorWithNoResourceType_GivenNoAttributeOrModelResourceType()
         {
-            var descriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string));
+            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string));
             var annotationBuilder = new AnnotationBuilder<string>(descriptor);
 
             annotationBuilder.Display();
@@ -29,7 +26,7 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
         [Fact]
         public void SetsDisplayDescriptorWithAttributeResourceType_GivenResourceTypeParameter()
         {
-            var descriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string));
+            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string));
             var annotationBuilder = new AnnotationBuilder<string>(descriptor);
 
             annotationBuilder.Display(typeof(AttributeTestResource));
@@ -39,9 +36,9 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
         }
 
         [Fact]
-        public void SetsDisplayDescriptorWithAttributeResourceType_GivenResourceTypeParameterAndModelResourceType()
+        public void SetsDisplayDescriptorWithAttributeResourceType_GivenResourceTypeParameterAndHasModelResourceType()
         {
-            var descriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string), typeof(ModelTestResource));
+            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string), typeof(ModelTestResource));
             var annotationBuilder = new AnnotationBuilder<string>(descriptor);
 
             annotationBuilder.Display(typeof(AttributeTestResource));
@@ -53,7 +50,7 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
         [Fact]
         public void SetsRequiredDescriptorWithModelResourceType_GivenNoResourceTypeParameterAndHasModelResourceType()
         {
-            var descriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string), typeof(ModelTestResource));
+            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string), typeof(ModelTestResource));
             var annotationBuilder = new AnnotationBuilder<string>(descriptor);
 
             annotationBuilder.Display();

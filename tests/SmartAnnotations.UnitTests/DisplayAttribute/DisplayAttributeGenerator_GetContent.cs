@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using SmartAnnotations.DisplayAttribute;
+using SmartAnnotations.UnitTests.Fixture;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,10 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
 {
     public class DisplayAttributeGenerator_GetContent
     {
-        private class TestResource { }
-        public string? TestProperty { get; set; } = null;
-
         [Fact]
-        public void ReturnsFullContent_GivenAllParameters()
+        public void ReturnsDisplayAttributeWithAllParameters_GivenAllParameters()
         {
-            var descriptor = new DisplayAttributeDescriptor(typeof(TestResource))
+            var descriptor = new DisplayAttributeDescriptor(typeof(AttributeTestResource))
             {
                 Order = 5,
                 AutoGenerateField = true,
@@ -28,13 +26,12 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
                 Description = "SomeDescription",
                 GroupName = "SomeGroupName",
             };
-            var annotationDescriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string)) { Display = descriptor };
+
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Display = descriptor };
 
             var generator = new DisplayAttributeGenerator(annotationDescriptor);
 
-            var expected = $"[Display(Order = 5, AutoGenerateField = true, AutoGenerateFilter = true, Name = \"SomeName\", " +
-                $"ShortName = \"SomeShortName\", Prompt = \"SomePrompt\", Description = \"SomeDescription\", " +
-                $"GroupName = \"SomeGroupName\", ResourceType = typeof(TestResource))]";
+            var expected = @"[Display(Order = 5, AutoGenerateField = true, AutoGenerateFilter = true, Name = ""SomeName"", ShortName = ""SomeShortName"", Prompt = ""SomePrompt"", Description = ""SomeDescription"", GroupName = ""SomeGroupName"", ResourceType = typeof(AttributeTestResource))]";
 
             generator.GetContent().Should().Be(expected);
         }
@@ -42,15 +39,16 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
         [Fact]
         public void ReturnsDisplayAttributeWithNameAndResourceType_GivenNameAndResourceType()
         {
-            var descriptor = new DisplayAttributeDescriptor(typeof(TestResource))
+            var descriptor = new DisplayAttributeDescriptor(typeof(AttributeTestResource))
             {
                 Name = "SomeName",
             };
-            var annotationDescriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string)) { Display = descriptor };
+
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Display = descriptor };
 
             var generator = new DisplayAttributeGenerator(annotationDescriptor);
 
-            var expected = $"[Display(Name = \"SomeName\", ResourceType = typeof(TestResource))]";
+            var expected = @"[Display(Name = ""SomeName"", ResourceType = typeof(AttributeTestResource))]";
 
             generator.GetContent().Should().Be(expected);
         }
@@ -59,11 +57,11 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
         public void ReturnsParameterlessDisplayAttribute_GivenEmptyDisplayDescriptor()
         {
             var descriptor = new DisplayAttributeDescriptor();
-            var annotationDescriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string)) { Display = descriptor };
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Display = descriptor };
 
             var generator = new DisplayAttributeGenerator(annotationDescriptor);
 
-            var expected = "[Display()]";
+            var expected = @"[Display()]";
 
             generator.GetContent().Should().Be(expected);
         }
@@ -71,7 +69,7 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
         [Fact]
         public void ReturnsEmptyContent_GivenNullDisplayDescriptor()
         {
-            var annotationDescriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string));
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
 
             var generator = new DisplayAttributeGenerator(annotationDescriptor);
 

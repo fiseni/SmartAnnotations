@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using SmartAnnotations.RequiredAttribute;
+using SmartAnnotations.UnitTests.Fixture;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,19 +12,16 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
 {
     public class RequiredAttributeGenerator_GetContent
     {
-        private class AttributeTestResource { }
-        private class ModelTestResource { }
-        public string? TestProperty { get; set; } = null;
-
         [Fact]
-        public void ReturnsFullContent_GivenAllParameters()
+        public void ReturnsRequiredAttribute_GivenAllParameters()
         {
             var descriptor = new RequiredAttributeDescriptor(typeof(AttributeTestResource))
             {
                 ErrorMessage = "SomeErrorMessage",
                 ErrorMessageResourceName = "SomeErrorKey"
             };
-            var annotationDescriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string)) { Required = descriptor };
+
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Required = descriptor };
 
             var generator = new RequiredAttributeGenerator(annotationDescriptor);
 
@@ -33,10 +31,10 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
         }
 
         [Fact]
-        public void ReturnsParameterlessRequiredAttribute_GivenNoParameters()
+        public void ReturnsParameterlessRequiredAttribute_GivenEmptyRequiredDescriptor()
         {
             var descriptor = new RequiredAttributeDescriptor();
-            var annotationDescriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string)) { Required = descriptor };
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Required = descriptor };
 
             var generator = new RequiredAttributeGenerator(annotationDescriptor);
 
@@ -48,7 +46,7 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
         [Fact]
         public void ReturnsEmptyContent_GivenNullRequiredDescriptor()
         {
-            var annotationDescriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string));
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
 
             var generator = new RequiredAttributeGenerator(annotationDescriptor);
 

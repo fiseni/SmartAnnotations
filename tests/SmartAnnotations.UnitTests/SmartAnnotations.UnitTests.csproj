@@ -26,4 +26,28 @@
     <ProjectReference Include="..\..\src\SmartAnnotations\SmartAnnotations.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Fixture\AttributeTestResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AttributeTestResource.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Fixture\ModelTestResource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>ModelTestResource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Fixture\AttributeTestResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AttributeTestResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Fixture\ModelTestResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ModelTestResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
 </Project>

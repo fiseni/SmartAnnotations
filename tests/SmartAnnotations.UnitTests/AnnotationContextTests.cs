@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using SmartAnnotations.UnitTests.Fixture;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,16 +14,9 @@ namespace SmartAnnotations.UnitTests
         [Fact]
         public void ThrowsArgumentNullException_GivenNullInConstructor()
         {
-            Action action = () => new TestAnnotator();
+            Action action = () => new TestAnnotationContext(null!);
 
             action.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("type");
-        }
-
-        private class TestAnnotator : AnnotationContext
-        {
-            public TestAnnotator() : base(null!)
-            {
-            }
         }
     }
 }

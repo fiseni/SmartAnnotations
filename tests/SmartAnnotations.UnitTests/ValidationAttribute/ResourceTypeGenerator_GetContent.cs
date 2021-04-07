@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using SmartAnnotations.UnitTests.Fixture;
 using SmartAnnotations.ValidationAttribute;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,8 @@ namespace SmartAnnotations.UnitTests.ValidationAttribute
 {
     public class ResourceTypeGenerator_GetContent
     {
-        private class AttributeTestResource { }
-        private class ModelTestResource { }
-
         [Fact]
-        public void ReturnsAttributeResourceTypeContent_GivenHasAttributeAndModelResourceTypeAndHasErrorMessageResourceName()
+        public void ReturnsContentWithAttributeResource_GivenHasAttributeAndModelResourceTypeAndHasErrorMessageResourceName()
         {
             var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource), typeof(ModelTestResource)) { ErrorMessageResourceName = "SomeResourceKey" };
             var generator = new ResourceTypeGenerator(descriptor);
@@ -26,7 +24,7 @@ namespace SmartAnnotations.UnitTests.ValidationAttribute
         }
 
         [Fact]
-        public void ReturnsAttributeResourceTypeContent_GivenHasAttributeResourceTypeAndHasErrorMessageResourceName()
+        public void ReturnsContentWithAttributeResource_GivenHasAttributeResourceTypeAndHasErrorMessageResourceName()
         {
             var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource)) { ErrorMessageResourceName = "SomeResourceKey" };
             var generator = new ResourceTypeGenerator(descriptor);
@@ -37,7 +35,7 @@ namespace SmartAnnotations.UnitTests.ValidationAttribute
         }
 
         [Fact]
-        public void ReturnsModelResourceTypeContent_GivenHasModelResourceTypeAndHasErrorMessageResourceName()
+        public void ReturnsContentWithModelResource_GivenHasModelResourceTypeAndHasErrorMessageResourceName()
         {
             var descriptor = new ValidationAttributeDescriptor(null, typeof(ModelTestResource)) { ErrorMessageResourceName = "SomeResourceKey" };
             var generator = new ResourceTypeGenerator(descriptor);
@@ -59,7 +57,7 @@ namespace SmartAnnotations.UnitTests.ValidationAttribute
         }
 
         [Fact]
-        public void ReturnsEmptyContent_GivenHasResourceTypeHasNoErrorMessageResourceName()
+        public void ReturnsEmptyContent_GivenHasResourceTypeAndHasNoErrorMessageResourceName()
         {
             var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource));
             var generator = new ResourceTypeGenerator(descriptor);

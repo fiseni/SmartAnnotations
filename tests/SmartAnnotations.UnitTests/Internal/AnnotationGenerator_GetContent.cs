@@ -1,5 +1,4 @@
 ﻿using FluentAssertions;
-using SmartAnnotations.DisplayAttribute;
 using SmartAnnotations.Internal;
 using System;
 using System.Collections.Generic;
@@ -13,16 +12,7 @@ namespace SmartAnnotations.UnitTests.Internal
     public class AnnotationGenerator_GetContent
     {
         [Fact]
-        public void ReturnsEmptyLayout_GivenNoDescriptors()
-        {
-            var descriptor = new AnnotationDescriptor("TestProperty", typeof(string));
-            var generator = new AnnotationGenerator(descriptor);
-
-            generator.GetContent().Should().Be(string.Empty);
-        }
-
-        [Fact]
-        public void ReturnsDisplayAttribute_GivenDisplayAndreadOnlyDescriptor()
+        public void ReturnsDisplayAndReadOnlyAttributes_GivenDisplayAndReadOnlyDescriptor()
         {
             var descriptor = new AnnotationDescriptor("TestProperty", typeof(string))
             {
@@ -62,19 +52,13 @@ namespace SmartAnnotations.UnitTests.Internal
             generator.GetContent().Should().Be(GetContentForDisplayAttribute());
         }
 
-        private partial class TestType
+        [Fact]
+        public void ReturnsEmptyContent_GivenNoDescriptors()
         {
-            public string? TestProperty { get; set; } = null;
-        }
-        private class TestAnnotatorEmpty : Annotator<TestType>
-        {
-        }
-        private class TestAnnotatorWithDisplayName : Annotator<TestType>
-        {
-            public TestAnnotatorWithDisplayName()
-            {
-                DefineFor(x => x.TestProperty).Display().Name("SomeName");
-            }
+            var descriptor = new AnnotationDescriptor("TestProperty", typeof(string));
+            var generator = new AnnotationGenerator(descriptor);
+
+            generator.GetContent().Should().Be(string.Empty);
         }
 
         private string GetContentForDisplayAttribute()

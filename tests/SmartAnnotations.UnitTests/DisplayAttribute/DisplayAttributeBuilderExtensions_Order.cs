@@ -10,12 +10,10 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
 {
     public class DisplayAttributeBuilderExtensions_Order
     {
-        public string TestProperty { get; set; } = "SomeString";
-
         [Fact]
-        public void SetsOrder_GivenNotNullParameter()
+        public void SetsOrder_GivenNotNullDisplayDescriptor()
         {
-            var descriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string)) { Display = new DisplayAttributeDescriptor() };
+            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Display = new DisplayAttributeDescriptor() };
             var builder = new DisplayAttributeBuilder<string>(descriptor);
 
             builder.Order(5);
@@ -27,7 +25,7 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
         [Fact]
         public void ThrowsArgumentNullException_GivenNullDisplayDescriptor()
         {
-            var descriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string));
+            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string));
             var builder = new DisplayAttributeBuilder<string>(descriptor);
 
             Action action = () => builder.Order(5);

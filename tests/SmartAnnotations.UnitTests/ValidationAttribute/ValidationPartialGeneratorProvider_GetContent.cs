@@ -22,9 +22,10 @@ namespace SmartAnnotations.UnitTests.ValidationAttribute
 
             var generators = provider.GetGenerators().Select(x=>x.GetType());
 
-            generators.Should().Contain(typeof(ErrorMessageGenerator));
-            generators.Should().Contain(typeof(ResourceNameGenerator));
-            generators.Should().Contain(typeof(ResourceTypeGenerator));
+            generators.Should().ContainInOrder(
+                typeof(ErrorMessageGenerator),
+                typeof(ResourceNameGenerator),
+                typeof(ResourceTypeGenerator));
         }
     }
 }

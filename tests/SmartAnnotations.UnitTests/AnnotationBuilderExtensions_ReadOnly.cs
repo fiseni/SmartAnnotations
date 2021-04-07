@@ -11,12 +11,10 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
 {
     public class AnnotationBuilderExtensions_ReadOnly
     {
-        public string TestProperty { get; set; } = "SomeString";
-
         [Fact]
         public void SetsReadOnlyDescriptor_GivenValue()
         {
-            var descriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string));
+            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string));
             var annotationBuilder = new AnnotationBuilder<string>(descriptor);
 
             annotationBuilder.ReadOnly(true);

@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using SmartAnnotations.Internal;
+using SmartAnnotations.UnitTests.Fixture;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,14 +12,6 @@ namespace SmartAnnotations.UnitTests.Internal
 {
     public class AttributeDescriptorTests
     {
-        private class AttributeTestResource { }
-        private class ModelTestResource { }
-        private class TestDescriptor : AttributeDescriptor
-        {
-            public TestDescriptor(Type? attributeResourceType = null, Type? modelResourceType = null)
-                : base(attributeResourceType, modelResourceType) { }
-        }
-
         [Fact]
         public void ReturnsAttributeResourceType_GivenAttributeAndModelResourceTypeParameters()
         {

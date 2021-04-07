@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using SmartAnnotations.UnitTests.Fixture;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace SmartAnnotations.UnitTests
         [Fact]
         public void SetsAnnotationContextType_OnConstruction()
         {
-            var annotator = new TestAnnotator();
+            var annotator = new TestAnnotatorEmpty();
 
             annotator.Type.Should().Be(typeof(TestType));
         }
@@ -21,7 +22,7 @@ namespace SmartAnnotations.UnitTests
         [Fact]
         public void ReturnsAnnotationBuilderAndSetsDescriptor_GivenValidSelectorExpression()
         {
-            var annotator = new TestAnnotator() { ResourceType = typeof(ModelTestResource) };
+            var annotator = new TestAnnotatorEmpty() { ResourceType = typeof(ModelTestResource) };
 
             annotator.DefineFor(x => x.TestProperty);
 
@@ -34,20 +35,11 @@ namespace SmartAnnotations.UnitTests
         [Fact]
         public void ThrowsArgumentException_GivenInvalidExpression()
         {
-            var annotator = new TestAnnotator() { ResourceType = typeof(ModelTestResource) };
+            var annotator = new TestAnnotatorEmpty() { ResourceType = typeof(ModelTestResource) };
 
             Func<IAnnotationBuilder<string?>> func = () => annotator.DefineFor<string>(x => "");
 
             func.Should().Throw<ArgumentException>().WithMessage("The input should be a selector expression, in form: 'x => x.Property'!");
-        }
-
-        private class ModelTestResource { }
-        private partial class TestType
-        {
-            public string? TestProperty { get; set; } = null;
-        }
-        private class TestAnnotator : Annotator<TestType>
-        {
         }
     }
 }

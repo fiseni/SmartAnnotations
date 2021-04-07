@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using SmartAnnotations.Internal;
+using SmartAnnotations.UnitTests.Fixture;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
         [Fact]
         public void SetsModelResourceType_GivenNotNullValue()
         {
-            var context = new TestAnnotator();
+            var context = new TestAnnotatorEmpty();
 
             var contextBuilder = new ContextBuilder(context);
 
@@ -28,23 +29,13 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
         [Fact]
         public void ThrowsArgumentNullException_GivenNull()
         {
-            var context = new TestAnnotator();
+            var context = new TestAnnotatorEmpty();
 
             var contextBuilder = new ContextBuilder(context);
 
             Func<IContextBuilder> func = () => contextBuilder.ResourceType(null!);
 
             func.Should().Throw<ArgumentException>().And.ParamName.Should().Be("resourceType");
-        }
-
-
-        private class ModelTestResource { }
-        private partial class TestType
-        {
-            public string? TestProperty { get; set; } = null;
-        }
-        private class TestAnnotator : Annotator<TestType>
-        {
         }
     }
 }

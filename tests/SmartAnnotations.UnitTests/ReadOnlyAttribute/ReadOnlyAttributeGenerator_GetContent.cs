@@ -11,15 +11,11 @@ namespace SmartAnnotations.UnitTests.ReadOnlyAttribute
 {
     public class ReadOnlyAttributeGenerator_GetContent
     {
-        private class AttributeTestResource { }
-        private class ModelTestResource { }
-        public string? TestProperty { get; set; } = null;
-
         [Fact]
-        public void ReturnsContent_GivenIsReadOnlyHasValue()
+        public void ReturnsReadOnlyAttribute_GivenIsReadOnlyHasValue()
         {
             var descriptor = new ReadOnlyAttributeDescriptor(true);
-            var annotationDescriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string)) { ReadOnly = descriptor };
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { ReadOnly = descriptor };
 
             var generator = new ReadOnlyAttributeGenerator(annotationDescriptor);
 
@@ -29,10 +25,10 @@ namespace SmartAnnotations.UnitTests.ReadOnlyAttribute
         }
 
         [Fact]
-        public void ReturnsEmptyContent_GivenNullIsReadOnly()
+        public void ReturnsEmptyContent_GivenNullParameter()
         {
             var descriptor = new ReadOnlyAttributeDescriptor(null);
-            var annotationDescriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string)) { ReadOnly = descriptor };
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { ReadOnly = descriptor };
 
             var generator = new ReadOnlyAttributeGenerator(annotationDescriptor);
 
@@ -44,7 +40,7 @@ namespace SmartAnnotations.UnitTests.ReadOnlyAttribute
         [Fact]
         public void ReturnsEmptyContent_GivenNullReadOnlyDescriptor()
         {
-            var annotationDescriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string));
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
 
             var generator = new ReadOnlyAttributeGenerator(annotationDescriptor);
 

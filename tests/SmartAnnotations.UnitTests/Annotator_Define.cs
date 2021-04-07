@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using SmartAnnotations.UnitTests.Fixture;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,20 +14,11 @@ namespace SmartAnnotations.UnitTests
         [Fact]
         public void ReturnsContextBuilderContainingTheAnnotationContext()
         {
-            var annotator = new TestAnnotator() { ResourceType = typeof(ModelTestResource) };
+            var annotator = new TestAnnotatorEmpty() { ResourceType = typeof(ModelTestResource) };
 
             var builder = annotator.Define();
 
             builder.Context.Should().BeEquivalentTo(annotator);
-        }
-
-        private class ModelTestResource { }
-        private partial class TestType
-        {
-            public string? TestProperty { get; set; } = null;
-        }
-        private class TestAnnotator : Annotator<TestType>
-        {
         }
     }
 }

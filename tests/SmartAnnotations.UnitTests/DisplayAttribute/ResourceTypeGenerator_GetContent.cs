@@ -1,5 +1,6 @@
 ﻿using FluentAssertions;
 using SmartAnnotations.DisplayAttribute;
+using SmartAnnotations.UnitTests.Fixture;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,8 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
 {
     public class ResourceTypeGenerator_GetContent
     {
-        private class AttributeTestResource { }
-        private class ModelTestResource { }
-
         [Fact]
-        public void ReturnsAttributeResourceTypeContent_GivenHasAttributeAndModelResourceTypeAndSomeOfTheStringPatametersHasValue()
+        public void ReturnsContentWithAttributeResource_GivenHasAttributeAndModelResourceTypeAndSomeOfTheStringPatametersHaveValue()
         {
             var descriptor = new DisplayAttributeDescriptor(typeof(AttributeTestResource), typeof(ModelTestResource)) { Description = "SomeDescription" };
             var generator = new ResourceTypeGenerator(descriptor);
@@ -26,7 +24,7 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
         }
 
         [Fact]
-        public void ReturnsAttributeResourceTypeContent_GivenHasAttributeResourceTypeAndSomeOfTheStringPatametersHasValue()
+        public void ReturnsContentWithAttributeResource_GivenHasAttributeResourceTypeAndSomeOfTheStringPatametersHaveValue()
         {
             var descriptor = new DisplayAttributeDescriptor(typeof(AttributeTestResource)) { Description = "SomeDescription" };
             var generator = new ResourceTypeGenerator(descriptor);
@@ -37,7 +35,7 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
         }
 
         [Fact]
-        public void ReturnsModelResourceTypeContent_GivenHasModelResourceTypeAndSomeOfTheStringPatametersHasValue()
+        public void ReturnsContentWithModelResource_GivenHasModelResourceTypeAndSomeOfTheStringPatametersHaveValue()
         {
             var descriptor = new DisplayAttributeDescriptor(null, typeof(ModelTestResource)) { Description = "SomeDescription" };
             var generator = new ResourceTypeGenerator(descriptor);
@@ -59,7 +57,7 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
         }
 
         [Fact]
-        public void ReturnsEmptyContent_GivenHasResourceTypeHasNoStringParameters()
+        public void ReturnsEmptyContent_GivenHasResourceTypeAndHasNoStringParameters()
         {
             var descriptor = new DisplayAttributeDescriptor(typeof(AttributeTestResource));
             var generator = new ResourceTypeGenerator(descriptor);

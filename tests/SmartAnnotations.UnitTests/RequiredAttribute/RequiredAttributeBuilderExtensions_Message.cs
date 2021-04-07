@@ -10,12 +10,10 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
 {
     public class RequiredAttributeBuilderExtensions_Message
     {
-        public string TestProperty { get; set; } = "SomeString";
-
         [Fact]
-        public void SetsErrorMessage_GivenNotNullParameter()
+        public void SetsErrorMessage_GivenNotNullRequiredDescriptor()
         {
-            var descriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string)) { Required = new RequiredAttributeDescriptor() };
+            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Required = new RequiredAttributeDescriptor() };
             var builder = new RequiredAttributeBuilder<string>(descriptor);
 
             builder.Message("SomeMessage");
@@ -27,7 +25,7 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
         [Fact]
         public void ThrowsArgumentNullException_GivenNullOrEmptyMessage()
         {
-            var descriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string));
+            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Required = new RequiredAttributeDescriptor() };
             var builder = new RequiredAttributeBuilder<string>(descriptor);
 
             Action action = () => builder.Message(string.Empty);
@@ -38,7 +36,7 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
         [Fact]
         public void ThrowsArgumentNullException_GivenNullRequiredDescriptor()
         {
-            var descriptor = new AnnotationDescriptor(nameof(TestProperty), typeof(string));
+            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string));
             var builder = new RequiredAttributeBuilder<string>(descriptor);
 
             Action action = () => builder.Message("SomeMessage");
