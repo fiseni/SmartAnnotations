@@ -1,23 +1,21 @@
-﻿using System;
+﻿using SmartAnnotations.ValidationAttribute;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SmartAnnotations.RequiredAttribute
+namespace SmartAnnotations.ValidationAttribute
 {
-    internal class RequiredAttributeGenerator : IContentGenerator
+    internal class ValidationParametersGenerator : IContentGenerator
     {
         private readonly IContentGenerator[] generators;
 
-        internal RequiredAttributeGenerator(AnnotationDescriptor descriptor)
+        internal ValidationParametersGenerator(ValidationAttributeDescriptor descriptor)
         {
-            this.generators = descriptor.Required == null
-                            ? Array.Empty<IContentGenerator>()
-                            : new RequiredPartialGeneratorProvider(descriptor.Required).GetGenerators();
+            this.generators = new ValidationPartialGeneratorProvider(descriptor).GetGenerators();
         }
+
         public string GetContent()
         {
-            if (this.generators.Length < 1) return string.Empty;
-
             string output = string.Empty;
 
             foreach (var generator in generators)
@@ -29,7 +27,7 @@ namespace SmartAnnotations.RequiredAttribute
                 }
             }
 
-            return $"[Required({output})]";
+            return output;
         }
     }
 }

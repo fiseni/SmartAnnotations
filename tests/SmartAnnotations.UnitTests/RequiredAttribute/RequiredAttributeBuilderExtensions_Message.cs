@@ -11,7 +11,7 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
     public class RequiredAttributeBuilderExtensions_Message
     {
         [Fact]
-        public void SetsErrorMessage_GivenNotNullRequiredDescriptor()
+        public void SetsErrorMessage_GivenMessageAndNotNullRequiredDescriptor()
         {
             var descriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Required = new RequiredAttributeDescriptor() };
             var builder = new RequiredAttributeBuilder<string>(descriptor);

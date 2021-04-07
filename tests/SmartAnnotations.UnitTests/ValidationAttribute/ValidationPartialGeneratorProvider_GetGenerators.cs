@@ -1,4 +1,5 @@
 ﻿using FluentAssertions;
+using SmartAnnotations.UnitTests.Fixture;
 using SmartAnnotations.ValidationAttribute;
 using System;
 using System.Collections.Generic;
@@ -11,9 +12,6 @@ namespace SmartAnnotations.UnitTests.ValidationAttribute
 {
     public class ValidationPartialGeneratorProvider_GetGenerators
     {
-        private class AttributeTestResource { }
-        private class ModelTestResource { }
-
         [Fact]
         public void ReturnsRequiredValidationGenerators()
         {
