@@ -18,7 +18,7 @@ namespace SmartAnnotations.UnitTests.DisplayFormatAnnotation
             var descriptor = new DisplayFormatAttributeDescriptor(typeof(AttributeTestResource), typeof(ModelTestResource)) { NullDisplayText = "SomeText" };
             var generator = new ResourceTypeGenerator(descriptor);
 
-            var expected = @"NullDisplayTextResourceType = typeof(AttributeTestResource)";
+            var expected = @"NullDisplayTextResourceType = typeof(SmartAnnotations.UnitTests.Fixture.AttributeTestResource)";
 
             generator.GetContent().Should().Be(expected);
         }
@@ -29,7 +29,7 @@ namespace SmartAnnotations.UnitTests.DisplayFormatAnnotation
             var descriptor = new DisplayFormatAttributeDescriptor(typeof(AttributeTestResource)) { NullDisplayText = "SomeText" };
             var generator = new ResourceTypeGenerator(descriptor);
 
-            var expected = @"NullDisplayTextResourceType = typeof(AttributeTestResource)";
+            var expected = @"NullDisplayTextResourceType = typeof(SmartAnnotations.UnitTests.Fixture.AttributeTestResource)";
 
             generator.GetContent().Should().Be(expected);
         }
@@ -40,7 +40,7 @@ namespace SmartAnnotations.UnitTests.DisplayFormatAnnotation
             var descriptor = new DisplayFormatAttributeDescriptor(null, typeof(ModelTestResource)) { NullDisplayText = "SomeText" };
             var generator = new ResourceTypeGenerator(descriptor);
 
-            var expected = @"NullDisplayTextResourceType = typeof(ModelTestResource)";
+            var expected = @"NullDisplayTextResourceType = typeof(SmartAnnotations.UnitTests.Fixture.ModelTestResource)";
 
             generator.GetContent().Should().Be(expected);
         }

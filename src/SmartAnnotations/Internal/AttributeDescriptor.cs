@@ -17,6 +17,6 @@ namespace SmartAnnotations.Internal
 
         public bool HasResourceType => this.AttributeResourceType != null || this.ModelResourceType != null;
         public Type? GetResourceType() => this.AttributeResourceType ?? this.ModelResourceType;
-        public string? GetResourceTypeName() => this.AttributeResourceType?.Name ?? this.ModelResourceType?.Name;
+        public string? GetResourceTypeName() => this.AttributeResourceType?.FullName ?? this.ModelResourceType?.FullName;
     }
 }

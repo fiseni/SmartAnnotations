@@ -21,7 +21,7 @@ namespace SmartAnnotations.UnitTests.Internal
             descriptor.ModelResourceType.Should().Be(typeof(ModelTestResource));
             descriptor.HasResourceType.Should().BeTrue();
             descriptor.GetResourceType().Should().Be(typeof(AttributeTestResource));
-            descriptor.GetResourceTypeName().Should().Be(nameof(AttributeTestResource));
+            descriptor.GetResourceTypeName().Should().Be(typeof(AttributeTestResource).FullName);
         }
 
         [Fact]
@@ -33,7 +33,7 @@ namespace SmartAnnotations.UnitTests.Internal
             descriptor.ModelResourceType.Should().BeNull();
             descriptor.HasResourceType.Should().BeTrue();
             descriptor.GetResourceType().Should().Be(typeof(AttributeTestResource));
-            descriptor.GetResourceTypeName().Should().Be(nameof(AttributeTestResource));
+            descriptor.GetResourceTypeName().Should().Be(typeof(AttributeTestResource).FullName);
         }
 
         [Fact]
@@ -45,7 +45,7 @@ namespace SmartAnnotations.UnitTests.Internal
             descriptor.ModelResourceType.Should().Be(typeof(ModelTestResource));
             descriptor.HasResourceType.Should().BeTrue();
             descriptor.GetResourceType().Should().Be(typeof(ModelTestResource));
-            descriptor.GetResourceTypeName().Should().Be(nameof(ModelTestResource));
+            descriptor.GetResourceTypeName().Should().Be(typeof(ModelTestResource).FullName);
         }
 
         [Fact]

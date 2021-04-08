@@ -31,7 +31,7 @@ namespace SmartAnnotations.UnitTests.DisplayAnnotation
 
             var generator = new DisplayAttributeGenerator(annotationDescriptor);
 
-            var expected = @"[Display(Order = 5, AutoGenerateField = true, AutoGenerateFilter = true, Name = ""SomeName"", ShortName = ""SomeShortName"", Prompt = ""SomePrompt"", Description = ""SomeDescription"", GroupName = ""SomeGroupName"", ResourceType = typeof(AttributeTestResource))]";
+            var expected = @"[Display(Order = 5, AutoGenerateField = true, AutoGenerateFilter = true, Name = ""SomeName"", ShortName = ""SomeShortName"", Prompt = ""SomePrompt"", Description = ""SomeDescription"", GroupName = ""SomeGroupName"", ResourceType = typeof(SmartAnnotations.UnitTests.Fixture.AttributeTestResource))]";
 
             generator.GetContent().Should().Be(expected);
         }
@@ -48,7 +48,7 @@ namespace SmartAnnotations.UnitTests.DisplayAnnotation
 
             var generator = new DisplayAttributeGenerator(annotationDescriptor);
 
-            var expected = @"[Display(Name = ""SomeName"", ResourceType = typeof(AttributeTestResource))]";
+            var expected = @"[Display(Name = ""SomeName"", ResourceType = typeof(SmartAnnotations.UnitTests.Fixture.AttributeTestResource))]";
 
             generator.GetContent().Should().Be(expected);
         }

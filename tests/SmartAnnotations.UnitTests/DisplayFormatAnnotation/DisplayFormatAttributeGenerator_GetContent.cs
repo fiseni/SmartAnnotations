@@ -28,7 +28,7 @@ namespace SmartAnnotations.UnitTests.DisplayFormatAnnotation
 
             var generator = new DisplayFormatAttributeGenerator(annotationDescriptor);
 
-            var expected = @"[DisplayFormat(ApplyFormatInEditMode = true, ConvertEmptyStringToNull = true, HtmlEncode = true, DataFormatString = ""{0:n2} Kg"", NullDisplayText = ""SomeText"", NullDisplayTextResourceType = typeof(AttributeTestResource))]";
+            var expected = @"[DisplayFormat(ApplyFormatInEditMode = true, ConvertEmptyStringToNull = true, HtmlEncode = true, DataFormatString = ""{0:n2} Kg"", NullDisplayText = ""SomeText"", NullDisplayTextResourceType = typeof(SmartAnnotations.UnitTests.Fixture.AttributeTestResource))]";
 
             generator.GetContent().Should().Be(expected);
         }
@@ -45,7 +45,7 @@ namespace SmartAnnotations.UnitTests.DisplayFormatAnnotation
 
             var generator = new DisplayFormatAttributeGenerator(annotationDescriptor);
 
-            var expected = @"[DisplayFormat(NullDisplayText = ""SomeText"", NullDisplayTextResourceType = typeof(AttributeTestResource))]";
+            var expected = @"[DisplayFormat(NullDisplayText = ""SomeText"", NullDisplayTextResourceType = typeof(SmartAnnotations.UnitTests.Fixture.AttributeTestResource))]";
 
             generator.GetContent().Should().Be(expected);
         }

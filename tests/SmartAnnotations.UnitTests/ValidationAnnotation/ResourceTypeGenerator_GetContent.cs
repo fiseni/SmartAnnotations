@@ -18,7 +18,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
             var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource), typeof(ModelTestResource)) { ErrorMessageResourceName = "SomeResourceKey" };
             var generator = new ResourceTypeGenerator(descriptor);
 
-            var expected = @"ErrorMessageResourceType = typeof(AttributeTestResource)";
+            var expected = @"ErrorMessageResourceType = typeof(SmartAnnotations.UnitTests.Fixture.AttributeTestResource)";
 
             generator.GetContent().Should().Be(expected);
         }
@@ -29,7 +29,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
             var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource)) { ErrorMessageResourceName = "SomeResourceKey" };
             var generator = new ResourceTypeGenerator(descriptor);
 
-            var expected = @"ErrorMessageResourceType = typeof(AttributeTestResource)";
+            var expected = @"ErrorMessageResourceType = typeof(SmartAnnotations.UnitTests.Fixture.AttributeTestResource)";
 
             generator.GetContent().Should().Be(expected);
         }
@@ -40,7 +40,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
             var descriptor = new ValidationAttributeDescriptor(null, typeof(ModelTestResource)) { ErrorMessageResourceName = "SomeResourceKey" };
             var generator = new ResourceTypeGenerator(descriptor);
 
-            var expected = @"ErrorMessageResourceType = typeof(ModelTestResource)";
+            var expected = @"ErrorMessageResourceType = typeof(SmartAnnotations.UnitTests.Fixture.ModelTestResource)";
 
             generator.GetContent().Should().Be(expected);
         }

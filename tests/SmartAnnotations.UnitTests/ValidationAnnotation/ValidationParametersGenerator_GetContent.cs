@@ -69,7 +69,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
 
             var generator = new ValidationParametersGenerator(descriptor);
 
-            var expected = @"ErrorMessageResourceName = ""SomeErrorKey"", ErrorMessageResourceType = typeof(AttributeTestResource)";
+            var expected = @"ErrorMessageResourceName = ""SomeErrorKey"", ErrorMessageResourceType = typeof(SmartAnnotations.UnitTests.Fixture.AttributeTestResource)";
 
             generator.GetContent().Should().Be(expected);
         }
