@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SmartAnnotations
 {
-    internal class DisplayAttributeDescriptor : AttributeDescriptor
+    public class DisplayAttributeDescriptor : AttributeDescriptor
     {
         internal DisplayAttributeDescriptor(Type? resourceType = null, Type? modelResourceType = null) 
             : base(resourceType, modelResourceType)

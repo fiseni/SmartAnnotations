@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SmartAnnotations.Internal
 {
-    internal abstract class AttributeDescriptor
+    public abstract class AttributeDescriptor
     {
         internal AttributeDescriptor(Type? attributeResourceType = null, Type? modelResourceType = null)
         {

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SmartAnnotations
 {
-    internal class ValidationAttributeDescriptor : AttributeDescriptor
+    public class ValidationAttributeDescriptor : AttributeDescriptor
     {
         internal ValidationAttributeDescriptor(Type? resourceType = null, Type? modelResourceType = null)
             : base(resourceType, modelResourceType)

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SmartAnnotations
 {
-    public interface IRequiredAttributeBuilder<TProperty> : IAnnotationBuilder<TProperty>
+    public interface IRequiredAttributeBuilder<TProperty> : IValidationAttributeBuilder<TProperty, RequiredAttributeDescriptor>
     {
     }
 }

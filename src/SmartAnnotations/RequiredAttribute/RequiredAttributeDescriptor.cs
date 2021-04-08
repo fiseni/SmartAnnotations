@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SmartAnnotations
 {
-    internal class RequiredAttributeDescriptor : ValidationAttributeDescriptor
+    public class RequiredAttributeDescriptor : ValidationAttributeDescriptor
     {
         internal RequiredAttributeDescriptor(Type? resourceType = null, Type? modelResourceType = null)
             : base(resourceType, modelResourceType)

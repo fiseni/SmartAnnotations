@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SmartAnnotations
 {
-    internal class ReadOnlyAttributeDescriptor : AttributeDescriptor
+    public class ReadOnlyAttributeDescriptor : AttributeDescriptor
     {
         internal ReadOnlyAttributeDescriptor(bool isReadOnly)
         {
