@@ -15,48 +15,52 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
         [Fact]
         public void SetsRequiredDescriptorWithNoResourceType_GivenNoAttributeOrModelResourceType()
         {
-            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string));
-            var annotationBuilder = new AnnotationBuilder<string>(descriptor);
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
+            var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
 
             annotationBuilder.Required();
 
-            descriptor.Required.Should().NotBeNull();
+            var attributeDescriptor = annotationDescriptor.Get<RequiredAttributeDescriptor>();
+            attributeDescriptor.Should().NotBeNull();
         }
 
         [Fact]
         public void SetsRequiredDescriptorWithAttributeResourceType_GivenResourceTypeParameter()
         {
-            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string));
-            var annotationBuilder = new AnnotationBuilder<string>(descriptor);
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
+            var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
 
             annotationBuilder.Required(typeof(AttributeTestResource));
 
-            descriptor.Required.Should().NotBeNull();
-            descriptor.Required!.AttributeResourceType.Should().Be(typeof(AttributeTestResource));
+            var attributeDescriptor = annotationDescriptor.Get<RequiredAttributeDescriptor>();
+            attributeDescriptor.Should().NotBeNull();
+            attributeDescriptor!.AttributeResourceType.Should().Be(typeof(AttributeTestResource));
         }
 
         [Fact]
         public void SetsRequiredDescriptorWithAttributeResourceType_GivenResourceTypeParameterAndHasModelResourceType()
         {
-            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string), typeof(ModelTestResource));
-            var annotationBuilder = new AnnotationBuilder<string>(descriptor);
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string), typeof(ModelTestResource));
+            var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
 
             annotationBuilder.Required(typeof(AttributeTestResource));
 
-            descriptor.Required.Should().NotBeNull();
-            descriptor.Required!.AttributeResourceType.Should().Be(typeof(AttributeTestResource));
+            var attributeDescriptor = annotationDescriptor.Get<RequiredAttributeDescriptor>();
+            attributeDescriptor.Should().NotBeNull();
+            attributeDescriptor!.AttributeResourceType.Should().Be(typeof(AttributeTestResource));
         }
 
         [Fact]
         public void SetsRequiredDescriptorWithModelResourceType_GivenNoResourceTypeParameterAndHasModelResourceType()
         {
-            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string), typeof(ModelTestResource));
-            var annotationBuilder = new AnnotationBuilder<string>(descriptor);
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string), typeof(ModelTestResource));
+            var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
 
             annotationBuilder.Required();
 
-            descriptor.Required.Should().NotBeNull();
-            descriptor.Required!.ModelResourceType.Should().Be(typeof(ModelTestResource));
+            var attributeDescriptor = annotationDescriptor.Get<RequiredAttributeDescriptor>();
+            attributeDescriptor.Should().NotBeNull();
+            attributeDescriptor!.ModelResourceType.Should().Be(typeof(ModelTestResource));
         }
     }
 }

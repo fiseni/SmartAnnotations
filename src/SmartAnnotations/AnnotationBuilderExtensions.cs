@@ -10,7 +10,7 @@ namespace SmartAnnotations
             this IAnnotationBuilder<TProperty> source,
             bool isReadOnly = true)
         {
-            source.Descriptor.ReadOnly = new ReadOnlyAttributeDescriptor(isReadOnly);
+            source.Descriptor.Add(new ReadOnlyAttributeDescriptor(isReadOnly));
 
             return source;
         }
@@ -19,7 +19,7 @@ namespace SmartAnnotations
             this IAnnotationBuilder<TProperty> source,
             Type? resourceType = null)
         {
-            source.Descriptor.Display ??= new DisplayAttributeDescriptor(resourceType, source.Descriptor.ModelResourceType);
+            source.Descriptor.Add(new DisplayAttributeDescriptor(resourceType, source.Descriptor.ModelResourceType));
 
             return new DisplayAttributeBuilder<TProperty>(source.Descriptor);
         }
@@ -28,7 +28,7 @@ namespace SmartAnnotations
             this IAnnotationBuilder<TProperty> source,
             Type? resourceType = null)
         {
-            source.Descriptor.Required ??= new RequiredAttributeDescriptor(resourceType, source.Descriptor.ModelResourceType);
+            source.Descriptor.Add(new RequiredAttributeDescriptor(resourceType, source.Descriptor.ModelResourceType));
 
             return new RequiredAttributeBuilder<TProperty>(source.Descriptor);
         }

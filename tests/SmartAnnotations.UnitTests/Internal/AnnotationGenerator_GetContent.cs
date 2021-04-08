@@ -14,13 +14,11 @@ namespace SmartAnnotations.UnitTests.Internal
         [Fact]
         public void ReturnsReadOnlyAndDisplayAttributes_GivenReadOnlyAndDisplayDescriptor()
         {
-            var descriptor = new AnnotationDescriptor("TestProperty", typeof(string))
-            {
-                ReadOnly = new ReadOnlyAttributeDescriptor(true),
-                Display = new DisplayAttributeDescriptor() { Name = "SomeName" }
-            };
+            var annotationDescriptor = new AnnotationDescriptor("TestProperty", typeof(string))
+                .Add(new ReadOnlyAttributeDescriptor(true))
+                .Add(new DisplayAttributeDescriptor() { Name = "SomeName" });
 
-            var generator = new AnnotationGenerator(descriptor);
+            var generator = new AnnotationGenerator(annotationDescriptor);
 
             generator.GetContent().Should().Be(GetContentForReadOnlyAndDisplayAttribute());
         }
@@ -28,12 +26,10 @@ namespace SmartAnnotations.UnitTests.Internal
         [Fact]
         public void ReturnsReadOnlyAttribute_GivenReadOnlyDescriptor()
         {
-            var descriptor = new AnnotationDescriptor("TestProperty", typeof(string))
-            {
-                ReadOnly = new ReadOnlyAttributeDescriptor(true)
-            };
+            var annotationDescriptor = new AnnotationDescriptor("TestProperty", typeof(string))
+                .Add(new ReadOnlyAttributeDescriptor(true));
 
-            var generator = new AnnotationGenerator(descriptor);
+            var generator = new AnnotationGenerator(annotationDescriptor);
 
             generator.GetContent().Should().Be(GetContentForReadOnlyAttribute());
         }
@@ -41,8 +37,8 @@ namespace SmartAnnotations.UnitTests.Internal
         [Fact]
         public void ReturnsEmptyContent_GivenNoDescriptors()
         {
-            var descriptor = new AnnotationDescriptor("TestProperty", typeof(string));
-            var generator = new AnnotationGenerator(descriptor);
+            var annotationDescriptor = new AnnotationDescriptor("TestProperty", typeof(string));
+            var generator = new AnnotationGenerator(annotationDescriptor);
 
             generator.GetContent().Should().Be(string.Empty);
         }

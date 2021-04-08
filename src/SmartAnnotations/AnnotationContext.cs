@@ -9,7 +9,7 @@ namespace SmartAnnotations
         public Type Type { get; }
         public Type? ResourceType { get; internal set; }
 
-        public IEnumerable<AnnotationDescriptor> Descriptors => _descriptors.AsReadOnly();
+        internal IEnumerable<AnnotationDescriptor> Descriptors => _descriptors.AsReadOnly();
         private readonly List<AnnotationDescriptor> _descriptors = new List<AnnotationDescriptor>();
 
         public AnnotationContext(Type type)

@@ -13,24 +13,25 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
         [Fact]
         public void SetsAllowEmptyStrings_GivenNotNullRequiredDescriptor()
         {
-            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Required = new RequiredAttributeDescriptor() };
-            var builder = new RequiredAttributeBuilder<string>(descriptor);
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(new RequiredAttributeDescriptor());
+            var builder = new RequiredAttributeBuilder<string>(annotationDescriptor);
 
             builder.AllowEmptyStrings(true);
 
-            descriptor.Required.Should().NotBeNull();
-            descriptor.Required!.AllowEmptyStrings.Should().BeTrue();
+            var descriptor = annotationDescriptor.Get<RequiredAttributeDescriptor>();
+            descriptor.Should().NotBeNull();
+            descriptor!.AllowEmptyStrings.Should().BeTrue();
         }
 
         [Fact]
         public void ThrowsArgumentNullException_GivenNullRequiredDescriptor()
         {
-            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string));
-            var builder = new RequiredAttributeBuilder<string>(descriptor);
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
+            var builder = new RequiredAttributeBuilder<string>(annotationDescriptor);
 
             Action action = () => builder.AllowEmptyStrings(true);
 
-            action.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("Required");
+            action.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("RequiredAttributeDescriptor");
         }
     }
 }

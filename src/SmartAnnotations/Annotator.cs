@@ -22,11 +22,11 @@ namespace SmartAnnotations
         {
             if (selector.Body is MemberExpression memberExpression)
             {
-                var descriptor = new AnnotationDescriptor(memberExpression.Member.Name, typeof(TProperty), this.ResourceType);
+                var annotationDescriptor = new AnnotationDescriptor(memberExpression.Member.Name, typeof(TProperty), this.ResourceType);
 
-                base.AddDescriptor(descriptor);
+                base.AddDescriptor(annotationDescriptor);
 
-                return new AnnotationBuilder<TProperty>(descriptor);
+                return new AnnotationBuilder<TProperty>(annotationDescriptor);
             }
 
             throw new ArgumentException("The input should be a selector expression, in form: 'x => x.Property'!");

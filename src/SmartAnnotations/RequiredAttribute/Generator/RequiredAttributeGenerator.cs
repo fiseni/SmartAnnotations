@@ -10,9 +10,11 @@ namespace SmartAnnotations.RequiredAttribute
 
         internal RequiredAttributeGenerator(AnnotationDescriptor descriptor)
         {
-            this.generators = descriptor.Required == null
+            var attributeDescriptor = descriptor.Get<RequiredAttributeDescriptor>();
+
+            this.generators = attributeDescriptor == null
                             ? Array.Empty<IContentGenerator>()
-                            : new RequiredPartialGeneratorProvider(descriptor.Required).GetGenerators();
+                            : new RequiredPartialGeneratorProvider(attributeDescriptor).GetGenerators();
         }
         public string GetContent()
         {

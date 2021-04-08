@@ -22,7 +22,7 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
                 ErrorMessageResourceName = "SomeErrorKey"
             };
 
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Required = descriptor };
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(descriptor);
 
             var generator = new RequiredAttributeGenerator(annotationDescriptor);
 

@@ -11,8 +11,9 @@ namespace SmartAnnotations.ReadOnlyAttribute
 
         internal ReadOnlyAttributeGenerator(AnnotationDescriptor annotationDescriptor)
         {
-            this.isNotSet = annotationDescriptor.ReadOnly == null;
-            this.isReadOnly = annotationDescriptor.ReadOnly?.IsReadOnly ?? false;
+            var attributeDescriptor = annotationDescriptor.Get<ReadOnlyAttributeDescriptor>();
+            this.isNotSet = attributeDescriptor == null;
+            this.isReadOnly = attributeDescriptor?.IsReadOnly ?? false;
         }
 
         public string GetContent()

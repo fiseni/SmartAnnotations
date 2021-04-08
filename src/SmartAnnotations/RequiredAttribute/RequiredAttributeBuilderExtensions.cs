@@ -10,9 +10,10 @@ namespace SmartAnnotations
             this IRequiredAttributeBuilder<TProperty> source,
             bool allowEmptyStrings = true)
         {
-            _ = source.Descriptor.Required ?? throw new ArgumentNullException(nameof(source.Descriptor.Required));
+            var attributeDescriptor = source.Descriptor.Get<RequiredAttributeDescriptor>();
+            _ = attributeDescriptor ?? throw new ArgumentNullException(nameof(RequiredAttributeDescriptor));
 
-            source.Descriptor.Required.AllowEmptyStrings = allowEmptyStrings;
+            attributeDescriptor.AllowEmptyStrings = allowEmptyStrings;
 
             return source;
         }
@@ -22,9 +23,11 @@ namespace SmartAnnotations
             string message)
         {
             if (string.IsNullOrEmpty(message)) throw new ArgumentNullException(nameof(message));
-            _ = source.Descriptor.Required ?? throw new ArgumentNullException(nameof(source.Descriptor.Required));
 
-            source.Descriptor.Required.ErrorMessage = message;
+            var attributeDescriptor = source.Descriptor.Get<RequiredAttributeDescriptor>();
+            _ = attributeDescriptor ?? throw new ArgumentNullException(nameof(RequiredAttributeDescriptor));
+
+            attributeDescriptor.ErrorMessage = message;
 
             return source;
         }
@@ -34,9 +37,11 @@ namespace SmartAnnotations
             string resourceKey)
         {
             if (string.IsNullOrEmpty(resourceKey)) throw new ArgumentNullException(nameof(resourceKey));
-            _ = source.Descriptor.Required ?? throw new ArgumentNullException(nameof(source.Descriptor.Required));
+            
+            var attributeDescriptor = source.Descriptor.Get<RequiredAttributeDescriptor>();
+            _ = attributeDescriptor ?? throw new ArgumentNullException(nameof(RequiredAttributeDescriptor));
 
-            source.Descriptor.Required.ErrorMessageResourceName = resourceKey;
+            attributeDescriptor.ErrorMessageResourceName = resourceKey;
 
             return source;
         }

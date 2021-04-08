@@ -13,20 +13,21 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
         [Fact]
         public void SetsErrorMessage_GivenMessageAndNotNullRequiredDescriptor()
         {
-            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Required = new RequiredAttributeDescriptor() };
-            var builder = new RequiredAttributeBuilder<string>(descriptor);
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(new RequiredAttributeDescriptor());
+            var builder = new RequiredAttributeBuilder<string>(annotationDescriptor);
 
             builder.Message("SomeMessage");
 
-            descriptor.Required.Should().NotBeNull();
-            descriptor.Required!.ErrorMessage.Should().Be("SomeMessage");
+            var descriptor = annotationDescriptor.Get<RequiredAttributeDescriptor>();
+            descriptor.Should().NotBeNull();
+            descriptor!.ErrorMessage.Should().Be("SomeMessage");
         }
 
         [Fact]
         public void ThrowsArgumentNullException_GivenNullOrEmptyMessage()
         {
-            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Required = new RequiredAttributeDescriptor() };
-            var builder = new RequiredAttributeBuilder<string>(descriptor);
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(new RequiredAttributeDescriptor());
+            var builder = new RequiredAttributeBuilder<string>(annotationDescriptor);
 
             Action action = () => builder.Message(string.Empty);
 
@@ -36,12 +37,12 @@ namespace SmartAnnotations.UnitTests.RequiredAttribute
         [Fact]
         public void ThrowsArgumentNullException_GivenNullRequiredDescriptor()
         {
-            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string));
-            var builder = new RequiredAttributeBuilder<string>(descriptor);
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
+            var builder = new RequiredAttributeBuilder<string>(annotationDescriptor);
 
             Action action = () => builder.Message("SomeMessage");
 
-            action.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("Required");
+            action.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("RequiredAttributeDescriptor");
         }
     }
 }

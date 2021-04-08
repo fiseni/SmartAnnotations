@@ -13,24 +13,25 @@ namespace SmartAnnotations.UnitTests.DisplayAttribute
         [Fact]
         public void SetsName_GivenNotNullDisplayDescriptor()
         {
-            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string)) { Display = new DisplayAttributeDescriptor() };
-            var builder = new DisplayAttributeBuilder<string>(descriptor);
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(new DisplayAttributeDescriptor());
+            var builder = new DisplayAttributeBuilder<string>(annotationDescriptor);
 
             builder.Name("SomeName");
 
-            descriptor.Display.Should().NotBeNull();
-            descriptor.Display!.Name.Should().Be("SomeName");
+            var descriptor = annotationDescriptor.Get<DisplayAttributeDescriptor>();
+            descriptor.Should().NotBeNull();
+            descriptor!.Name.Should().Be("SomeName");
         }
 
         [Fact]
         public void ThrowsArgumentNullException_GivenNullDisplayDescriptor()
         {
-            var descriptor = new AnnotationDescriptor("PropertyName", typeof(string));
-            var builder = new DisplayAttributeBuilder<string>(descriptor);
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
+            var builder = new DisplayAttributeBuilder<string>(annotationDescriptor);
 
             Action action = () => builder.Name("SomeName");
 
-            action.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("Display");
+            action.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("DisplayAttributeDescriptor");
         }
     }
 }

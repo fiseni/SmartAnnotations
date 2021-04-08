@@ -10,9 +10,10 @@ namespace SmartAnnotations
             this IDisplayAttributeBuilder<TProperty> source,
             bool isAutoGenerateField)
         {
-            _ = source.Descriptor.Display ?? throw new ArgumentNullException(nameof(source.Descriptor.Display));
+            var attributeDescriptor = source.Descriptor.Get<DisplayAttributeDescriptor>();
+            _ = attributeDescriptor ?? throw new ArgumentNullException(nameof(DisplayAttributeDescriptor));
 
-            source.Descriptor.Display.AutoGenerateField = isAutoGenerateField;
+            attributeDescriptor.AutoGenerateField = isAutoGenerateField;
 
             return source;
         }
@@ -21,9 +22,10 @@ namespace SmartAnnotations
             this IDisplayAttributeBuilder<TProperty> source,
             bool isAutoGenerateFilter)
         {
-            _ = source.Descriptor.Display ?? throw new ArgumentNullException(nameof(source.Descriptor.Display));
+            var attributeDescriptor = source.Descriptor.Get<DisplayAttributeDescriptor>();
+            _ = attributeDescriptor ?? throw new ArgumentNullException(nameof(DisplayAttributeDescriptor));
 
-            source.Descriptor.Display.AutoGenerateFilter = isAutoGenerateFilter;
+            attributeDescriptor.AutoGenerateFilter = isAutoGenerateFilter;
 
             return source;
         }
@@ -32,9 +34,10 @@ namespace SmartAnnotations
             this IDisplayAttributeBuilder<TProperty> source,
             int order)
         {
-            _ = source.Descriptor.Display ?? throw new ArgumentNullException(nameof(source.Descriptor.Display));
+            var attributeDescriptor = source.Descriptor.Get<DisplayAttributeDescriptor>();
+            _ = attributeDescriptor ?? throw new ArgumentNullException(nameof(DisplayAttributeDescriptor));
 
-            source.Descriptor.Display.Order = order;
+            attributeDescriptor.Order = order;
 
             return source;
         }
@@ -43,9 +46,10 @@ namespace SmartAnnotations
             this IDisplayAttributeBuilder<TProperty> source,
             string groupName)
         {
-            _ = source.Descriptor.Display ?? throw new ArgumentNullException(nameof(source.Descriptor.Display));
+            var attributeDescriptor = source.Descriptor.Get<DisplayAttributeDescriptor>();
+            _ = attributeDescriptor ?? throw new ArgumentNullException(nameof(DisplayAttributeDescriptor));
 
-            source.Descriptor.Display.GroupName = groupName;
+            attributeDescriptor.GroupName = groupName;
 
             return source;
         }
@@ -54,9 +58,10 @@ namespace SmartAnnotations
             this IDisplayAttributeBuilder<TProperty> source,
             string name)
         {
-            _ = source.Descriptor.Display ?? throw new ArgumentNullException(nameof(source.Descriptor.Display));
+            var attributeDescriptor = source.Descriptor.Get<DisplayAttributeDescriptor>();
+            _ = attributeDescriptor ?? throw new ArgumentNullException(nameof(DisplayAttributeDescriptor));
 
-            source.Descriptor.Display.Name = name;
+            attributeDescriptor.Name = name;
 
             return source;
         }
@@ -65,9 +70,10 @@ namespace SmartAnnotations
             this IDisplayAttributeBuilder<TProperty> source,
             string shortName)
         {
-            _ = source.Descriptor.Display ?? throw new ArgumentNullException(nameof(source.Descriptor.Display));
+            var attributeDescriptor = source.Descriptor.Get<DisplayAttributeDescriptor>();
+            _ = attributeDescriptor ?? throw new ArgumentNullException(nameof(DisplayAttributeDescriptor));
 
-            source.Descriptor.Display.ShortName = shortName;
+            attributeDescriptor.ShortName = shortName;
 
             return source;
         }
@@ -76,9 +82,10 @@ namespace SmartAnnotations
             this IDisplayAttributeBuilder<TProperty> source,
             string description)
         {
-            _ = source.Descriptor.Display ?? throw new ArgumentNullException(nameof(source.Descriptor.Display));
+            var attributeDescriptor = source.Descriptor.Get<DisplayAttributeDescriptor>();
+            _ = attributeDescriptor ?? throw new ArgumentNullException(nameof(DisplayAttributeDescriptor));
 
-            source.Descriptor.Display.Description = description;
+            attributeDescriptor.Description = description;
 
             return source;
         }
@@ -87,9 +94,10 @@ namespace SmartAnnotations
             this IDisplayAttributeBuilder<TProperty> source,
             string prompt)
         {
-            _ = source.Descriptor.Display ?? throw new ArgumentNullException(nameof(source.Descriptor.Display));
+            var attributeDescriptor = source.Descriptor.Get<DisplayAttributeDescriptor>();
+            _ = attributeDescriptor ?? throw new ArgumentNullException(nameof(DisplayAttributeDescriptor));
 
-            source.Descriptor.Display.Prompt = prompt;
+            attributeDescriptor.Prompt = prompt;
 
             return source;
         }

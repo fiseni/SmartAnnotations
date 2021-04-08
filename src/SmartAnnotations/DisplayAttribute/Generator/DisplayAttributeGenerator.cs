@@ -10,9 +10,11 @@ namespace SmartAnnotations.DisplayAttribute
 
         internal DisplayAttributeGenerator(AnnotationDescriptor descriptor)
         {
-            this.generators = descriptor.Display == null
+            var attributeDescriptor = descriptor.Get<DisplayAttributeDescriptor>();
+
+            this.generators = attributeDescriptor == null
                             ? Array.Empty<IContentGenerator>()
-                            : new DisplayPartialGeneratorProvider(descriptor.Display).GetGenerators();
+                            : new DisplayPartialGeneratorProvider(attributeDescriptor).GetGenerators();
         }
 
         public string GetContent()
