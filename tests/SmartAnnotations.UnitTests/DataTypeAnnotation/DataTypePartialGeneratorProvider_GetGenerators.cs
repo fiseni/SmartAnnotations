@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using SmartAnnotations.RequiredAnnotation;
+using SmartAnnotations.DataTypeAnnotation;
 using SmartAnnotations.UnitTests.Fixture;
 using SmartAnnotations.ValidationAnnotation;
 using System;
@@ -9,20 +9,20 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace SmartAnnotations.UnitTests.RequiredAnnotation
+namespace SmartAnnotations.UnitTests.DataTypeAnnotation
 {
-    public class RequiredPartialGeneratorProvider_GetGenerators
+    public class DataTypePartialGeneratorProvider_GetGenerators
     {
         [Fact]
-        public void ReturnsRequiredPartialGeneratorsInOrder()
+        public void ReturnsRequiredDataTypeGeneratorsInOrder()
         {
-            var descriptor = new RequiredAttributeDescriptor(typeof(AttributeTestResource));
-            var provider = new RequiredPartialGeneratorProvider(descriptor);
+            var descriptor = new DataTypeAttributeDescriptor(DataTypeEnum.CreditCard, typeof(AttributeTestResource));
+            var provider = new DataTypePartialGeneratorProvider(descriptor);
 
             var generators = provider.GetGenerators().Select(x=>x.GetType());
 
             generators.Should().ContainInOrder(
-                typeof(AllowEmptyStringsGenerator),
+                typeof(DataTypeGenerator),
                 typeof(ValidationParametersGenerator));
         }
     }
