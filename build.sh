@@ -1,5 +1,5 @@
 #!/bin/bash
 
-./clean.sh contents
+./clean.sh
 dotnet clean
 dotnet build

@@ -13,7 +13,7 @@ fi
 }
 
 ########## Delete .vs directories.
-deleteDirs()
+deleteVsDirs()
 {
 echo "Deleting .vs files and directories...";
 
@@ -21,7 +21,7 @@ find "$WorkingDir/" -type d -name ".vs" -exec rm -rf {} \; > /dev/null 2>&1;
 }
 
 ########## Delete content of bin and obj directories.
-deleteDirContents()
+deleteTempContent()
 {
 
 echo "Deleting content of bin and obj directories...";
@@ -31,7 +31,7 @@ for i in `find "$WorkingDir/" -type d -name "obj" | sort -r`; do rm -rf "$i"/*; 
 }
 
 ########## Cleaning content in wwwroot folder of the web project
-cleanWwwrootContent()
+cleanWwwRootContent()
 {
 
 echo "Cleaning content in wwwroot folder of the web project...";
@@ -47,13 +47,16 @@ fi
 safetyCheck;
 echo "";
 
-if [ "$1" = "dirs" ]; then
-	deleteDirs;
-elif [ "$1" = "contents" ]; then
-	deleteDirContents;
-elif [ "$1" = "wwwroot" ]; then
-	cleanWwwrootContent
+if [ "$1" = "vs" ]; then
+	deleteVsDirs;
+elif [ "$1" = "temp" ]; then
+	deleteTempContent;
+elif [ "$1" = "www" ]; then
+	cleanWwwRootContent
+elif [ "$1" = "all" ]; then
+	deleteVsDirs
+	deleteTempContent
+	cleanWwwRootContent
 else
-	deleteDirs;
-	deleteDirContents;
+	deleteTempContent;
 fi
