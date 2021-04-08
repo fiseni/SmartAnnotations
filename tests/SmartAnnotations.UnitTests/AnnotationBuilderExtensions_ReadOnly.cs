@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace SmartAnnotations.UnitTests.DisplayAnnotation
+namespace SmartAnnotations.UnitTests
 {
     public class AnnotationBuilderExtensions_ReadOnly
     {

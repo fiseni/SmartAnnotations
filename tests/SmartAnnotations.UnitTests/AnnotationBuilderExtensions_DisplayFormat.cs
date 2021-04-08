@@ -10,42 +10,42 @@ using Xunit;
 
 namespace SmartAnnotations.UnitTests
 {
-    public class AnnotationBuilderExtensions_Display
+    public class AnnotationBuilderExtensions_DisplayFormat
     {
         [Fact]
-        public void SetsDisplayDescriptorWithNoResourceType_GivenNoAttributeOrModelResourceType()
+        public void SetsDisplayFormatDescriptorWithNoResourceType_GivenNoAttributeOrModelResourceType()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
             var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
 
-            annotationBuilder.Display();
+            annotationBuilder.DisplayFormat();
 
-            var descriptor = annotationDescriptor.Get<DisplayAttributeDescriptor>();
+            var descriptor = annotationDescriptor.Get<DisplayFormatAttributeDescriptor>();
             descriptor.Should().NotBeNull();
         }
 
         [Fact]
-        public void SetsDisplayDescriptorWithAttributeResourceType_GivenResourceTypeParameter()
+        public void SetsDisplayFormatDescriptorWithAttributeResourceType_GivenResourceTypeParameter()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
             var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
 
-            annotationBuilder.Display(typeof(AttributeTestResource));
+            annotationBuilder.DisplayFormat(typeof(AttributeTestResource));
 
-            var descriptor = annotationDescriptor.Get<DisplayAttributeDescriptor>();
+            var descriptor = annotationDescriptor.Get<DisplayFormatAttributeDescriptor>();
             descriptor.Should().NotBeNull();
             descriptor!.AttributeResourceType.Should().Be(typeof(AttributeTestResource));
         }
 
         [Fact]
-        public void SetsDisplayDescriptorWithAttributeResourceType_GivenResourceTypeParameterAndHasModelResourceType()
+        public void SetsDisplayFormatDescriptorWithAttributeResourceType_GivenResourceTypeParameterAndHasModelResourceType()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string), typeof(ModelTestResource));
             var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
 
-            annotationBuilder.Display(typeof(AttributeTestResource));
+            annotationBuilder.DisplayFormat(typeof(AttributeTestResource));
 
-            var descriptor = annotationDescriptor.Get<DisplayAttributeDescriptor>();
+            var descriptor = annotationDescriptor.Get<DisplayFormatAttributeDescriptor>();
             descriptor.Should().NotBeNull();
             descriptor!.AttributeResourceType.Should().Be(typeof(AttributeTestResource));
         }
@@ -56,9 +56,9 @@ namespace SmartAnnotations.UnitTests
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string), typeof(ModelTestResource));
             var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
 
-            annotationBuilder.Display();
+            annotationBuilder.DisplayFormat();
 
-            var descriptor = annotationDescriptor.Get<DisplayAttributeDescriptor>();
+            var descriptor = annotationDescriptor.Get<DisplayFormatAttributeDescriptor>();
             descriptor.Should().NotBeNull();
             descriptor!.ModelResourceType.Should().Be(typeof(ModelTestResource));
         }
