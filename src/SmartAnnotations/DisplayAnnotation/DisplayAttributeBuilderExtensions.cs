@@ -8,7 +8,7 @@ namespace SmartAnnotations
     {
         public static IDisplayAttributeBuilder<TProperty> AutoGenerateField<TProperty>(
             this IDisplayAttributeBuilder<TProperty> source,
-            bool isAutoGenerateField)
+            bool isAutoGenerateField = true)
         {
             var attributeDescriptor = source.Descriptor.Get<DisplayAttributeDescriptor>();
             _ = attributeDescriptor ?? throw new ArgumentNullException(nameof(DisplayAttributeDescriptor));
@@ -20,7 +20,7 @@ namespace SmartAnnotations
 
         public static IDisplayAttributeBuilder<TProperty> AutoGenerateFilter<TProperty>(
             this IDisplayAttributeBuilder<TProperty> source,
-            bool isAutoGenerateFilter)
+            bool isAutoGenerateFilter = true)
         {
             var attributeDescriptor = source.Descriptor.Get<DisplayAttributeDescriptor>();
             _ = attributeDescriptor ?? throw new ArgumentNullException(nameof(DisplayAttributeDescriptor));

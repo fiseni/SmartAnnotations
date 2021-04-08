@@ -1,4 +1,5 @@
 ﻿using SmartAnnotations.DisplayAnnotation;
+using SmartAnnotations.DisplayFormatAnnotation;
 using SmartAnnotations.ReadOnlyAnnotation;
 using SmartAnnotations.RequiredAnnotation;
 using System;
@@ -21,8 +22,9 @@ namespace SmartAnnotations.Internal
             return new IContentGenerator[]
             {
                 new ReadOnlyAttributeGenerator(descriptor),
+                new RequiredAttributeGenerator(descriptor),
                 new DisplayAttributeGenerator(descriptor),
-                new RequiredAttributeGenerator(descriptor)
+                new DisplayFormatAttributeGenerator(descriptor)
             };
         }
     }

@@ -32,5 +32,14 @@ namespace SmartAnnotations
 
             return new RequiredAttributeBuilder<TProperty>(source.Descriptor);
         }
+
+        public static IDisplayFormatAttributeBuilder<TProperty> DisplayFormat<TProperty>(
+            this IAnnotationBuilder<TProperty> source,
+            Type? resourceType = null)
+        {
+            source.Descriptor.Add(new DisplayFormatAttributeDescriptor(resourceType, source.Descriptor.ModelResourceType));
+
+            return new DisplayFormatAttributeBuilder<TProperty>(source.Descriptor);
+        }
     }
 }
