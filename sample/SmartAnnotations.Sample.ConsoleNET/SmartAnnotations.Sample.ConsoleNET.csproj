@@ -12,7 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="SmartAnnotations" Version="1.0.0-beta3" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="6.0.0-preview.1.21102.12" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>

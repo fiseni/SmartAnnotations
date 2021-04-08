@@ -6,6 +6,8 @@ namespace SmartAnnotations.Sample.ConsoleNET
     {
         static void Main(string[] args)
         {
+            // Run "dotnet clean | dotnet build" and you can check the generated files under "obj" folder.
+
             Console.WriteLine("Hello World!");
         }
     }

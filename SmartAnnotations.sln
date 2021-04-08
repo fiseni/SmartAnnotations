@@ -18,7 +18,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartAnnotations.UnitTests"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{47AC0D9F-79BD-4790-A9AA-4B329E74763E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartAnnotations.Sample.ConsoleNET", "sample\SmartAnnotations.Sample.ConsoleNET\SmartAnnotations.Sample.ConsoleNET.csproj", "{9C2796F6-5EE3-485A-BCE8-63BCEFB2347F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartAnnotations.Sample.ConsoleNET", "sample\SmartAnnotations.Sample.ConsoleNET\SmartAnnotations.Sample.ConsoleNET.csproj", "{9C2796F6-5EE3-485A-BCE8-63BCEFB2347F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartAnnotations.Sample.ConsoleNETFX", "sample\SmartAnnotations.Sample.ConsoleNETFX\SmartAnnotations.Sample.ConsoleNETFX.csproj", "{09AAB008-7CC0-45DD-A931-15191CC1B67B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,12 +40,17 @@ Global
 		{9C2796F6-5EE3-485A-BCE8-63BCEFB2347F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C2796F6-5EE3-485A-BCE8-63BCEFB2347F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C2796F6-5EE3-485A-BCE8-63BCEFB2347F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09AAB008-7CC0-45DD-A931-15191CC1B67B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09AAB008-7CC0-45DD-A931-15191CC1B67B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09AAB008-7CC0-45DD-A931-15191CC1B67B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09AAB008-7CC0-45DD-A931-15191CC1B67B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9C2796F6-5EE3-485A-BCE8-63BCEFB2347F} = {47AC0D9F-79BD-4790-A9AA-4B329E74763E}
+		{09AAB008-7CC0-45DD-A931-15191CC1B67B} = {47AC0D9F-79BD-4790-A9AA-4B329E74763E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {94473E84-68B1-44C0-9F12-375B176588D8}
