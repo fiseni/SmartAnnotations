@@ -1,6 +1,6 @@
-﻿using SmartAnnotations.DisplayAttribute;
-using SmartAnnotations.ReadOnlyAttribute;
-using SmartAnnotations.RequiredAttribute;
+﻿using SmartAnnotations.DisplayAnnotation;
+using SmartAnnotations.ReadOnlyAnnotation;
+using SmartAnnotations.RequiredAnnotation;
 using System;
 using System.Collections.Generic;
 using System.Text;

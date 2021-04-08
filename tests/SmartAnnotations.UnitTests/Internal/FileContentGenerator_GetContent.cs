@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using SmartAnnotations.DisplayAttribute;
+using SmartAnnotations.DisplayAnnotation;
 using SmartAnnotations.Internal;
 using SmartAnnotations.UnitTests.Fixture;
 using System;
