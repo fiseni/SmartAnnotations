@@ -41,5 +41,25 @@ namespace SmartAnnotations
 
             return new DisplayFormatAttributeBuilder<TProperty>(source.Descriptor);
         }
+
+        public static IDataTypeAttributeBuilder<TProperty> DataType<TProperty>(
+            this IAnnotationBuilder<TProperty> source,
+            DataTypeEnum dataType,
+            Type? resourceType = null)
+        {
+            source.Descriptor.Add(new DataTypeAttributeDescriptor(dataType, resourceType, source.Descriptor.ModelResourceType));
+
+            return new DataTypeAttributeBuilder<TProperty>(source.Descriptor);
+        }
+
+        public static IDataTypeAttributeBuilder<TProperty> DataType<TProperty>(
+            this IAnnotationBuilder<TProperty> source,
+            string customDataType,
+            Type? resourceType = null)
+        {
+            source.Descriptor.Add(new DataTypeAttributeDescriptor(customDataType, resourceType, source.Descriptor.ModelResourceType));
+
+            return new DataTypeAttributeBuilder<TProperty>(source.Descriptor);
+        }
     }
 }
