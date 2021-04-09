@@ -14,7 +14,7 @@ namespace SmartAnnotations.UnitTests.DisplayFormatAnnotation
         public void SetsConvertEmptyStringToNull_GivenNotNullDisplayFormatDescriptor()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(new DisplayFormatAttributeDescriptor());
-            var builder = new DisplayFormatAttributeBuilder<string>(annotationDescriptor);
+            var builder = new DisplayFormatAttributeBuilder(annotationDescriptor);
 
             builder.ConvertEmptyStringToNull(true);
 
@@ -27,7 +27,7 @@ namespace SmartAnnotations.UnitTests.DisplayFormatAnnotation
         public void ThrowsArgumentNullException_GivenNullDisplayFormatDescriptor()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
-            var builder = new DisplayFormatAttributeBuilder<string>(annotationDescriptor);
+            var builder = new DisplayFormatAttributeBuilder(annotationDescriptor);
 
             Action action = () => builder.ConvertEmptyStringToNull(true);
 

@@ -16,7 +16,7 @@ namespace SmartAnnotations.UnitTests
         public void SetsRequiredDescriptorWithNoResourceType_GivenNoAttributeOrModelResourceType()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
-            var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
+            var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
             annotationBuilder.Required();
 
@@ -28,7 +28,7 @@ namespace SmartAnnotations.UnitTests
         public void SetsRequiredDescriptorWithAttributeResourceType_GivenResourceTypeParameter()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
-            var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
+            var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
             annotationBuilder.Required(typeof(AttributeTestResource));
 
@@ -41,7 +41,7 @@ namespace SmartAnnotations.UnitTests
         public void SetsRequiredDescriptorWithAttributeResourceType_GivenResourceTypeParameterAndHasModelResourceType()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string), typeof(ModelTestResource));
-            var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
+            var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
             annotationBuilder.Required(typeof(AttributeTestResource));
 
@@ -54,7 +54,7 @@ namespace SmartAnnotations.UnitTests
         public void SetsRequiredDescriptorWithModelResourceType_GivenNoResourceTypeParameterAndHasModelResourceType()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string), typeof(ModelTestResource));
-            var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
+            var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
             annotationBuilder.Required();
 

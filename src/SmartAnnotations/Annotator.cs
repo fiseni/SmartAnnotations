@@ -18,7 +18,7 @@ namespace SmartAnnotations
             return new ContextBuilder(this);
         }
 
-        public IAnnotationBuilder<TProperty> DefineFor<TProperty>(Expression<Func<T, TProperty>> selector)
+        public IAnnotationBuilder DefineFor<TProperty>(Expression<Func<T, TProperty>> selector)
         {
             if (selector.Body is MemberExpression memberExpression)
             {
@@ -26,7 +26,7 @@ namespace SmartAnnotations
 
                 base.AddDescriptor(annotationDescriptor);
 
-                return new AnnotationBuilder<TProperty>(annotationDescriptor);
+                return new AnnotationBuilder(annotationDescriptor);
             }
 
             throw new ArgumentException("The input should be a selector expression, in form: 'x => x.Property'!");

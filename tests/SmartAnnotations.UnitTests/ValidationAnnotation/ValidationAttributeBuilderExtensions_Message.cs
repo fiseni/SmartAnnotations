@@ -15,7 +15,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
         public void SetsErrorMessage_GivenMessageAndNotNullRequiredDescriptor()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(new RequiredAttributeDescriptor());
-            var builder = new RequiredAttributeBuilder<string>(annotationDescriptor);
+            var builder = new RequiredAttributeBuilder(annotationDescriptor);
 
             builder.Message("SomeMessage");
 
@@ -28,7 +28,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
         public void ThrowsArgumentNullException_GivenNullOrEmptyMessage()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(new RequiredAttributeDescriptor());
-            var builder = new RequiredAttributeBuilder<string>(annotationDescriptor);
+            var builder = new RequiredAttributeBuilder(annotationDescriptor);
 
             Action action = () => builder.Message(string.Empty);
 
@@ -39,7 +39,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
         public void ThrowsArgumentNullException_GivenNullRequiredDescriptor()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
-            var builder = new RequiredAttributeBuilder<string>(annotationDescriptor);
+            var builder = new RequiredAttributeBuilder(annotationDescriptor);
 
             Action action = () => builder.Message("SomeMessage");
 

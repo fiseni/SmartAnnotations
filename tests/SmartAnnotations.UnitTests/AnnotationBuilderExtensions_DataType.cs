@@ -16,7 +16,7 @@ namespace SmartAnnotations.UnitTests
         public void SetsDataTypeDescriptorWithDataTypeEnum_GivenDataTypeEnum()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
-            var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
+            var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
             annotationBuilder.DataType(DataTypeEnum.CreditCard);
 
@@ -29,7 +29,7 @@ namespace SmartAnnotations.UnitTests
         public void SetsDataTypeDescriptorWithCustomDataType_GivenValidCustomDataType()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
-            var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
+            var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
             annotationBuilder.DataType("CustomDataType");
 
@@ -42,7 +42,7 @@ namespace SmartAnnotations.UnitTests
         public void ThrowsArgumentException_GivenNullOrEmptyCustomDataType()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
-            var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
+            var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
             Action action = () => annotationBuilder.DataType(string.Empty);
 
@@ -53,7 +53,7 @@ namespace SmartAnnotations.UnitTests
         public void SetsDataTypeDescriptorWithNoResourceType_GivenNoAttributeOrModelResourceType()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
-            var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
+            var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
             annotationBuilder.DataType(DataTypeEnum.CreditCard);
 
@@ -65,7 +65,7 @@ namespace SmartAnnotations.UnitTests
         public void SetsDataTypeDescriptorWithAttributeResourceType_GivenResourceTypeParameter()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
-            var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
+            var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
             annotationBuilder.DataType(DataTypeEnum.CreditCard, typeof(AttributeTestResource));
 
@@ -78,7 +78,7 @@ namespace SmartAnnotations.UnitTests
         public void SetsDataTypeDescriptorWithAttributeResourceType_GivenResourceTypeParameterAndHasModelResourceType()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string), typeof(ModelTestResource));
-            var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
+            var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
             annotationBuilder.DataType(DataTypeEnum.CreditCard, typeof(AttributeTestResource));
 
@@ -91,7 +91,7 @@ namespace SmartAnnotations.UnitTests
         public void SetsDataTypeDescriptorWithModelResourceType_GivenNoResourceTypeParameterAndHasModelResourceType()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string), typeof(ModelTestResource));
-            var annotationBuilder = new AnnotationBuilder<string>(annotationDescriptor);
+            var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
             annotationBuilder.DataType(DataTypeEnum.CreditCard);
 

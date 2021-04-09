@@ -14,7 +14,7 @@ namespace SmartAnnotations.UnitTests.DisplayAnnotation
         public void SetsPrompt_GivenNotNullDisplayDescriptor()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(new DisplayAttributeDescriptor());
-            var builder = new DisplayAttributeBuilder<string>(annotationDescriptor);
+            var builder = new DisplayAttributeBuilder(annotationDescriptor);
 
             builder.Prompt("SomePrompt");
 
@@ -27,7 +27,7 @@ namespace SmartAnnotations.UnitTests.DisplayAnnotation
         public void ThrowsArgumentNullException_GivenNullDisplayDescriptor()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
-            var builder = new DisplayAttributeBuilder<string>(annotationDescriptor);
+            var builder = new DisplayAttributeBuilder(annotationDescriptor);
 
             Action action = () => builder.Prompt("SomePrompt");
 

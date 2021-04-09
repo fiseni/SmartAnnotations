@@ -6,8 +6,8 @@ namespace SmartAnnotations
 {
     public static class DisplayAttributeBuilderExtensions
     {
-        public static IDisplayAttributeBuilder<TProperty> AutoGenerateField<TProperty>(
-            this IDisplayAttributeBuilder<TProperty> source,
+        public static IDisplayAttributeBuilder AutoGenerateField(
+            this IDisplayAttributeBuilder source,
             bool isAutoGenerateField = true)
         {
             var attributeDescriptor = source.Descriptor.Get<DisplayAttributeDescriptor>();
@@ -18,8 +18,8 @@ namespace SmartAnnotations
             return source;
         }
 
-        public static IDisplayAttributeBuilder<TProperty> AutoGenerateFilter<TProperty>(
-            this IDisplayAttributeBuilder<TProperty> source,
+        public static IDisplayAttributeBuilder AutoGenerateFilter(
+            this IDisplayAttributeBuilder source,
             bool isAutoGenerateFilter = true)
         {
             var attributeDescriptor = source.Descriptor.Get<DisplayAttributeDescriptor>();
@@ -30,8 +30,8 @@ namespace SmartAnnotations
             return source;
         }
 
-        public static IDisplayAttributeBuilder<TProperty> Order<TProperty>(
-            this IDisplayAttributeBuilder<TProperty> source,
+        public static IDisplayAttributeBuilder Order(
+            this IDisplayAttributeBuilder source,
             int order)
         {
             var attributeDescriptor = source.Descriptor.Get<DisplayAttributeDescriptor>();
@@ -42,8 +42,8 @@ namespace SmartAnnotations
             return source;
         }
 
-        public static IDisplayAttributeBuilder<TProperty> GroupName<TProperty>(
-            this IDisplayAttributeBuilder<TProperty> source,
+        public static IDisplayAttributeBuilder GroupName(
+            this IDisplayAttributeBuilder source,
             string groupName)
         {
             var attributeDescriptor = source.Descriptor.Get<DisplayAttributeDescriptor>();
@@ -54,8 +54,8 @@ namespace SmartAnnotations
             return source;
         }
 
-        public static IDisplayAttributeBuilder<TProperty> Name<TProperty>(
-            this IDisplayAttributeBuilder<TProperty> source,
+        public static IDisplayAttributeBuilder Name(
+            this IDisplayAttributeBuilder source,
             string name)
         {
             var attributeDescriptor = source.Descriptor.Get<DisplayAttributeDescriptor>();
@@ -66,8 +66,8 @@ namespace SmartAnnotations
             return source;
         }
 
-        public static IDisplayAttributeBuilder<TProperty> ShortName<TProperty>(
-            this IDisplayAttributeBuilder<TProperty> source,
+        public static IDisplayAttributeBuilder ShortName(
+            this IDisplayAttributeBuilder source,
             string shortName)
         {
             var attributeDescriptor = source.Descriptor.Get<DisplayAttributeDescriptor>();
@@ -78,8 +78,8 @@ namespace SmartAnnotations
             return source;
         }
 
-        public static IDisplayAttributeBuilder<TProperty> Description<TProperty>(
-            this IDisplayAttributeBuilder<TProperty> source,
+        public static IDisplayAttributeBuilder Description(
+            this IDisplayAttributeBuilder source,
             string description)
         {
             var attributeDescriptor = source.Descriptor.Get<DisplayAttributeDescriptor>();
@@ -90,8 +90,8 @@ namespace SmartAnnotations
             return source;
         }
 
-        public static IDisplayAttributeBuilder<TProperty> Prompt<TProperty>(
-            this IDisplayAttributeBuilder<TProperty> source,
+        public static IDisplayAttributeBuilder Prompt(
+            this IDisplayAttributeBuilder source,
             string prompt)
         {
             var attributeDescriptor = source.Descriptor.Get<DisplayAttributeDescriptor>();

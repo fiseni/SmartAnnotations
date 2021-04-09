@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SmartAnnotations
 {
-    public interface IDisplayFormatAttributeBuilder<TProperty> : IAnnotationBuilder<TProperty>
+    public interface IDisplayFormatAttributeBuilder : IAnnotationBuilder
     {
     }
 }

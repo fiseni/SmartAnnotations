@@ -37,7 +37,7 @@ namespace SmartAnnotations.UnitTests
         {
             var annotator = new TestAnnotatorEmpty() { ResourceType = typeof(ModelTestResource) };
 
-            Func<IAnnotationBuilder<string?>> func = () => annotator.DefineFor<string>(x => "");
+            Func<IAnnotationBuilder> func = () => annotator.DefineFor<string>(x => "");
 
             func.Should().Throw<ArgumentException>().WithMessage("The input should be a selector expression, in form: 'x => x.Property'!");
         }

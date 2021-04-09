@@ -14,7 +14,7 @@ namespace SmartAnnotations.UnitTests.RequiredAnnotation
         public void SetsAllowEmptyStrings_GivenNotNullRequiredDescriptor()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(new RequiredAttributeDescriptor());
-            var builder = new RequiredAttributeBuilder<string>(annotationDescriptor);
+            var builder = new RequiredAttributeBuilder(annotationDescriptor);
 
             builder.AllowEmptyStrings(true);
 
@@ -27,7 +27,7 @@ namespace SmartAnnotations.UnitTests.RequiredAnnotation
         public void ThrowsArgumentNullException_GivenNullRequiredDescriptor()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
-            var builder = new RequiredAttributeBuilder<string>(annotationDescriptor);
+            var builder = new RequiredAttributeBuilder(annotationDescriptor);
 
             Action action = () => builder.AllowEmptyStrings(true);
 

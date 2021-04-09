@@ -2,7 +2,7 @@
 
 namespace SmartAnnotations.Internal
 {
-    internal class AnnotationBuilder<TProperty> : IAnnotationBuilder<TProperty>
+    internal class AnnotationBuilder : IAnnotationBuilder
     {
         public AnnotationDescriptor Descriptor { get; }
 

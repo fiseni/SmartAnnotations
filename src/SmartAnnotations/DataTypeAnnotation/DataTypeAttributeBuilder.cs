@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SmartAnnotations
 {
-    internal class DataTypeAttributeBuilder<TProperty> : AnnotationBuilder<TProperty>, IDataTypeAttributeBuilder<TProperty>
+    internal class DataTypeAttributeBuilder : AnnotationBuilder, IDataTypeAttributeBuilder
     {
         internal DataTypeAttributeBuilder(AnnotationDescriptor annotationDescriptor)
             : base(annotationDescriptor)

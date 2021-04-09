@@ -6,8 +6,8 @@ namespace SmartAnnotations
 {
     public static class DisplayFormatAttributeBuilderExtensions
     {
-        public static IDisplayFormatAttributeBuilder<TProperty> ApplyFormatInEditMode<TProperty>(
-            this IDisplayFormatAttributeBuilder<TProperty> source,
+        public static IDisplayFormatAttributeBuilder ApplyFormatInEditMode(
+            this IDisplayFormatAttributeBuilder source,
             bool applyFormatInEditMode = true)
         {
             var attributeDescriptor = source.Descriptor.Get<DisplayFormatAttributeDescriptor>();
@@ -18,8 +18,8 @@ namespace SmartAnnotations
             return source;
         }
 
-        public static IDisplayFormatAttributeBuilder<TProperty> ConvertEmptyStringToNull<TProperty>(
-            this IDisplayFormatAttributeBuilder<TProperty> source,
+        public static IDisplayFormatAttributeBuilder ConvertEmptyStringToNull(
+            this IDisplayFormatAttributeBuilder source,
             bool convertEmptyStringToNull = true)
         {
             var attributeDescriptor = source.Descriptor.Get<DisplayFormatAttributeDescriptor>();
@@ -30,8 +30,8 @@ namespace SmartAnnotations
             return source;
         }
 
-        public static IDisplayFormatAttributeBuilder<TProperty> HtmlEncode<TProperty>(
-            this IDisplayFormatAttributeBuilder<TProperty> source,
+        public static IDisplayFormatAttributeBuilder HtmlEncode(
+            this IDisplayFormatAttributeBuilder source,
             bool htmlEncode = true)
         {
             var attributeDescriptor = source.Descriptor.Get<DisplayFormatAttributeDescriptor>();
@@ -42,8 +42,8 @@ namespace SmartAnnotations
             return source;
         }
 
-        public static IDisplayFormatAttributeBuilder<TProperty> DataFormatString<TProperty>(
-            this IDisplayFormatAttributeBuilder<TProperty> source,
+        public static IDisplayFormatAttributeBuilder DataFormatString(
+            this IDisplayFormatAttributeBuilder source,
             string dataFormatString)
         {
             var attributeDescriptor = source.Descriptor.Get<DisplayFormatAttributeDescriptor>();
@@ -54,8 +54,8 @@ namespace SmartAnnotations
             return source;
         }
 
-        public static IDisplayFormatAttributeBuilder<TProperty> NullDisplayText<TProperty>(
-            this IDisplayFormatAttributeBuilder<TProperty> source,
+        public static IDisplayFormatAttributeBuilder NullDisplayText(
+            this IDisplayFormatAttributeBuilder source,
             string nullDisplayText)
         {
             var attributeDescriptor = source.Descriptor.Get<DisplayFormatAttributeDescriptor>();

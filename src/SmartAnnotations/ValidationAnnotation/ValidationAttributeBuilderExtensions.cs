@@ -7,8 +7,8 @@ namespace SmartAnnotations
 {
     public static class ValidationAttributeBuilderExtensions
     {
-        public static IAnnotationBuilder<TProperty> Message<TProperty, TDescriptor>(
-            this IValidationAttributeBuilder<TProperty, TDescriptor> source,
+        public static IAnnotationBuilder Message<TDescriptor>(
+            this IValidationAttributeBuilder<TDescriptor> source,
             string message) where TDescriptor : ValidationAttributeDescriptor
         {
             if (string.IsNullOrEmpty(message)) throw new ArgumentNullException(nameof(message));
@@ -21,8 +21,8 @@ namespace SmartAnnotations
             return source;
         }
 
-        public static IAnnotationBuilder<TProperty> Key<TProperty, TDescriptor>(
-            this IValidationAttributeBuilder<TProperty, TDescriptor> source,
+        public static IAnnotationBuilder Key<TDescriptor>(
+            this IValidationAttributeBuilder<TDescriptor> source,
             string resourceKey) where TDescriptor : ValidationAttributeDescriptor
         {
             if (string.IsNullOrEmpty(resourceKey)) throw new ArgumentNullException(nameof(resourceKey));

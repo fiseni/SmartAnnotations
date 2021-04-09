@@ -14,7 +14,7 @@ namespace SmartAnnotations.UnitTests.DisplayFormatAnnotation
         public void SetsApplyFormatInEditMode_GivenNotNullDisplayFormatDescriptor()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(new DisplayFormatAttributeDescriptor());
-            var builder = new DisplayFormatAttributeBuilder<string>(annotationDescriptor);
+            var builder = new DisplayFormatAttributeBuilder(annotationDescriptor);
 
             builder.ApplyFormatInEditMode(true);
 
@@ -27,7 +27,7 @@ namespace SmartAnnotations.UnitTests.DisplayFormatAnnotation
         public void ThrowsArgumentNullException_GivenNullDisplayFormatDescriptor()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
-            var builder = new DisplayFormatAttributeBuilder<string>(annotationDescriptor);
+            var builder = new DisplayFormatAttributeBuilder(annotationDescriptor);
 
             Action action = () => builder.ApplyFormatInEditMode(true);
 
