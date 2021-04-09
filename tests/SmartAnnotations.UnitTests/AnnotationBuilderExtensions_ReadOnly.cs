@@ -14,7 +14,7 @@ namespace SmartAnnotations.UnitTests
         [Fact]
         public void SetsReadOnlyDescriptor_GivenValue()
         {
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName");
             var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
             annotationBuilder.ReadOnly(true);
@@ -27,7 +27,7 @@ namespace SmartAnnotations.UnitTests
         [Fact]
         public void SetsReadOnlyDescriptorWithDefaultValue_GivenNoParameters()
         {
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName");
             var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
             annotationBuilder.ReadOnly();

@@ -15,7 +15,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
         [Fact]
         public void ReturnsRequiredValidationGenerators()
         {
-            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource));
+            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource).FullName);
             var provider = new ValidationPartialGeneratorProvider(descriptor);
 
             var generators = provider.GetGenerators().Select(x=>x.GetType());

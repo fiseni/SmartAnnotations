@@ -12,11 +12,57 @@ namespace SmartAnnotations.UnitTests
     public class AnnotationContextTests
     {
         [Fact]
-        public void ThrowsArgumentNullException_GivenNullInConstructor()
+        public void SetsTypeInfo_GivenNotNullOrWhiteSpaceNamespace()
         {
-            Action action = () => new TestAnnotationContext(null!);
+            var context = new TestAnnotationContext(typeof(TestType).Name, typeof(TestType).Namespace);
 
-            action.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("type");
+            context.TypeNamespace.Should().Be("SmartAnnotations.UnitTests.Fixture");
+            context.TypeName.Should().Be("TestType");
+            context.TypeFullName.Should().Be("SmartAnnotations.UnitTests.Fixture.TestType");
+        }
+
+        [Fact]
+        public void SetsTypeInfo_GivenNullNamespace()
+        {
+            var context = new TestAnnotationContext(typeof(TestType).Name, null);
+
+            context.TypeNamespace.Should().BeNull();
+            context.TypeName.Should().Be("TestType");
+            context.TypeFullName.Should().Be("TestType");
+        }
+
+        [Fact]
+        public void SetsTypeInfo_GivenWhiteSpaceNamespace()
+        {
+            var context = new TestAnnotationContext(typeof(TestType).Name, " ");
+
+            context.TypeNamespace.Should().BeNull();
+            context.TypeName.Should().Be("TestType");
+            context.TypeFullName.Should().Be("TestType");
+        }
+
+        [Fact]
+        public void ThrowsArgumentNullException_GivenNullTypeName()
+        {
+            Action action = () => new TestAnnotationContext(null!, null);
+
+            action.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("typeName");
+        }
+
+        [Fact]
+        public void ThrowsArgumentNullException_GivenEmptyStringTypeName()
+        {
+            Action action = () => new TestAnnotationContext(string.Empty, null);
+
+            action.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("typeName");
+        }
+
+        [Fact]
+        public void ThrowsArgumentNullException_GivenWhiteSpaceStringTypeName()
+        {
+            Action action = () => new TestAnnotationContext(" ", null);
+
+            action.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("typeName");
         }
     }
 }

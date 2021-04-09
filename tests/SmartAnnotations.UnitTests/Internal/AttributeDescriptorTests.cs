@@ -15,37 +15,34 @@ namespace SmartAnnotations.UnitTests.Internal
         [Fact]
         public void ReturnsAttributeResourceType_GivenAttributeAndModelResourceTypeParameters()
         {
-            var descriptor = new TestDescriptor(typeof(AttributeTestResource), typeof(ModelTestResource));
+            var descriptor = new TestDescriptor(typeof(AttributeTestResource).FullName, typeof(ModelTestResource).FullName);
 
-            descriptor.AttributeResourceType.Should().Be(typeof(AttributeTestResource));
-            descriptor.ModelResourceType.Should().Be(typeof(ModelTestResource));
+            descriptor.AttributeResourceType.Should().Be(typeof(AttributeTestResource).FullName);
+            descriptor.ModelResourceType.Should().Be(typeof(ModelTestResource).FullName);
             descriptor.HasResourceType.Should().BeTrue();
-            descriptor.GetResourceType().Should().Be(typeof(AttributeTestResource));
-            descriptor.GetResourceTypeName().Should().Be(typeof(AttributeTestResource).FullName);
+            descriptor.GetResourceTypeFullName().Should().Be(typeof(AttributeTestResource).FullName);
         }
 
         [Fact]
         public void ReturnsAttributeResourceType_GivenOnlyAttributeResourceTypeParameter()
         {
-            var descriptor = new TestDescriptor(typeof(AttributeTestResource));
+            var descriptor = new TestDescriptor(typeof(AttributeTestResource).FullName);
 
-            descriptor.AttributeResourceType.Should().Be(typeof(AttributeTestResource));
+            descriptor.AttributeResourceType.Should().Be(typeof(AttributeTestResource).FullName);
             descriptor.ModelResourceType.Should().BeNull();
             descriptor.HasResourceType.Should().BeTrue();
-            descriptor.GetResourceType().Should().Be(typeof(AttributeTestResource));
-            descriptor.GetResourceTypeName().Should().Be(typeof(AttributeTestResource).FullName);
+            descriptor.GetResourceTypeFullName().Should().Be(typeof(AttributeTestResource).FullName);
         }
 
         [Fact]
         public void ReturnsModelResourceType_GivenNullAttributeResourceTypeParameter()
         {
-            var descriptor = new TestDescriptor(null, typeof(ModelTestResource));
+            var descriptor = new TestDescriptor(null, typeof(ModelTestResource).FullName);
 
             descriptor.AttributeResourceType.Should().BeNull();
-            descriptor.ModelResourceType.Should().Be(typeof(ModelTestResource));
+            descriptor.ModelResourceType.Should().Be(typeof(ModelTestResource).FullName);
             descriptor.HasResourceType.Should().BeTrue();
-            descriptor.GetResourceType().Should().Be(typeof(ModelTestResource));
-            descriptor.GetResourceTypeName().Should().Be(typeof(ModelTestResource).FullName);
+            descriptor.GetResourceTypeFullName().Should().Be(typeof(ModelTestResource).FullName);
         }
 
         [Fact]
@@ -56,8 +53,7 @@ namespace SmartAnnotations.UnitTests.Internal
             descriptor.AttributeResourceType.Should().BeNull();
             descriptor.ModelResourceType.Should().BeNull();
             descriptor.HasResourceType.Should().BeFalse();
-            descriptor.GetResourceType().Should().BeNull();
-            descriptor.GetResourceTypeName().Should().BeNull();
+            descriptor.GetResourceTypeFullName().Should().BeNull();
         }
     }
 }

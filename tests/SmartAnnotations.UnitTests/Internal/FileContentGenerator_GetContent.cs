@@ -33,7 +33,7 @@ namespace SmartAnnotations.UnitTests.Internal
         public void ReturnsMetadataWithDisplayAttribute_GivenDisplayNameAnnotationAndAdditionalEmptyDescriptor()
         {
             var context = new TestAnnotatorWithDisplayName("SomeName");
-            context.AddDescriptor(new AnnotationDescriptor("SomeProperty", typeof(string)));
+            context.AddDescriptor(new AnnotationDescriptor("SomeProperty"));
 
             var generator = new FileContentGenerator(context);
 

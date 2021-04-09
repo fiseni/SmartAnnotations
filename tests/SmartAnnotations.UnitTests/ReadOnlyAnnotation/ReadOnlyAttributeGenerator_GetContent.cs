@@ -14,7 +14,7 @@ namespace SmartAnnotations.UnitTests.ReadOnlyAnnotation
         [Fact]
         public void ReturnsReadOnlyAttribute_GivenIsReadOnlyHasValue()
         {
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(new ReadOnlyAttributeDescriptor(true));
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(new ReadOnlyAttributeDescriptor(true));
 
             var generator = new ReadOnlyAttributeGenerator(annotationDescriptor);
 
@@ -26,7 +26,7 @@ namespace SmartAnnotations.UnitTests.ReadOnlyAnnotation
         [Fact]
         public void ReturnsEmptyContent_GivenNullReadOnlyDescriptor()
         {
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName");
 
             var generator = new ReadOnlyAttributeGenerator(annotationDescriptor);
 

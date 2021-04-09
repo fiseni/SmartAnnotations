@@ -6,17 +6,17 @@ namespace SmartAnnotations.Internal
 {
     public abstract class AttributeDescriptor
     {
-        internal AttributeDescriptor(Type? attributeResourceType = null, Type? modelResourceType = null)
+        internal AttributeDescriptor(string? attributeResourceTypeFullName = null, string? modelResourceTypeFullName = null)
         {
-            this.AttributeResourceType = attributeResourceType;
-            this.ModelResourceType = modelResourceType;
+            this.AttributeResourceType = string.IsNullOrWhiteSpace(attributeResourceTypeFullName) ? null : attributeResourceTypeFullName;
+            this.ModelResourceType = string.IsNullOrWhiteSpace(modelResourceTypeFullName) ? null : modelResourceTypeFullName;
         }
 
-        internal Type? AttributeResourceType { get; }
-        internal Type? ModelResourceType { get; }
+        internal string? AttributeResourceType { get; }
+        internal string? ModelResourceType { get; }
 
         public bool HasResourceType => this.AttributeResourceType != null || this.ModelResourceType != null;
-        public Type? GetResourceType() => this.AttributeResourceType ?? this.ModelResourceType;
-        public string? GetResourceTypeName() => this.AttributeResourceType?.FullName ?? this.ModelResourceType?.FullName;
+
+        public string? GetResourceTypeFullName() => this.AttributeResourceType ?? this.ModelResourceType;
     }
 }

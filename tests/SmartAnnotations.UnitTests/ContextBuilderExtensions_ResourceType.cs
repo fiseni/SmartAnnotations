@@ -22,8 +22,8 @@ namespace SmartAnnotations.UnitTests.DisplayAnnotation
             contextBuilder.ResourceType(typeof(ModelTestResource));
 
             contextBuilder.Context.Should().NotBeNull();
-            contextBuilder.Context.ResourceType.Should().NotBeNull();
-            contextBuilder.Context.ResourceType.Should().Be(typeof(ModelTestResource));
+            contextBuilder.Context.ResourceTypeFullName.Should().NotBeNull();
+            contextBuilder.Context.ResourceTypeFullName.Should().Be(typeof(ModelTestResource).FullName);
         }
 
         [Fact]

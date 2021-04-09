@@ -5,20 +5,23 @@ using System.Text;
 
 namespace SmartAnnotations
 {
+    // Avoid storing Type in the internal state.
+    // In the future we might provide two modes/regimes for the library, Execution and SyntaxParsing mode.
+    // Therefore, we should avoid any evaluation or references to the source code that is being compiled.
     public class AnnotationDescriptor
     {
         // Refactor this to TypedDictionary if performance is an issue.
-        private Dictionary<Type, AttributeDescriptor> attributeDescriptors { get; } = new Dictionary<Type, AttributeDescriptor>();
+        private readonly Dictionary<Type, AttributeDescriptor> attributeDescriptors = new Dictionary<Type, AttributeDescriptor>();
         
         public string PropertyName { get; }
-        public Type PropertyType { get; }
-        public Type? ModelResourceType { get; }
+        public string? ModelResourceTypeFullName { get; }
 
-        public AnnotationDescriptor(string propertyName, Type propertyType, Type? modelResourceType = null)
+        public AnnotationDescriptor(string propertyName, string? modelResourceTypeFullName = null)
         {
+            if (string.IsNullOrWhiteSpace(propertyName)) throw new ArgumentNullException(nameof(propertyName));
+
             this.PropertyName = propertyName;
-            this.PropertyType = propertyType;
-            this.ModelResourceType = modelResourceType;
+            this.ModelResourceTypeFullName = string.IsNullOrWhiteSpace(modelResourceTypeFullName) ? null : modelResourceTypeFullName;
         }
 
         internal AnnotationDescriptor Add<TDescriptor>(TDescriptor descriptor) where TDescriptor : AttributeDescriptor

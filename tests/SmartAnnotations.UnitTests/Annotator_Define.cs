@@ -14,7 +14,7 @@ namespace SmartAnnotations.UnitTests
         [Fact]
         public void ReturnsContextBuilderContainingTheAnnotationContext()
         {
-            var annotator = new TestAnnotatorEmpty() { ResourceType = typeof(ModelTestResource) };
+            var annotator = new TestAnnotatorEmpty() { ResourceTypeFullName = typeof(ModelTestResource).FullName };
 
             var builder = annotator.Define();
 

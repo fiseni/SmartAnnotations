@@ -13,7 +13,7 @@ namespace SmartAnnotations.UnitTests.DisplayAnnotation
         [Fact]
         public void SetsShortName_GivenNotNullDisplayDescriptor()
         {
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(new DisplayAttributeDescriptor());
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(new DisplayAttributeDescriptor());
             var builder = new DisplayAttributeBuilder(annotationDescriptor);
 
             builder.ShortName("SomeShortName");
@@ -26,7 +26,7 @@ namespace SmartAnnotations.UnitTests.DisplayAnnotation
         [Fact]
         public void ThrowsArgumentNullException_GivenNullDisplayDescriptor()
         {
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName");
             var builder = new DisplayAttributeBuilder(annotationDescriptor);
 
             Action action = () => builder.ShortName("SomeShortName");

@@ -15,7 +15,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
         [Fact]
         public void ReturnsErrorMessageOnly_GivenAllParameters()
         {
-            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource))
+            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource).FullName)
             {
                 ErrorMessage = "SomeErrorMessage",
                 ErrorMessageResourceName = "SomeErrorKey"
@@ -31,7 +31,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
         [Fact]
         public void ReturnsErrorMessageOnly_GivenMessageAndResourceType()
         {
-            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource))
+            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource).FullName)
             {
                 ErrorMessage = "SomeErrorMessage",
             };
@@ -62,7 +62,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
         [Fact]
         public void ReturnsKeyAndResourceType_GivenResourceAndKey()
         {
-            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource))
+            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource).FullName)
             {
                 ErrorMessageResourceName = "SomeErrorKey"
             };
@@ -77,7 +77,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
         [Fact]
         public void ReturnsEmptyContent_GivenResourceOnly()
         {
-            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource));
+            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource).FullName);
 
             var generator = new ValidationParametersGenerator(descriptor);
 

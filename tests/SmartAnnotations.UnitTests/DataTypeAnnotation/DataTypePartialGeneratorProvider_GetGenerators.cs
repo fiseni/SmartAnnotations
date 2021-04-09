@@ -16,7 +16,7 @@ namespace SmartAnnotations.UnitTests.DataTypeAnnotation
         [Fact]
         public void ReturnsRequiredDataTypeGeneratorsInOrder()
         {
-            var descriptor = new DataTypeAttributeDescriptor(DataTypeEnum.CreditCard, typeof(AttributeTestResource));
+            var descriptor = new DataTypeAttributeDescriptor(DataTypeEnum.CreditCard);
             var provider = new DataTypePartialGeneratorProvider(descriptor);
 
             var generators = provider.GetGenerators().Select(x=>x.GetType());

@@ -19,7 +19,7 @@ namespace SmartAnnotations.DisplayFormatAnnotation
 
             if (descriptor.NullDisplayText == null) return string.Empty;
 
-            return $"NullDisplayTextResourceType = typeof({descriptor.GetResourceTypeName()})";
+            return $"NullDisplayTextResourceType = typeof({descriptor.GetResourceTypeFullName()})";
         }
     }
 }

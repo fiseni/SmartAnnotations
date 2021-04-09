@@ -26,7 +26,7 @@ namespace SmartAnnotations
 
                 foreach (var annotationContext in annotationContextInstances)
                 {
-                    context.AddSource($"{annotationContext.Type.FullName}Generated", SourceText.From(new FileContentGenerator(annotationContext).GetContent(), Encoding.Unicode));
+                    context.AddSource($"{annotationContext.TypeFullName}Generated", SourceText.From(new FileContentGenerator(annotationContext).GetContent(), Encoding.Unicode));
                 }
 
                 typeResolver.UnloadAssemblies();

@@ -6,8 +6,8 @@ namespace SmartAnnotations
 {
     public class RequiredAttributeDescriptor : ValidationAttributeDescriptor
     {
-        internal RequiredAttributeDescriptor(Type? resourceType = null, Type? modelResourceType = null)
-            : base(resourceType, modelResourceType)
+        internal RequiredAttributeDescriptor(string? resourceTypeFullName = null, string? modelResourceTypeFullName = null)
+            : base(resourceTypeFullName, modelResourceTypeFullName)
         {
         }
 

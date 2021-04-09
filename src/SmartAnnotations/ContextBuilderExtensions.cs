@@ -12,7 +12,7 @@ namespace SmartAnnotations
         {
             _ = resourceType ?? throw new ArgumentNullException(nameof(resourceType));
 
-            source.Context.ResourceType = resourceType;
+            source.Context.ResourceTypeFullName = resourceType.FullName;
 
             return source;
         }

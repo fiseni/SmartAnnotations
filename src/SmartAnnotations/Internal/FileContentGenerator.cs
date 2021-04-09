@@ -50,7 +50,7 @@ namespace {0}
     }}
 }}
 "
-            , context.Type.Namespace, context.Type.Name, innerContent);
+            , context.TypeNamespace, context.TypeName, innerContent);
 
             return content;
         }

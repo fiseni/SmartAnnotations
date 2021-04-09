@@ -6,14 +6,14 @@ namespace SmartAnnotations
 {
     public class DataTypeAttributeDescriptor : ValidationAttributeDescriptor
     {
-        internal DataTypeAttributeDescriptor(DataTypeEnum dataType, Type? resourceType = null, Type? modelResourceType = null)
-            : base(resourceType, modelResourceType)
+        internal DataTypeAttributeDescriptor(DataTypeEnum dataType, string? resourceTypeFullName = null, string? modelResourceTypeFullName = null)
+            : base(resourceTypeFullName, modelResourceTypeFullName)
         {
             this.DataType = dataType;
         }
 
-        internal DataTypeAttributeDescriptor(string customDataType, Type? resourceType = null, Type? modelResourceType = null)
-            : base(resourceType, modelResourceType)
+        internal DataTypeAttributeDescriptor(string customDataType, string? resourceTypeFullName = null, string? modelResourceTypeFullName = null)
+            : base(resourceTypeFullName, modelResourceTypeFullName)
         {
             if (string.IsNullOrEmpty(customDataType)) throw new ArgumentNullException(nameof(customDataType));
 

@@ -16,7 +16,7 @@ namespace SmartAnnotations.UnitTests.RequiredAnnotation
         [Fact]
         public void ReturnsRequiredPartialGeneratorsInOrder()
         {
-            var descriptor = new RequiredAttributeDescriptor(typeof(AttributeTestResource));
+            var descriptor = new RequiredAttributeDescriptor(typeof(AttributeTestResource).FullName);
             var provider = new RequiredPartialGeneratorProvider(descriptor);
 
             var generators = provider.GetGenerators().Select(x=>x.GetType());

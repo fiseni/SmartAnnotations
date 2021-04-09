@@ -20,7 +20,7 @@ namespace SmartAnnotations.DisplayAnnotation
             if (descriptor.Name == null && descriptor.ShortName == null && descriptor.Description == null 
                 && descriptor.Prompt == null && descriptor.GroupName == null) return string.Empty;
 
-            return $"ResourceType = typeof({descriptor.GetResourceTypeName()})";
+            return $"ResourceType = typeof({descriptor.GetResourceTypeFullName()})";
         }
     }
 }

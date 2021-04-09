@@ -15,13 +15,13 @@ namespace SmartAnnotations.UnitTests.DataTypeAnnotation
         [Fact]
         public void ReturnsDataTypeAttributeWithMessageOnly_GivenDataTypeConstructorAndAllParameters()
         {
-            var descriptor = new DataTypeAttributeDescriptor(DataTypeEnum.CreditCard, typeof(AttributeTestResource))
+            var descriptor = new DataTypeAttributeDescriptor(DataTypeEnum.CreditCard, typeof(AttributeTestResource).FullName)
             {
                 ErrorMessage = "SomeErrorMessage",
                 ErrorMessageResourceName = "SomeErrorKey"
             };
 
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(descriptor);
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
             var generator = new DataTypeAttributeGenerator(annotationDescriptor);
 
@@ -33,13 +33,13 @@ namespace SmartAnnotations.UnitTests.DataTypeAnnotation
         [Fact]
         public void ReturnsDataTypeAttributeWithMessageOnly_GivenCustomDataTypeConstructorAndAllParameters()
         {
-            var descriptor = new DataTypeAttributeDescriptor("CustomDataType", typeof(AttributeTestResource))
+            var descriptor = new DataTypeAttributeDescriptor("CustomDataType", typeof(AttributeTestResource).FullName)
             {
                 ErrorMessage = "SomeErrorMessage",
                 ErrorMessageResourceName = "SomeErrorKey"
             };
 
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(descriptor);
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
             var generator = new DataTypeAttributeGenerator(annotationDescriptor);
 
@@ -51,7 +51,7 @@ namespace SmartAnnotations.UnitTests.DataTypeAnnotation
         [Fact]
         public void ReturnsEmptyContent_GivenNullDataTypeDescriptor()
         {
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName");
 
             var generator = new DataTypeAttributeGenerator(annotationDescriptor);
 

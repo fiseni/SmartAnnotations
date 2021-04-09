@@ -14,7 +14,7 @@ namespace SmartAnnotations.UnitTests.Internal
         [Fact]
         public void ReturnsReadOnlyAndDisplayAttributes_GivenReadOnlyAndDisplayDescriptor()
         {
-            var annotationDescriptor = new AnnotationDescriptor("TestProperty", typeof(string))
+            var annotationDescriptor = new AnnotationDescriptor("TestProperty")
                 .Add(new ReadOnlyAttributeDescriptor(true))
                 .Add(new DisplayAttributeDescriptor() { Name = "SomeName" });
 
@@ -26,7 +26,7 @@ namespace SmartAnnotations.UnitTests.Internal
         [Fact]
         public void ReturnsReadOnlyAttribute_GivenReadOnlyDescriptor()
         {
-            var annotationDescriptor = new AnnotationDescriptor("TestProperty", typeof(string))
+            var annotationDescriptor = new AnnotationDescriptor("TestProperty")
                 .Add(new ReadOnlyAttributeDescriptor(true));
 
             var generator = new AnnotationGenerator(annotationDescriptor);
@@ -37,7 +37,7 @@ namespace SmartAnnotations.UnitTests.Internal
         [Fact]
         public void ReturnsEmptyContent_GivenNoDescriptors()
         {
-            var annotationDescriptor = new AnnotationDescriptor("TestProperty", typeof(string));
+            var annotationDescriptor = new AnnotationDescriptor("TestProperty");
             var generator = new AnnotationGenerator(annotationDescriptor);
 
             generator.GetContent().Should().Be(string.Empty);

@@ -19,7 +19,7 @@ namespace SmartAnnotations
             this IAnnotationBuilder source,
             Type? resourceType = null)
         {
-            source.Descriptor.Add(new DisplayAttributeDescriptor(resourceType, source.Descriptor.ModelResourceType));
+            source.Descriptor.Add(new DisplayAttributeDescriptor(resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
 
             return new DisplayAttributeBuilder(source.Descriptor);
         }
@@ -28,7 +28,7 @@ namespace SmartAnnotations
             this IAnnotationBuilder source,
             Type? resourceType = null)
         {
-            source.Descriptor.Add(new RequiredAttributeDescriptor(resourceType, source.Descriptor.ModelResourceType));
+            source.Descriptor.Add(new RequiredAttributeDescriptor(resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
 
             return new RequiredAttributeBuilder(source.Descriptor);
         }
@@ -37,7 +37,7 @@ namespace SmartAnnotations
             this IAnnotationBuilder source,
             Type? resourceType = null)
         {
-            source.Descriptor.Add(new DisplayFormatAttributeDescriptor(resourceType, source.Descriptor.ModelResourceType));
+            source.Descriptor.Add(new DisplayFormatAttributeDescriptor(resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
 
             return new DisplayFormatAttributeBuilder(source.Descriptor);
         }
@@ -47,7 +47,7 @@ namespace SmartAnnotations
             DataTypeEnum dataType,
             Type? resourceType = null)
         {
-            source.Descriptor.Add(new DataTypeAttributeDescriptor(dataType, resourceType, source.Descriptor.ModelResourceType));
+            source.Descriptor.Add(new DataTypeAttributeDescriptor(dataType, resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
 
             return new DataTypeAttributeBuilder(source.Descriptor);
         }
@@ -57,7 +57,7 @@ namespace SmartAnnotations
             string customDataType,
             Type? resourceType = null)
         {
-            source.Descriptor.Add(new DataTypeAttributeDescriptor(customDataType, resourceType, source.Descriptor.ModelResourceType));
+            source.Descriptor.Add(new DataTypeAttributeDescriptor(customDataType, resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
 
             return new DataTypeAttributeBuilder(source.Descriptor);
         }

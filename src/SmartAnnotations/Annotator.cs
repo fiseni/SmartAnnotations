@@ -9,7 +9,7 @@ namespace SmartAnnotations
 {
     public abstract class Annotator<T> : AnnotationContext
     {
-        public Annotator() : base(typeof(T))
+        public Annotator() : base(typeof(T).Name, typeof(T).Namespace)
         {
         }
 
@@ -22,7 +22,7 @@ namespace SmartAnnotations
         {
             if (selector.Body is MemberExpression memberExpression)
             {
-                var annotationDescriptor = new AnnotationDescriptor(memberExpression.Member.Name, typeof(TProperty), this.ResourceType);
+                var annotationDescriptor = new AnnotationDescriptor(memberExpression.Member.Name, this.ResourceTypeFullName);
 
                 base.AddDescriptor(annotationDescriptor);
 

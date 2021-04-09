@@ -15,7 +15,7 @@ namespace SmartAnnotations.UnitTests.DisplayFormatAnnotation
         [Fact]
         public void ReturnsDisplayFormatAttributeWithAllParameters_GivenAllParameters()
         {
-            var descriptor = new DisplayFormatAttributeDescriptor(typeof(AttributeTestResource))
+            var descriptor = new DisplayFormatAttributeDescriptor(typeof(AttributeTestResource).FullName)
             {
                 ApplyFormatInEditMode = true,
                 ConvertEmptyStringToNull = true,
@@ -24,7 +24,7 @@ namespace SmartAnnotations.UnitTests.DisplayFormatAnnotation
                 NullDisplayText = "SomeText",
             };
 
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(descriptor);
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
             var generator = new DisplayFormatAttributeGenerator(annotationDescriptor);
 
@@ -36,12 +36,12 @@ namespace SmartAnnotations.UnitTests.DisplayFormatAnnotation
         [Fact]
         public void ReturnsDisplayFormatAttributeWithNullDisplayTextAndResourceType_GivenNullDisplayTextAndResourceType()
         {
-            var descriptor = new DisplayFormatAttributeDescriptor(typeof(AttributeTestResource))
+            var descriptor = new DisplayFormatAttributeDescriptor(typeof(AttributeTestResource).FullName)
             {
                 NullDisplayText = "SomeText",
             };
 
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(descriptor);
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
             var generator = new DisplayFormatAttributeGenerator(annotationDescriptor);
 
@@ -54,7 +54,7 @@ namespace SmartAnnotations.UnitTests.DisplayFormatAnnotation
         public void ReturnsParameterlessDisplayFormatAttribute_GivenEmptyDisplayFormatDescriptor()
         {
             var descriptor = new DisplayFormatAttributeDescriptor();
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(descriptor);
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
             var generator = new DisplayFormatAttributeGenerator(annotationDescriptor);
 
@@ -66,7 +66,7 @@ namespace SmartAnnotations.UnitTests.DisplayFormatAnnotation
         [Fact]
         public void ReturnsEmptyContent_GivenNullDisplayDescriptor()
         {
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName");
 
             var generator = new DisplayFormatAttributeGenerator(annotationDescriptor);
 

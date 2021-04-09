@@ -15,7 +15,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
         [Fact]
         public void ReturnsContent_GivenErrorMessage()
         {
-            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource)) { ErrorMessage = "SomeErrorMessage" };
+            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource).FullName) { ErrorMessage = "SomeErrorMessage" };
             var generator = new ErrorMessageGenerator(descriptor);
 
             var expected = @"ErrorMessage = ""SomeErrorMessage""";
@@ -26,7 +26,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
         [Fact]
         public void ReturnsEmptyContent_GivenNullOrEmptyErrorMessage()
         {
-            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource));
+            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource).FullName);
             var generator = new ErrorMessageGenerator(descriptor);
 
             var expected = string.Empty;

@@ -8,7 +8,7 @@ namespace SmartAnnotations.UnitTests.Fixture
 {
     public class TestAnnotationContext : AnnotationContext
     {
-        public TestAnnotationContext(Type type) : base(type)
+        public TestAnnotationContext(string typeName, string? typeNamespace) : base(typeName, typeNamespace)
         {
         }
     }

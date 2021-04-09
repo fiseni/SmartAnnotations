@@ -9,7 +9,9 @@ namespace SmartAnnotations.UnitTests.Fixture
 {
     internal class TestDescriptor : AttributeDescriptor
     {
-        public TestDescriptor(Type? attributeResourceType = null, Type? modelResourceType = null)
-            : base(attributeResourceType, modelResourceType) { }
+        public TestDescriptor(string? resourceTypeFullName = null, string? modelResourceTypeFullName = null)
+            : base(resourceTypeFullName, modelResourceTypeFullName)
+        {
+        }
     }
 }

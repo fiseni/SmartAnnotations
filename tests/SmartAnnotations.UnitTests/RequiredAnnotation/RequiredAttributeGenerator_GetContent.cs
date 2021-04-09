@@ -15,14 +15,14 @@ namespace SmartAnnotations.UnitTests.RequiredAnnotation
         [Fact]
         public void ReturnsRequiredAttributeWithMessageOnly_GivenAllParameters()
         {
-            var descriptor = new RequiredAttributeDescriptor(typeof(AttributeTestResource))
+            var descriptor = new RequiredAttributeDescriptor(typeof(AttributeTestResource).FullName)
             {
                 AllowEmptyStrings = true,
                 ErrorMessage = "SomeErrorMessage",
                 ErrorMessageResourceName = "SomeErrorKey"
             };
 
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(descriptor);
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
             var generator = new RequiredAttributeGenerator(annotationDescriptor);
 
@@ -34,7 +34,7 @@ namespace SmartAnnotations.UnitTests.RequiredAnnotation
         [Fact]
         public void ReturnsEmptyContent_GivenNullRequiredDescriptor()
         {
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName");
 
             var generator = new RequiredAttributeGenerator(annotationDescriptor);
 

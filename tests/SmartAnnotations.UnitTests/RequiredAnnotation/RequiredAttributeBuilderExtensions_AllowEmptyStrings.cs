@@ -13,7 +13,7 @@ namespace SmartAnnotations.UnitTests.RequiredAnnotation
         [Fact]
         public void SetsAllowEmptyStrings_GivenNotNullRequiredDescriptor()
         {
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string)).Add(new RequiredAttributeDescriptor());
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(new RequiredAttributeDescriptor());
             var builder = new RequiredAttributeBuilder(annotationDescriptor);
 
             builder.AllowEmptyStrings(true);
@@ -26,7 +26,7 @@ namespace SmartAnnotations.UnitTests.RequiredAnnotation
         [Fact]
         public void ThrowsArgumentNullException_GivenNullRequiredDescriptor()
         {
-            var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(string));
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName");
             var builder = new RequiredAttributeBuilder(annotationDescriptor);
 
             Action action = () => builder.AllowEmptyStrings(true);

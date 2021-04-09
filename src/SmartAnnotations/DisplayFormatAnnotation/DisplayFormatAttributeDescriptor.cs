@@ -7,8 +7,8 @@ namespace SmartAnnotations
 {
     public class DisplayFormatAttributeDescriptor : AttributeDescriptor
     {
-        internal DisplayFormatAttributeDescriptor(Type? resourceType = null, Type? modelResourceType = null)
-            : base(resourceType, modelResourceType)
+        internal DisplayFormatAttributeDescriptor(string? resourceTypeFullName = null, string? modelResourceTypeFullName = null)
+            : base(resourceTypeFullName, modelResourceTypeFullName)
         {
         }
 

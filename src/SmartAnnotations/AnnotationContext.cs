@@ -4,19 +4,26 @@ using System.Text;
 
 namespace SmartAnnotations
 {
+    // Avoid storing Type in the internal state.
+    // In the future we might provide two modes/regimes for the library, Execution and SyntaxParsing mode.
+    // Therefore, we should avoid any evaluation or references to the source code that is being compiled.
     public abstract class AnnotationContext
     {
-        public Type Type { get; }
-        public Type? ResourceType { get; internal set; }
+        public string TypeName { get; }
+        public string TypeFullName { get; }
+        public string? TypeNamespace { get; }
+        public string? ResourceTypeFullName { get; internal set; }
 
         internal IReadOnlyDictionary<string, AnnotationDescriptor> Descriptors => _descriptors;
         private readonly Dictionary<string, AnnotationDescriptor> _descriptors = new Dictionary<string, AnnotationDescriptor>();
 
-        public AnnotationContext(Type type)
+        public AnnotationContext(string typeName, string? typeNamespace)
         {
-            _ = type ?? throw new ArgumentNullException(nameof(type));
+            if (string.IsNullOrWhiteSpace(typeName)) throw new ArgumentNullException(nameof(typeName));
 
-            this.Type = type;
+            this.TypeName = typeName;
+            this.TypeNamespace = string.IsNullOrWhiteSpace(typeNamespace) ? null : typeNamespace;
+            this.TypeFullName = this.TypeNamespace == null ? this.TypeName : $"{this.TypeNamespace}.{this.TypeName}";
         }
 
         internal void AddDescriptor(AnnotationDescriptor descriptor)

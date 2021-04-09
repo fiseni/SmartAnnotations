@@ -15,7 +15,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
         [Fact]
         public void ReturnsContent_GivenHasAttributeAndModelResourceTypeAndHasErrorMessageResourceName()
         {
-            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource), typeof(ModelTestResource)) { ErrorMessageResourceName = "SomeResourceKey" };
+            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource).FullName, typeof(ModelTestResource).FullName) { ErrorMessageResourceName = "SomeResourceKey" };
             var generator = new ResourceNameGenerator(descriptor);
 
             var expected = @"ErrorMessageResourceName = ""SomeResourceKey""";
@@ -26,7 +26,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
         [Fact]
         public void ReturnsContent_GivenHasAttributeResourceTypeAndHasErrorMessageResourceName()
         {
-            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource)) { ErrorMessageResourceName = "SomeResourceKey" };
+            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource).FullName) { ErrorMessageResourceName = "SomeResourceKey" };
             var generator = new ResourceNameGenerator(descriptor);
 
             var expected = @"ErrorMessageResourceName = ""SomeResourceKey""";
@@ -37,7 +37,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
         [Fact]
         public void ReturnsContent_GivenHasModelResourceTypeAndHasErrorMessageResourceName()
         {
-            var descriptor = new ValidationAttributeDescriptor(null, typeof(ModelTestResource)) { ErrorMessageResourceName = "SomeResourceKey" };
+            var descriptor = new ValidationAttributeDescriptor(null, typeof(ModelTestResource).FullName) { ErrorMessageResourceName = "SomeResourceKey" };
             var generator = new ResourceNameGenerator(descriptor);
 
             var expected = @"ErrorMessageResourceName = ""SomeResourceKey""";
@@ -48,7 +48,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
         [Fact]
         public void ReturnsEmptyContent_GivenHasErrorMessage()
         {
-            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource), typeof(ModelTestResource)) 
+            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource).FullName, typeof(ModelTestResource).FullName) 
             { 
                 ErrorMessage = "SomeMessage",
                 ErrorMessageResourceName = "SomeResourceKey" 
@@ -75,7 +75,7 @@ namespace SmartAnnotations.UnitTests.ValidationAnnotation
         [Fact]
         public void ReturnsEmptyContent_GivenHasResourceTypeHasNoErrorMessageResourceName()
         {
-            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource));
+            var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource).FullName);
             var generator = new ResourceNameGenerator(descriptor);
 
             var expected = string.Empty;

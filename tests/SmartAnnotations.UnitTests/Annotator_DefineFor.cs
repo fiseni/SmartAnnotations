@@ -12,30 +12,21 @@ namespace SmartAnnotations.UnitTests
     public class Annotator_DefineFor
     {
         [Fact]
-        public void SetsAnnotationContextType_OnConstruction()
-        {
-            var annotator = new TestAnnotatorEmpty();
-
-            annotator.Type.Should().Be(typeof(TestType));
-        }
-
-        [Fact]
         public void ReturnsAnnotationBuilderAndSetsDescriptor_GivenValidSelectorExpression()
         {
-            var annotator = new TestAnnotatorEmpty() { ResourceType = typeof(ModelTestResource) };
+            var annotator = new TestAnnotatorEmpty() { ResourceTypeFullName = typeof(ModelTestResource).FullName };
 
             annotator.DefineFor(x => x.TestProperty);
 
             annotator.Descriptors.Should().HaveCount(1);
             annotator.Descriptors.First().Value.PropertyName.Should().Be("TestProperty");
-            annotator.Descriptors.First().Value.PropertyType.Should().Be(typeof(string));
-            annotator.Descriptors.First().Value.ModelResourceType.Should().Be(typeof(ModelTestResource));
+            annotator.Descriptors.First().Value.ModelResourceTypeFullName.Should().Be(typeof(ModelTestResource).FullName);
         }
 
         [Fact]
         public void ThrowsArgumentException_GivenInvalidExpression()
         {
-            var annotator = new TestAnnotatorEmpty() { ResourceType = typeof(ModelTestResource) };
+            var annotator = new TestAnnotatorEmpty() { ResourceTypeFullName = typeof(ModelTestResource).FullName };
 
             Func<IAnnotationBuilder> func = () => annotator.DefineFor<string>(x => "");
 

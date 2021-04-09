@@ -21,7 +21,7 @@ namespace SmartAnnotations.ValidationAnnotation
 
             if (!string.IsNullOrEmpty(descriptor.ErrorMessage)) return string.Empty;
 
-            return $"ErrorMessageResourceType = typeof({descriptor.GetResourceTypeName()})";
+            return $"ErrorMessageResourceType = typeof({descriptor.GetResourceTypeFullName()})";
         }
     }
 }
