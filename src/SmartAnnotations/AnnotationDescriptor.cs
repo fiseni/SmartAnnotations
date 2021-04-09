@@ -7,7 +7,7 @@ namespace SmartAnnotations
 {
     public class AnnotationDescriptor
     {
-        // Refactor this to TypeDictionary if performance is an issue.
+        // Refactor this to TypedDictionary if performance is an issue.
         private Dictionary<Type, AttributeDescriptor> attributeDescriptors { get; } = new Dictionary<Type, AttributeDescriptor>();
         
         public string PropertyName { get; }

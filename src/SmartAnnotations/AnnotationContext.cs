@@ -9,8 +9,8 @@ namespace SmartAnnotations
         public Type Type { get; }
         public Type? ResourceType { get; internal set; }
 
-        internal IEnumerable<AnnotationDescriptor> Descriptors => _descriptors.AsReadOnly();
-        private readonly List<AnnotationDescriptor> _descriptors = new List<AnnotationDescriptor>();
+        internal IReadOnlyDictionary<string, AnnotationDescriptor> Descriptors => _descriptors;
+        private readonly Dictionary<string, AnnotationDescriptor> _descriptors = new Dictionary<string, AnnotationDescriptor>();
 
         public AnnotationContext(Type type)
         {
@@ -21,9 +21,9 @@ namespace SmartAnnotations
 
         internal void AddDescriptor(AnnotationDescriptor descriptor)
         {
-            if (_descriptors.Find(x => x.PropertyName.Equals(descriptor.PropertyName)) == null)
+            if (!_descriptors.ContainsKey(descriptor.PropertyName))
             {
-                _descriptors.Add(descriptor);
+                _descriptors.Add(descriptor.PropertyName, descriptor);
             }
         }
     }

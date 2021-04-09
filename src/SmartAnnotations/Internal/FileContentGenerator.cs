@@ -19,7 +19,7 @@ namespace SmartAnnotations.Internal
 
             foreach (var descriptor in context.Descriptors)
             {
-                var content = new AnnotationGenerator(descriptor).GetContent();
+                var content = new AnnotationGenerator(descriptor.Value).GetContent();
                 if (!string.IsNullOrEmpty(content))
                 {
                     output = string.IsNullOrEmpty(output) ? content : $"{output}{Environment.NewLine}{content}";

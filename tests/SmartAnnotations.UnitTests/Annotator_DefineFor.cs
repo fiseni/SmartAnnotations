@@ -27,9 +27,9 @@ namespace SmartAnnotations.UnitTests
             annotator.DefineFor(x => x.TestProperty);
 
             annotator.Descriptors.Should().HaveCount(1);
-            annotator.Descriptors.First().PropertyName.Should().Be("TestProperty");
-            annotator.Descriptors.First().PropertyType.Should().Be(typeof(string));
-            annotator.Descriptors.First().ModelResourceType.Should().Be(typeof(ModelTestResource));
+            annotator.Descriptors.First().Value.PropertyName.Should().Be("TestProperty");
+            annotator.Descriptors.First().Value.PropertyType.Should().Be(typeof(string));
+            annotator.Descriptors.First().Value.ModelResourceType.Should().Be(typeof(ModelTestResource));
         }
 
         [Fact]
