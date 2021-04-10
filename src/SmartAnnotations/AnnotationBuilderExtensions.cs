@@ -92,5 +92,15 @@ namespace SmartAnnotations
 
             return new MaxLengthAttributeBuilder(source.Descriptor);
         }
+
+        public static IMinLengthAttributeBuilder Min(
+            this IAnnotationBuilder source,
+            int length,
+            Type? resourceType = null)
+        {
+            source.Descriptor.Add(new MinLengthAttributeDescriptor(length, resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
+
+            return new MinLengthAttributeBuilder(source.Descriptor);
+        }
     }
 }
