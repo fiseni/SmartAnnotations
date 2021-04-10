@@ -82,5 +82,15 @@ namespace SmartAnnotations
 
             return new StringLengthAttributeBuilder(source.Descriptor);
         }
+
+        public static IMaxLengthAttributeBuilder Max(
+            this IAnnotationBuilder source,
+            int? length = null,
+            Type? resourceType = null)
+        {
+            source.Descriptor.Add(new MaxLengthAttributeDescriptor(length, resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
+
+            return new MaxLengthAttributeBuilder(source.Descriptor);
+        }
     }
 }
