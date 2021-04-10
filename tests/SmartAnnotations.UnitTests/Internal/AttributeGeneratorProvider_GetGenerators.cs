@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 using SmartAnnotations.Attributes.MaxLength;
+using SmartAnnotations.Attributes.MinLength;
 
 namespace SmartAnnotations.UnitTests.Internal
 {
@@ -31,7 +32,8 @@ namespace SmartAnnotations.UnitTests.Internal
                 typeof(DisplayAttributeGenerator),
                 typeof(DisplayFormatAttributeGenerator),
                 typeof(StringLengthAttributeGenerator),
-                typeof(MaxLengthAttributeGenerator)
+                typeof(MaxLengthAttributeGenerator),
+                typeof(MinLengthAttributeGenerator)
             );
         }
     }
