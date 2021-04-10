@@ -10,83 +10,79 @@ using Xunit;
 
 namespace SmartAnnotations.UnitTests
 {
-    public class AnnotationBuilderExtensions_Length
+    public class AnnotationBuilderExtensions_Compare
     {
         [Fact]
-        public void SetsStringLengthDescriptorWithMinMax_GivenMinMax()
+        public void SetsCompareDescriptorWithOtherProperty_GivenValidOtherProperty()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName");
             var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
-            annotationBuilder.Length(1, 10);
+            annotationBuilder.Compare("OtherProperty");
 
-            var attributeDescriptor = annotationDescriptor.Get<StringLengthAttributeDescriptor>();
+            var attributeDescriptor = annotationDescriptor.Get<CompareAttributeDescriptor>();
             attributeDescriptor.Should().NotBeNull();
-            attributeDescriptor!.MinimumLength.Should().Be(1);
-            attributeDescriptor!.MaximumLength.Should().Be(10);
+            attributeDescriptor!.OtherProperty.Should().Be("OtherProperty");
         }
 
         [Fact]
-        public void SetsStringLengthDescriptorWithMaxAndNullMin_GivenMax()
+        public void ThrowsArgumentException_GivenNullOrEmptyOtherProperty()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName");
             var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
-            annotationBuilder.Length(10);
+            Action action = () => annotationBuilder.Compare(string.Empty);
 
-            var attributeDescriptor = annotationDescriptor.Get<StringLengthAttributeDescriptor>();
-            attributeDescriptor.Should().NotBeNull();
-            attributeDescriptor!.MinimumLength.Should().BeNull();
-            attributeDescriptor!.MaximumLength.Should().Be(10);
+            action.Should().Throw<ArgumentNullException>().And.ParamName.Should().Be("otherProperty");
         }
 
         [Fact]
-        public void SetsStringLengthDescriptorWithNoResourceType_GivenNoAttributeOrModelResourceType()
+        public void SetsCompareDescriptorWithNoResourceType_GivenNoAttributeOrModelResourceType()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName");
             var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
-            annotationBuilder.Length(10);
+            annotationBuilder.Compare("OtherProperty");
 
-            var attributeDescriptor = annotationDescriptor.Get<StringLengthAttributeDescriptor>();
+            var attributeDescriptor = annotationDescriptor.Get<CompareAttributeDescriptor>();
             attributeDescriptor.Should().NotBeNull();
         }
 
         [Fact]
-        public void SetsStringLengthDescriptorWithAttributeResourceType_GivenResourceTypeParameter()
+        public void SetsCompareDescriptorWithAttributeResourceType_GivenResourceTypeParameter()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName");
             var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
-            annotationBuilder.Length(1, 10, typeof(AttributeTestResource));
+            annotationBuilder.Compare("OtherProperty", typeof(AttributeTestResource));
 
-            var attributeDescriptor = annotationDescriptor.Get<StringLengthAttributeDescriptor>();
+            var attributeDescriptor = annotationDescriptor.Get<CompareAttributeDescriptor>();
             attributeDescriptor.Should().NotBeNull();
             attributeDescriptor!.AttributeResourceType.Should().Be(typeof(AttributeTestResource).FullName);
         }
 
         [Fact]
-        public void SetsStringLengthDescriptorWithAttributeResourceType_GivenResourceTypeParameterAndHasModelResourceType()
+        public void SetsCompareDescriptorWithAttributeResourceType_GivenResourceTypeParameterAndHasModelResourceType()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(ModelTestResource).FullName);
             var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
-            annotationBuilder.Length(10, typeof(AttributeTestResource));
+            annotationBuilder.Compare("OtherProperty", typeof(AttributeTestResource));
 
-            var attributeDescriptor = annotationDescriptor.Get<StringLengthAttributeDescriptor>();
+            var attributeDescriptor = annotationDescriptor.Get<CompareAttributeDescriptor>();
             attributeDescriptor.Should().NotBeNull();
             attributeDescriptor!.AttributeResourceType.Should().Be(typeof(AttributeTestResource).FullName);
         }
 
         [Fact]
-        public void SetsStringLengthDescriptorWithModelResourceType_GivenNoResourceTypeParameterAndHasModelResourceType()
+        public void SetsCompareDescriptorWithModelResourceType_GivenNoResourceTypeParameterAndHasModelResourceType()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(ModelTestResource).FullName);
             var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
-            annotationBuilder.Length(10);
+            annotationBuilder.Compare("OtherProperty");
 
-            var attributeDescriptor = annotationDescriptor.Get<StringLengthAttributeDescriptor>();
+            var attributeDescriptor = annotationDescriptor.Get<CompareAttributeDescriptor>();
             attributeDescriptor.Should().NotBeNull();
             attributeDescriptor!.ModelResourceType.Should().Be(typeof(ModelTestResource).FullName);
         }
