@@ -2,6 +2,7 @@
 using SmartAnnotations.Attributes.DisplayFormat;
 using SmartAnnotations.Attributes.ReadOnly;
 using SmartAnnotations.Attributes.Required;
+using SmartAnnotations.Attributes.StringLength;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -24,7 +25,8 @@ namespace SmartAnnotations.Internal
                 new ReadOnlyAttributeGenerator(descriptor),
                 new RequiredAttributeGenerator(descriptor),
                 new DisplayAttributeGenerator(descriptor),
-                new DisplayFormatAttributeGenerator(descriptor)
+                new DisplayFormatAttributeGenerator(descriptor),
+                new StringLengthAttributeGenerator(descriptor)
             };
         }
     }

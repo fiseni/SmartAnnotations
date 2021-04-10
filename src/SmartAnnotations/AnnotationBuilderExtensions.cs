@@ -61,5 +61,26 @@ namespace SmartAnnotations
 
             return new DataTypeAttributeBuilder(source.Descriptor);
         }
+
+        public static IStringLengthAttributeBuilder Length(
+            this IAnnotationBuilder source,
+            int minimumLength,
+            int maximumLength,
+            Type? resourceType = null)
+        {
+            source.Descriptor.Add(new StringLengthAttributeDescriptor(minimumLength, maximumLength, resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
+
+            return new StringLengthAttributeBuilder(source.Descriptor);
+        }
+
+        public static IStringLengthAttributeBuilder Length(
+            this IAnnotationBuilder source,
+            int maximumLength,
+            Type? resourceType = null)
+        {
+            source.Descriptor.Add(new StringLengthAttributeDescriptor(maximumLength, resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
+
+            return new StringLengthAttributeBuilder(source.Descriptor);
+        }
     }
 }
