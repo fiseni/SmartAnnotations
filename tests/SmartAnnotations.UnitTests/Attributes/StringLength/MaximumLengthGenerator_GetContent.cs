@@ -12,7 +12,7 @@ namespace SmartAnnotations.UnitTests.Attributes.StringLength
     public class MaximumLengthGenerator_GetContent
     {
         [Fact]
-        public void ReturnsContent_GivenConstructorWithMinMax()
+        public void ReturnsContent_GivenDescriptorWithMinMax()
         {
             var descriptor = new StringLengthAttributeDescriptor(1, 10);
             var generator = new MaximumLengthGenerator(descriptor);
@@ -23,7 +23,7 @@ namespace SmartAnnotations.UnitTests.Attributes.StringLength
         }
 
         [Fact]
-        public void ReturnsContent_GivenConstructorWithMaxOnly()
+        public void ReturnsContent_GivenDescriptorWithMaxOnly()
         {
             var descriptor = new StringLengthAttributeDescriptor(10);
             var generator = new MaximumLengthGenerator(descriptor);
