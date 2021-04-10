@@ -1,4 +1,5 @@
-﻿using SmartAnnotations.Attributes.Display;
+﻿using SmartAnnotations.Attributes.Compare;
+using SmartAnnotations.Attributes.Display;
 using SmartAnnotations.Attributes.DisplayFormat;
 using SmartAnnotations.Attributes.MaxLength;
 using SmartAnnotations.Attributes.MinLength;
@@ -30,7 +31,8 @@ namespace SmartAnnotations.Internal
                 new DisplayFormatAttributeGenerator(descriptor),
                 new StringLengthAttributeGenerator(descriptor),
                 new MaxLengthAttributeGenerator(descriptor),
-                new MinLengthAttributeGenerator(descriptor)
+                new MinLengthAttributeGenerator(descriptor),
+                new CompareAttributeGenerator(descriptor)
             };
         }
     }

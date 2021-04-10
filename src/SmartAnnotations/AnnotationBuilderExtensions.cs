@@ -102,5 +102,15 @@ namespace SmartAnnotations
 
             return new MinLengthAttributeBuilder(source.Descriptor);
         }
+
+        public static ICompareAttributeBuilder Compare(
+            this IAnnotationBuilder source,
+            string otherProperty,
+            Type? resourceType = null)
+        {
+            source.Descriptor.Add(new CompareAttributeDescriptor(otherProperty, resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
+
+            return new CompareAttributeBuilder(source.Descriptor);
+        }
     }
 }
