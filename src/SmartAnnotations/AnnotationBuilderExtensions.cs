@@ -112,5 +112,41 @@ namespace SmartAnnotations
 
             return new CompareAttributeBuilder(source.Descriptor);
         }
+
+        public static IRangeAttributeBuilder Range(
+            this IAnnotationBuilder source,
+            int minimum,
+            int maximum,
+            Type? resourceType = null)
+        {
+            source.Descriptor.Add(new RangeAttributeDescriptor(minimum, maximum, resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
+
+            return new RangeAttributeBuilder(source.Descriptor);
+        }
+
+        public static IRangeAttributeBuilder Range(
+            this IAnnotationBuilder source,
+            double minimum,
+            double maximum,
+            Type? resourceType = null)
+        {
+            source.Descriptor.Add(new RangeAttributeDescriptor(minimum, maximum, resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
+
+            return new RangeAttributeBuilder(source.Descriptor);
+        }
+
+        public static IRangeAttributeBuilder Range(
+            this IAnnotationBuilder source,
+            Type type,
+            string minimum,
+            string maximum,
+            Type? resourceType = null)
+        {
+            _ = type ?? throw new ArgumentNullException(nameof(type));
+
+            source.Descriptor.Add(new RangeAttributeDescriptor(type.FullName, minimum, maximum, resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
+
+            return new RangeAttributeBuilder(source.Descriptor);
+        }
     }
 }
