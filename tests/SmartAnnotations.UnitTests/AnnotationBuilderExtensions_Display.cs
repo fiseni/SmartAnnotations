@@ -20,8 +20,12 @@ namespace SmartAnnotations.UnitTests
 
             annotationBuilder.Display();
 
-            var descriptor = annotationDescriptor.Get<DisplayAttributeDescriptor>();
-            descriptor.Should().NotBeNull();
+            var attributeDescriptor = annotationDescriptor.Get<DisplayAttributeDescriptor>();
+            attributeDescriptor.Should().NotBeNull();
+            attributeDescriptor!.AttributeResourceType.Should().BeNull();
+            attributeDescriptor!.ModelResourceType.Should().BeNull();
+            attributeDescriptor!.HasResourceType.Should().BeFalse();
+            attributeDescriptor!.GetResourceTypeFullName().Should().BeNull();
         }
 
         [Fact]
@@ -32,9 +36,11 @@ namespace SmartAnnotations.UnitTests
 
             annotationBuilder.Display(typeof(AttributeTestResource));
 
-            var descriptor = annotationDescriptor.Get<DisplayAttributeDescriptor>();
-            descriptor.Should().NotBeNull();
-            descriptor!.AttributeResourceType.Should().Be(typeof(AttributeTestResource).FullName);
+            var attributeDescriptor = annotationDescriptor.Get<DisplayAttributeDescriptor>();
+            attributeDescriptor.Should().NotBeNull();
+            attributeDescriptor!.AttributeResourceType.Should().Be(typeof(AttributeTestResource).FullName);
+            attributeDescriptor!.HasResourceType.Should().BeTrue();
+            attributeDescriptor!.GetResourceTypeFullName().Should().Be(typeof(AttributeTestResource).FullName);
         }
 
         [Fact]
@@ -45,9 +51,11 @@ namespace SmartAnnotations.UnitTests
 
             annotationBuilder.Display(typeof(AttributeTestResource));
 
-            var descriptor = annotationDescriptor.Get<DisplayAttributeDescriptor>();
-            descriptor.Should().NotBeNull();
-            descriptor!.AttributeResourceType.Should().Be(typeof(AttributeTestResource).FullName);
+            var attributeDescriptor = annotationDescriptor.Get<DisplayAttributeDescriptor>();
+            attributeDescriptor.Should().NotBeNull();
+            attributeDescriptor!.AttributeResourceType.Should().Be(typeof(AttributeTestResource).FullName);
+            attributeDescriptor!.HasResourceType.Should().BeTrue();
+            attributeDescriptor!.GetResourceTypeFullName().Should().Be(typeof(AttributeTestResource).FullName);
         }
 
         [Fact]
@@ -58,9 +66,11 @@ namespace SmartAnnotations.UnitTests
 
             annotationBuilder.Display();
 
-            var descriptor = annotationDescriptor.Get<DisplayAttributeDescriptor>();
-            descriptor.Should().NotBeNull();
-            descriptor!.ModelResourceType.Should().Be(typeof(ModelTestResource).FullName);
+            var attributeDescriptor = annotationDescriptor.Get<DisplayAttributeDescriptor>();
+            attributeDescriptor.Should().NotBeNull();
+            attributeDescriptor!.ModelResourceType.Should().Be(typeof(ModelTestResource).FullName);
+            attributeDescriptor!.HasResourceType.Should().BeTrue();
+            attributeDescriptor!.GetResourceTypeFullName().Should().Be(typeof(ModelTestResource).FullName);
         }
     }
 }

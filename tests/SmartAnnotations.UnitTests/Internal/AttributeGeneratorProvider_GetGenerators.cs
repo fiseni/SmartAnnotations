@@ -3,6 +3,10 @@ using SmartAnnotations.Attributes.DisplayFormat;
 using SmartAnnotations.Attributes.ReadOnly;
 using SmartAnnotations.Attributes.Required;
 using SmartAnnotations.Attributes.StringLength;
+using SmartAnnotations.Attributes.MaxLength;
+using SmartAnnotations.Attributes.MinLength;
+using SmartAnnotations.Attributes.Compare;
+using SmartAnnotations.Attributes.Range;
 using FluentAssertions;
 using SmartAnnotations.Internal;
 using System;
@@ -11,9 +15,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
-using SmartAnnotations.Attributes.MaxLength;
-using SmartAnnotations.Attributes.MinLength;
-using SmartAnnotations.Attributes.Compare;
 
 namespace SmartAnnotations.UnitTests.Internal
 {
@@ -35,7 +36,8 @@ namespace SmartAnnotations.UnitTests.Internal
                 typeof(StringLengthAttributeGenerator),
                 typeof(MaxLengthAttributeGenerator),
                 typeof(MinLengthAttributeGenerator),
-                typeof(CompareAttributeGenerator)
+                typeof(CompareAttributeGenerator),
+                typeof(RangeAttributeGenerator)
             );
         }
     }

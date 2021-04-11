@@ -35,6 +35,10 @@ namespace SmartAnnotations.UnitTests
 
             var attributeDescriptor = annotationDescriptor.Get<MinLengthAttributeDescriptor>();
             attributeDescriptor.Should().NotBeNull();
+            attributeDescriptor!.AttributeResourceType.Should().BeNull();
+            attributeDescriptor!.ModelResourceType.Should().BeNull();
+            attributeDescriptor!.HasResourceType.Should().BeFalse();
+            attributeDescriptor!.GetResourceTypeFullName().Should().BeNull();
         }
 
         [Fact]
@@ -48,6 +52,8 @@ namespace SmartAnnotations.UnitTests
             var attributeDescriptor = annotationDescriptor.Get<MinLengthAttributeDescriptor>();
             attributeDescriptor.Should().NotBeNull();
             attributeDescriptor!.AttributeResourceType.Should().Be(typeof(AttributeTestResource).FullName);
+            attributeDescriptor!.HasResourceType.Should().BeTrue();
+            attributeDescriptor!.GetResourceTypeFullName().Should().Be(typeof(AttributeTestResource).FullName);
         }
 
         [Fact]
@@ -61,6 +67,8 @@ namespace SmartAnnotations.UnitTests
             var attributeDescriptor = annotationDescriptor.Get<MinLengthAttributeDescriptor>();
             attributeDescriptor.Should().NotBeNull();
             attributeDescriptor!.AttributeResourceType.Should().Be(typeof(AttributeTestResource).FullName);
+            attributeDescriptor!.HasResourceType.Should().BeTrue();
+            attributeDescriptor!.GetResourceTypeFullName().Should().Be(typeof(AttributeTestResource).FullName);
         }
 
         [Fact]
@@ -74,6 +82,8 @@ namespace SmartAnnotations.UnitTests
             var attributeDescriptor = annotationDescriptor.Get<MinLengthAttributeDescriptor>();
             attributeDescriptor.Should().NotBeNull();
             attributeDescriptor!.ModelResourceType.Should().Be(typeof(ModelTestResource).FullName);
+            attributeDescriptor!.HasResourceType.Should().BeTrue();
+            attributeDescriptor!.GetResourceTypeFullName().Should().Be(typeof(ModelTestResource).FullName);
         }
     }
 }
