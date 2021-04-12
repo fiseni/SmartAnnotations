@@ -59,7 +59,7 @@ namespace SmartAnnotations.UnitTests
         }
 
         [Fact]
-        public void SetsCreditCardWithModelResourceType_GivenNoResourceTypeParameterAndHasModelResourceType()
+        public void SetsCreditCardDescriptorWithModelResourceType_GivenNoResourceTypeParameterAndHasModelResourceType()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(ModelTestResource).FullName);
             var annotationBuilder = new AnnotationBuilder(annotationDescriptor);

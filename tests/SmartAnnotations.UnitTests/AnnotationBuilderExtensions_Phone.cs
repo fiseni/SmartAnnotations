@@ -10,17 +10,17 @@ using Xunit;
 
 namespace SmartAnnotations.UnitTests
 {
-    public class AnnotationBuilderExtensions_Email
+    public class AnnotationBuilderExtensions_Phone
     {
         [Fact]
-        public void SetsEmailAddressDescriptorWithNoResourceType_GivenNoAttributeOrModelResourceType()
+        public void SetsPhoneDescriptorWithNoResourceType_GivenNoAttributeOrModelResourceType()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName");
             var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
-            annotationBuilder.Email();
+            annotationBuilder.Phone();
 
-            var attributeDescriptor = annotationDescriptor.Get<EmailAddressAttributeDescriptor>();
+            var attributeDescriptor = annotationDescriptor.Get<PhoneAttributeDescriptor>();
             attributeDescriptor.Should().NotBeNull();
             attributeDescriptor!.AttributeResourceType.Should().BeNull();
             attributeDescriptor!.ModelResourceType.Should().BeNull();
@@ -29,14 +29,14 @@ namespace SmartAnnotations.UnitTests
         }
 
         [Fact]
-        public void SetsEmailAddressDescriptorWithAttributeResourceType_GivenResourceTypeParameter()
+        public void SetsPhoneDescriptorWithAttributeResourceType_GivenResourceTypeParameter()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName");
             var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
-            annotationBuilder.Email(typeof(AttributeTestResource));
+            annotationBuilder.Phone(typeof(AttributeTestResource));
 
-            var attributeDescriptor = annotationDescriptor.Get<EmailAddressAttributeDescriptor>();
+            var attributeDescriptor = annotationDescriptor.Get<PhoneAttributeDescriptor>();
             attributeDescriptor.Should().NotBeNull();
             attributeDescriptor!.AttributeResourceType.Should().Be(typeof(AttributeTestResource).FullName);
             attributeDescriptor!.HasResourceType.Should().BeTrue();
@@ -44,14 +44,14 @@ namespace SmartAnnotations.UnitTests
         }
 
         [Fact]
-        public void SetsEmailAddressDescriptorWithAttributeResourceType_GivenResourceTypeParameterAndHasModelResourceType()
+        public void SetsPhoneDescriptorWithAttributeResourceType_GivenResourceTypeParameterAndHasModelResourceType()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(ModelTestResource).FullName);
             var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
-            annotationBuilder.Email(typeof(AttributeTestResource));
+            annotationBuilder.Phone(typeof(AttributeTestResource));
 
-            var attributeDescriptor = annotationDescriptor.Get<EmailAddressAttributeDescriptor>();
+            var attributeDescriptor = annotationDescriptor.Get<PhoneAttributeDescriptor>();
             attributeDescriptor.Should().NotBeNull();
             attributeDescriptor!.AttributeResourceType.Should().Be(typeof(AttributeTestResource).FullName);
             attributeDescriptor!.HasResourceType.Should().BeTrue();
@@ -59,14 +59,14 @@ namespace SmartAnnotations.UnitTests
         }
 
         [Fact]
-        public void SetsEmailAddressDescriptorWithModelResourceType_GivenNoResourceTypeParameterAndHasModelResourceType()
+        public void SetsPhoneDescriptorWithModelResourceType_GivenNoResourceTypeParameterAndHasModelResourceType()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(ModelTestResource).FullName);
             var annotationBuilder = new AnnotationBuilder(annotationDescriptor);
 
-            annotationBuilder.Email();
+            annotationBuilder.Phone();
 
-            var attributeDescriptor = annotationDescriptor.Get<EmailAddressAttributeDescriptor>();
+            var attributeDescriptor = annotationDescriptor.Get<PhoneAttributeDescriptor>();
             attributeDescriptor.Should().NotBeNull();
             attributeDescriptor!.ModelResourceType.Should().Be(typeof(ModelTestResource).FullName);
             attributeDescriptor!.HasResourceType.Should().BeTrue();

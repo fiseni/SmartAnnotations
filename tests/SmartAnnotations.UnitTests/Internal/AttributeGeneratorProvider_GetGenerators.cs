@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using Xunit;
 using SmartAnnotations.Attributes.EmailAddress;
 using SmartAnnotations.Attributes.CreditCard;
+using SmartAnnotations.Attributes.Phone;
 
 namespace SmartAnnotations.UnitTests.Internal
 {
@@ -41,7 +42,8 @@ namespace SmartAnnotations.UnitTests.Internal
                 typeof(CompareAttributeGenerator),
                 typeof(RangeAttributeGenerator),
                 typeof(EmailAddressAttributeGenerator),
-                typeof(CreditCardAttributeGenerator)
+                typeof(CreditCardAttributeGenerator),
+                typeof(PhoneAttributeGenerator)
             );
         }
     }
