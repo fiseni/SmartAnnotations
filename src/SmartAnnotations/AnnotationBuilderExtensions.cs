@@ -148,5 +148,14 @@ namespace SmartAnnotations
 
             return new RangeAttributeBuilder(source.Descriptor);
         }
+
+        public static IEmailAddressAttributeBuilder Email(
+            this IAnnotationBuilder source,
+            Type? resourceType = null)
+        {
+            source.Descriptor.Add(new EmailAddressAttributeDescriptor(resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
+
+            return new EmailAddressAttributeBuilder(source.Descriptor);
+        }
     }
 }

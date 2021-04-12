@@ -1,6 +1,7 @@
 ﻿using SmartAnnotations.Attributes.Compare;
 using SmartAnnotations.Attributes.Display;
 using SmartAnnotations.Attributes.DisplayFormat;
+using SmartAnnotations.Attributes.EmailAddress;
 using SmartAnnotations.Attributes.MaxLength;
 using SmartAnnotations.Attributes.MinLength;
 using SmartAnnotations.Attributes.Range;
@@ -29,7 +30,8 @@ namespace SmartAnnotations.Internal
             MaxLengthAttributeGenerator.Instance,
             MinLengthAttributeGenerator.Instance,
             CompareAttributeGenerator.Instance,
-            RangeAttributeGenerator.Instance
+            RangeAttributeGenerator.Instance,
+            EmailAddressAttributeGenerator.Instance
         };
     }
 }
