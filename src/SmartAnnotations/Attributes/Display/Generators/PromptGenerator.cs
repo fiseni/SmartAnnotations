@@ -4,16 +4,12 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.Display
 {
-    internal class PromptGenerator : IContentGenerator
+    internal class PromptGenerator : IContentGenerator<DisplayAttributeDescriptor>
     {
-        private readonly DisplayAttributeDescriptor descriptor;
+        private PromptGenerator() { }
+        internal static PromptGenerator Instance { get; } = new();
 
-        internal PromptGenerator(DisplayAttributeDescriptor descriptor)
-        {
-            this.descriptor = descriptor;
-        }
-
-        public string GetContent()
+        public string GetContent(DisplayAttributeDescriptor descriptor)
         {
             if (descriptor.Prompt == null) return string.Empty;
 

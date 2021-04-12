@@ -15,33 +15,33 @@ namespace SmartAnnotations.UnitTests.Attributes.DisplayFormat
         public void ReturnsContent_GivenConvertEmptyStringToNullIsTrue()
         {
             var descriptor = new DisplayFormatAttributeDescriptor() { ConvertEmptyStringToNull = true };
-            var generator = new ConvertEmptyStringToNullGenerator(descriptor);
+            var generator = ConvertEmptyStringToNullGenerator.Instance;
 
             var expected = @"ConvertEmptyStringToNull = true";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsContent_GivenConvertEmptyStringToNullIsFalse()
         {
             var descriptor = new DisplayFormatAttributeDescriptor() { ConvertEmptyStringToNull = false };
-            var generator = new ConvertEmptyStringToNullGenerator(descriptor);
+            var generator = ConvertEmptyStringToNullGenerator.Instance;
 
             var expected = @"ConvertEmptyStringToNull = false";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenConvertEmptyStringToNullIsNull()
         {
             var descriptor = new DisplayFormatAttributeDescriptor() { ConvertEmptyStringToNull = null };
-            var generator = new ConvertEmptyStringToNullGenerator(descriptor);
+            var generator = ConvertEmptyStringToNullGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

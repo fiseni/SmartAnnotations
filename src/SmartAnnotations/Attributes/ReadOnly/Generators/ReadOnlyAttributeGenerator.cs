@@ -4,23 +4,18 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.ReadOnly
 {
-    internal class ReadOnlyAttributeGenerator : IContentGenerator
+    internal class ReadOnlyAttributeGenerator : IAttributeGenerator
     {
-        private readonly bool isNotSet;
-        private readonly bool isReadOnly;
+        private ReadOnlyAttributeGenerator() { }
+        internal static ReadOnlyAttributeGenerator Instance { get; } = new();
 
-        internal ReadOnlyAttributeGenerator(AnnotationDescriptor annotationDescriptor)
+        public string GetContent(AnnotationDescriptor descriptor)
         {
-            var attributeDescriptor = annotationDescriptor.Get<ReadOnlyAttributeDescriptor>();
-            this.isNotSet = attributeDescriptor == null;
-            this.isReadOnly = attributeDescriptor?.IsReadOnly ?? false;
-        }
+            var attributeDescriptor = descriptor.Get<ReadOnlyAttributeDescriptor>();
 
-        public string GetContent()
-        {
-            if (this.isNotSet) return string.Empty;
+            if (attributeDescriptor == null) return string.Empty;
 
-            return $"[ReadOnly({this.isReadOnly.ToString().ToLower()})]";
+            return $"[ReadOnly({attributeDescriptor.IsReadOnly.ToString().ToLower()})]";
         }
     }
 }

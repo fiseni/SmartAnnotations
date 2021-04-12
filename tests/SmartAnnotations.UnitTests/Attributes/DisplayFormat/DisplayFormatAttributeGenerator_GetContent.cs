@@ -26,11 +26,11 @@ namespace SmartAnnotations.UnitTests.Attributes.DisplayFormat
 
             var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
-            var generator = new DisplayFormatAttributeGenerator(annotationDescriptor);
+            var generator = DisplayFormatAttributeGenerator.Instance;
 
             var expected = @"[DisplayFormat(ApplyFormatInEditMode = true, ConvertEmptyStringToNull = true, HtmlEncode = true, DataFormatString = ""{0:n2} Kg"", NullDisplayText = ""SomeText"", NullDisplayTextResourceType = typeof(SmartAnnotations.UnitTests.Fixture.AttributeTestResource))]";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -43,11 +43,11 @@ namespace SmartAnnotations.UnitTests.Attributes.DisplayFormat
 
             var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
-            var generator = new DisplayFormatAttributeGenerator(annotationDescriptor);
+            var generator = DisplayFormatAttributeGenerator.Instance;
 
             var expected = @"[DisplayFormat(NullDisplayText = ""SomeText"", NullDisplayTextResourceType = typeof(SmartAnnotations.UnitTests.Fixture.AttributeTestResource))]";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -56,11 +56,11 @@ namespace SmartAnnotations.UnitTests.Attributes.DisplayFormat
             var descriptor = new DisplayFormatAttributeDescriptor();
             var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
-            var generator = new DisplayFormatAttributeGenerator(annotationDescriptor);
+            var generator = DisplayFormatAttributeGenerator.Instance;
 
             var expected = @"[DisplayFormat()]";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -68,11 +68,11 @@ namespace SmartAnnotations.UnitTests.Attributes.DisplayFormat
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName");
 
-            var generator = new DisplayFormatAttributeGenerator(annotationDescriptor);
+            var generator = DisplayFormatAttributeGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
     }
 }

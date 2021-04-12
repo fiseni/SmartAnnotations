@@ -4,16 +4,12 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.Display
 {
-    internal class NameGenerator : IContentGenerator
+    internal class NameGenerator : IContentGenerator<DisplayAttributeDescriptor>
     {
-        private readonly DisplayAttributeDescriptor descriptor;
+        private NameGenerator() { }
+        internal static NameGenerator Instance { get; } = new();
 
-        internal NameGenerator(DisplayAttributeDescriptor descriptor)
-        {
-            this.descriptor = descriptor;
-        }
-
-        public string GetContent()
+        public string GetContent(DisplayAttributeDescriptor descriptor)
         {
             if (descriptor.Name == null) return string.Empty;
 

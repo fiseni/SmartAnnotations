@@ -4,16 +4,12 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.StringLength
 {
-    internal class MinimumLengthGenerator : IContentGenerator
+    internal class MinimumLengthGenerator : IContentGenerator<StringLengthAttributeDescriptor>
     {
-        private readonly StringLengthAttributeDescriptor descriptor;
+        private MinimumLengthGenerator() { }
+        internal static MinimumLengthGenerator Instance { get; } = new();
 
-        internal MinimumLengthGenerator(StringLengthAttributeDescriptor descriptor)
-        {
-            this.descriptor = descriptor;
-        }
-
-        public string GetContent()
+        public string GetContent(StringLengthAttributeDescriptor descriptor)
         {
             if (descriptor.MinimumLength == null) return string.Empty;
 

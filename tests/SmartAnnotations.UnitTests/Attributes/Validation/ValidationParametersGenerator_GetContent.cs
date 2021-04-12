@@ -21,11 +21,11 @@ namespace SmartAnnotations.UnitTests.Attributes.Validation
                 ErrorMessageResourceName = "SomeErrorKey"
             };
 
-            var generator = new ValidationParametersGenerator(descriptor);
+            var generator = ValidationParametersGenerator.Instance;
 
             var expected = @"ErrorMessage = ""SomeErrorMessage""";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -36,11 +36,11 @@ namespace SmartAnnotations.UnitTests.Attributes.Validation
                 ErrorMessage = "SomeErrorMessage",
             };
 
-            var generator = new ValidationParametersGenerator(descriptor);
+            var generator = ValidationParametersGenerator.Instance;
 
             var expected = @"ErrorMessage = ""SomeErrorMessage""";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -52,11 +52,11 @@ namespace SmartAnnotations.UnitTests.Attributes.Validation
                 ErrorMessageResourceName = "SomeErrorKey"
             };
 
-            var generator = new ValidationParametersGenerator(descriptor);
+            var generator = ValidationParametersGenerator.Instance;
 
             var expected = @"ErrorMessage = ""SomeErrorMessage""";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -67,11 +67,11 @@ namespace SmartAnnotations.UnitTests.Attributes.Validation
                 ErrorMessageResourceName = "SomeErrorKey"
             };
 
-            var generator = new ValidationParametersGenerator(descriptor);
+            var generator = ValidationParametersGenerator.Instance;
 
             var expected = @"ErrorMessageResourceName = ""SomeErrorKey"", ErrorMessageResourceType = typeof(SmartAnnotations.UnitTests.Fixture.AttributeTestResource)";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -79,11 +79,11 @@ namespace SmartAnnotations.UnitTests.Attributes.Validation
         {
             var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource).FullName);
 
-            var generator = new ValidationParametersGenerator(descriptor);
+            var generator = ValidationParametersGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -94,11 +94,11 @@ namespace SmartAnnotations.UnitTests.Attributes.Validation
                 ErrorMessageResourceName = "SomeErrorKey"
             };
 
-            var generator = new ValidationParametersGenerator(descriptor);
+            var generator = ValidationParametersGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -106,11 +106,11 @@ namespace SmartAnnotations.UnitTests.Attributes.Validation
         {
             var descriptor = new ValidationAttributeDescriptor();
 
-            var generator = new ValidationParametersGenerator(descriptor);
+            var generator = ValidationParametersGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

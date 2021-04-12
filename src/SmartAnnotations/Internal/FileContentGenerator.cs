@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SmartAnnotations.Internal
 {
-    internal class FileContentGenerator : IContentGenerator
+    internal class FileContentGenerator
     {
         private readonly AnnotationContext context;
 
@@ -19,7 +19,7 @@ namespace SmartAnnotations.Internal
 
             foreach (var descriptor in context.Descriptors)
             {
-                var content = new AnnotationGenerator(descriptor.Value).GetContent();
+                var content = AnnotationGenerator.Instance.GetContent(descriptor.Value);
                 if (!string.IsNullOrEmpty(content))
                 {
                     output = string.IsNullOrEmpty(output) ? content : $"{output}{Environment.NewLine}{content}";

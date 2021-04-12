@@ -7,20 +7,14 @@ namespace SmartAnnotations.Attributes.Compare
 {
     internal class ComparePartialGeneratorProvider
     {
-        private readonly CompareAttributeDescriptor descriptor;
+        private ComparePartialGeneratorProvider() { }
+        internal static ComparePartialGeneratorProvider Instance { get; } = new();
 
-        internal ComparePartialGeneratorProvider(CompareAttributeDescriptor descriptor)
+        internal IContentGenerator<CompareAttributeDescriptor>[] Generators { get; } 
+            = new IContentGenerator<CompareAttributeDescriptor>[]
         {
-            this.descriptor = descriptor;
-        }
-
-        internal IContentGenerator[] GetGenerators()
-        {
-            return new IContentGenerator[]
-            {
-                new OtherPropertyGenerator(descriptor),
-                new ValidationParametersGenerator(descriptor)
-            };
-        }
+            OtherPropertyGenerator.Instance,
+            ValidationParametersGenerator.Instance
+        };
     }
 }

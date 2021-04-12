@@ -4,22 +4,18 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.Validation
 {
-    internal class ValidationParametersGenerator : IContentGenerator
+    internal class ValidationParametersGenerator : IContentGenerator<ValidationAttributeDescriptor>
     {
-        private readonly IContentGenerator[] generators;
+        private ValidationParametersGenerator() { }
+        internal static ValidationParametersGenerator Instance { get; } = new();
 
-        internal ValidationParametersGenerator(ValidationAttributeDescriptor descriptor)
-        {
-            this.generators = new ValidationPartialGeneratorProvider(descriptor).GetGenerators();
-        }
-
-        public string GetContent()
+        public string GetContent(ValidationAttributeDescriptor descriptor)
         {
             string output = string.Empty;
 
-            foreach (var generator in generators)
+            foreach (var generator in ValidationPartialGeneratorProvider.Instance.Generators)
             {
-                var content = generator.GetContent();
+                var content = generator.GetContent(descriptor);
                 if (!string.IsNullOrEmpty(content))
                 {
                     output = string.IsNullOrEmpty(output) ? content : $"{output}, {content}";

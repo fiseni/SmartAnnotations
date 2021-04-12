@@ -15,22 +15,22 @@ namespace SmartAnnotations.UnitTests.Attributes.StringLength
         public void ReturnsContent_GivenDescriptorWithMinMax()
         {
             var descriptor = new StringLengthAttributeDescriptor(1, 10);
-            var generator = new MaximumLengthGenerator(descriptor);
+            var generator = MaximumLengthGenerator.Instance;
 
             var expected = @"maximumLength: 10";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsContent_GivenDescriptorWithMaxOnly()
         {
             var descriptor = new StringLengthAttributeDescriptor(10);
-            var generator = new MaximumLengthGenerator(descriptor);
+            var generator = MaximumLengthGenerator.Instance;
 
             var expected = @"maximumLength: 10";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

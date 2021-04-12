@@ -12,15 +12,27 @@ namespace SmartAnnotations.UnitTests.Attributes.ReadOnly
     public class ReadOnlyAttributeGenerator_GetContent
     {
         [Fact]
-        public void ReturnsReadOnlyAttribute_GivenIsReadOnlyHasValue()
+        public void ReturnsReadOnlyAttribute_GivenIsReadOnlyTrue()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(new ReadOnlyAttributeDescriptor(true));
 
-            var generator = new ReadOnlyAttributeGenerator(annotationDescriptor);
+            var generator = ReadOnlyAttributeGenerator.Instance;
 
             var expected = @"[ReadOnly(true)]";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
+        }
+
+        [Fact]
+        public void ReturnsReadOnlyAttribute_GivenIsReadOnlyFalse()
+        {
+            var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(new ReadOnlyAttributeDescriptor(false));
+
+            var generator = ReadOnlyAttributeGenerator.Instance;
+
+            var expected = @"[ReadOnly(false)]";
+
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -28,11 +40,11 @@ namespace SmartAnnotations.UnitTests.Attributes.ReadOnly
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName");
 
-            var generator = new ReadOnlyAttributeGenerator(annotationDescriptor);
+            var generator = ReadOnlyAttributeGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
     }
 }

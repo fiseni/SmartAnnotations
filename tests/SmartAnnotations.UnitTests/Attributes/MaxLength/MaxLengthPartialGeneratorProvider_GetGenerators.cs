@@ -16,9 +16,9 @@ namespace SmartAnnotations.UnitTests.Attributes.MaxLength
         public void ReturnsRequiredMaxLengthGeneratorsInOrder()
         {
             var descriptor = new MaxLengthAttributeDescriptor(10);
-            var provider = new MaxLengthPartialGeneratorProvider(descriptor);
+            var provider = MaxLengthPartialGeneratorProvider.Instance;
 
-            var generators = provider.GetGenerators().Select(x=>x.GetType());
+            var generators = provider.Generators.Select(x=>x.GetType());
 
             generators.Should().ContainInOrder(
                 typeof(LengthGenerator),

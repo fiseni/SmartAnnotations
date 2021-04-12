@@ -15,22 +15,22 @@ namespace SmartAnnotations.UnitTests.Attributes.Display
         public void ReturnsContent_GivenOrderHasValue()
         {
             var descriptor = new DisplayAttributeDescriptor() { Order = 5 };
-            var generator = new OrderGenerator(descriptor);
+            var generator = OrderGenerator.Instance;
 
             var expected = @"Order = 5";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenOrderIsNull()
         {
             var descriptor = new DisplayAttributeDescriptor() { Order = null };
-            var generator = new OrderGenerator(descriptor);
+            var generator = OrderGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

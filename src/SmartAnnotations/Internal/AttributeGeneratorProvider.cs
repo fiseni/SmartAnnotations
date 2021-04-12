@@ -15,27 +15,21 @@ namespace SmartAnnotations.Internal
 {
     internal class AttributeGeneratorProvider
     {
-        private readonly AnnotationDescriptor descriptor;
+        private AttributeGeneratorProvider() { }
+        internal static AttributeGeneratorProvider Instance { get; } = new();
 
-        internal AttributeGeneratorProvider(AnnotationDescriptor descriptor)
+        internal IAttributeGenerator[] Generators { get; }
+            = new IAttributeGenerator[]
         {
-            this.descriptor = descriptor;
-        }
-
-        internal IContentGenerator[] GetGenerators()
-        {
-            return new IContentGenerator[]
-            {
-                new ReadOnlyAttributeGenerator(descriptor),
-                new RequiredAttributeGenerator(descriptor),
-                new DisplayAttributeGenerator(descriptor),
-                new DisplayFormatAttributeGenerator(descriptor),
-                new StringLengthAttributeGenerator(descriptor),
-                new MaxLengthAttributeGenerator(descriptor),
-                new MinLengthAttributeGenerator(descriptor),
-                new CompareAttributeGenerator(descriptor),
-                new RangeAttributeGenerator(descriptor)
-            };
-        }
+            ReadOnlyAttributeGenerator.Instance,
+            RequiredAttributeGenerator.Instance,
+            DisplayAttributeGenerator.Instance,
+            DisplayFormatAttributeGenerator.Instance,
+            StringLengthAttributeGenerator.Instance,
+            MaxLengthAttributeGenerator.Instance,
+            MinLengthAttributeGenerator.Instance,
+            CompareAttributeGenerator.Instance,
+            RangeAttributeGenerator.Instance
+        };
     }
 }

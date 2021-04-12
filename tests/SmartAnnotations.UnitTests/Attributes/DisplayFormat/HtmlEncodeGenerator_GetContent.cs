@@ -15,33 +15,33 @@ namespace SmartAnnotations.UnitTests.Attributes.DisplayFormat
         public void ReturnsContent_GivenHtmlEncodeIsTrue()
         {
             var descriptor = new DisplayFormatAttributeDescriptor() { HtmlEncode = true };
-            var generator = new HtmlEncodeGenerator(descriptor);
+            var generator = HtmlEncodeGenerator.Instance;
 
             var expected = @"HtmlEncode = true";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsContent_GivenHtmlEncodeIsFalse()
         {
             var descriptor = new DisplayFormatAttributeDescriptor() { HtmlEncode = false };
-            var generator = new HtmlEncodeGenerator(descriptor);
+            var generator = HtmlEncodeGenerator.Instance;
 
             var expected = @"HtmlEncode = false";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenHtmlEncodeIsNull()
         {
             var descriptor = new DisplayFormatAttributeDescriptor() { HtmlEncode = null };
-            var generator = new HtmlEncodeGenerator(descriptor);
+            var generator = HtmlEncodeGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

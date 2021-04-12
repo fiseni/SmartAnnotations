@@ -15,22 +15,22 @@ namespace SmartAnnotations.UnitTests.Attributes.Range
         public void ReturnsContent_GivenDescriptorWithMinimumAsInteger()
         {
             var descriptor = new RangeAttributeDescriptor(1, 10);
-            var generator = new MinimumGenerator(descriptor);
+            var generator = MinimumGenerator.Instance;
 
             var expected = @"1";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsContent_GivenDescriptorWithMinimumAsDouble()
         {
             var descriptor = new RangeAttributeDescriptor(1.5, 10);
-            var generator = new MinimumGenerator(descriptor);
+            var generator = MinimumGenerator.Instance;
 
             var expected = @"1.5d";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

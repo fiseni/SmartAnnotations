@@ -15,22 +15,22 @@ namespace SmartAnnotations.UnitTests.Attributes.Range
         public void ReturnsContent_GivenDescriptorWithMaximumAsInteger()
         {
             var descriptor = new RangeAttributeDescriptor(1, 10);
-            var generator = new MaximumGenerator(descriptor);
+            var generator = MaximumGenerator.Instance;
 
             var expected = @"10";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsContent_GivenDescriptorWithMaximumAsDouble()
         {
             var descriptor = new RangeAttributeDescriptor(1.5, 10.9);
-            var generator = new MaximumGenerator(descriptor);
+            var generator = MaximumGenerator.Instance;
 
             var expected = @"10.9d";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

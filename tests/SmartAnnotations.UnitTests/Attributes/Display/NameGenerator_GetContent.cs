@@ -15,22 +15,22 @@ namespace SmartAnnotations.UnitTests.Attributes.Display
         public void ReturnsContent_GivenNameHasValue()
         {
             var descriptor = new DisplayAttributeDescriptor() { Name = "SomeName" };
-            var generator = new NameGenerator(descriptor);
+            var generator = NameGenerator.Instance;
 
             var expected = @"Name = ""SomeName""";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenNameIsNull()
         {
             var descriptor = new DisplayAttributeDescriptor() { Name = null };
-            var generator = new NameGenerator(descriptor);
+            var generator = NameGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

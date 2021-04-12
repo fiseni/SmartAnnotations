@@ -15,22 +15,22 @@ namespace SmartAnnotations.UnitTests.Attributes.Display
         public void ReturnsContent_GivenShortNameHasValue()
         {
             var descriptor = new DisplayAttributeDescriptor() { ShortName = "SomeShortName" };
-            var generator = new ShortNameGenerator(descriptor);
+            var generator = ShortNameGenerator.Instance;
 
             var expected = @"ShortName = ""SomeShortName""";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenShortNameIsNull()
         {
             var descriptor = new DisplayAttributeDescriptor() { ShortName = null };
-            var generator = new ShortNameGenerator(descriptor);
+            var generator = ShortNameGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

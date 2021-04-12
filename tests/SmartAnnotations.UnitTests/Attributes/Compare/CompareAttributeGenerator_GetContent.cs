@@ -23,11 +23,11 @@ namespace SmartAnnotations.UnitTests.Attributes.Compare
 
             var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
-            var generator = new CompareAttributeGenerator(annotationDescriptor);
+            var generator = CompareAttributeGenerator.Instance;
 
             var expected = @"[Compare(""OtherProperty"", ErrorMessage = ""SomeErrorMessage"")]";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -35,11 +35,11 @@ namespace SmartAnnotations.UnitTests.Attributes.Compare
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName");
 
-            var generator = new CompareAttributeGenerator(annotationDescriptor);
+            var generator = CompareAttributeGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
     }
 }

@@ -4,27 +4,22 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.StringLength
 {
-    internal class StringLengthAttributeGenerator : IContentGenerator
+    internal class StringLengthAttributeGenerator : IAttributeGenerator
     {
-        private readonly IContentGenerator[] generators;
+        private StringLengthAttributeGenerator() { }
+        internal static StringLengthAttributeGenerator Instance { get; } = new();
 
-        internal StringLengthAttributeGenerator(AnnotationDescriptor descriptor)
+        public string GetContent(AnnotationDescriptor descriptor)
         {
-            var attributeDescriptor = descriptor.Get<StringLengthAttributeDescriptor>();
-
-            this.generators = attributeDescriptor == null
-                            ? Array.Empty<IContentGenerator>()
-                            : new StringLengthPartialGeneratorProvider(attributeDescriptor).GetGenerators();
-        }
-        public string GetContent()
-        {
-            if (this.generators.Length < 1) return string.Empty;
-
             string output = string.Empty;
 
-            foreach (var generator in generators)
+            var attributeDescriptor = descriptor.Get<StringLengthAttributeDescriptor>();
+
+            if (attributeDescriptor == null) return output;
+
+            foreach (var generator in StringLengthPartialGeneratorProvider.Instance.Generators)
             {
-                var content = generator.GetContent();
+                var content = generator.GetContent(attributeDescriptor);
                 if (!string.IsNullOrEmpty(content))
                 {
                     output = string.IsNullOrEmpty(output) ? content : $"{output}, {content}";

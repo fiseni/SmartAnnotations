@@ -15,22 +15,22 @@ namespace SmartAnnotations.UnitTests.Attributes.Display
         public void ReturnsContent_GivenPromptHasValue()
         {
             var descriptor = new DisplayAttributeDescriptor() { Prompt = "SomePrompt" };
-            var generator = new PromptGenerator(descriptor);
+            var generator = PromptGenerator.Instance;
 
             var expected = @"Prompt = ""SomePrompt""";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenPromptIsNull()
         {
             var descriptor = new DisplayAttributeDescriptor() { Prompt = null };
-            var generator = new PromptGenerator(descriptor);
+            var generator = PromptGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

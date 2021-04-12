@@ -15,22 +15,22 @@ namespace SmartAnnotations.UnitTests.Attributes.Range
         public void ReturnsContent_GivenDescriptorWithOperandType()
         {
             var descriptor = new RangeAttributeDescriptor("SomeTypeFullName", "1", "10");
-            var generator = new OperandTypeGenerator(descriptor);
+            var generator = OperandTypeGenerator.Instance;
 
             var expected = @"typeof(SomeTypeFullName)";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenDescriptorWithoutOperandType()
         {
             var descriptor = new RangeAttributeDescriptor(1, 10);
-            var generator = new OperandTypeGenerator(descriptor);
+            var generator = OperandTypeGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

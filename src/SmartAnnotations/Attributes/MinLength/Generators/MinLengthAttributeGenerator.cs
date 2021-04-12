@@ -4,27 +4,22 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.MinLength
 {
-    internal class MinLengthAttributeGenerator : IContentGenerator
+    internal class MinLengthAttributeGenerator : IAttributeGenerator
     {
-        private readonly IContentGenerator[] generators;
+        private MinLengthAttributeGenerator() { }
+        internal static MinLengthAttributeGenerator Instance { get; } = new();
 
-        internal MinLengthAttributeGenerator(AnnotationDescriptor descriptor)
+        public string GetContent(AnnotationDescriptor descriptor)
         {
-            var attributeDescriptor = descriptor.Get<MinLengthAttributeDescriptor>();
-
-            this.generators = attributeDescriptor == null
-                            ? Array.Empty<IContentGenerator>()
-                            : new MinLengthPartialGeneratorProvider(attributeDescriptor).GetGenerators();
-        }
-        public string GetContent()
-        {
-            if (this.generators.Length < 1) return string.Empty;
-
             string output = string.Empty;
 
-            foreach (var generator in generators)
+            var attributeDescriptor = descriptor.Get<MinLengthAttributeDescriptor>();
+
+            if (attributeDescriptor == null) return output;
+
+            foreach (var generator in MinLengthPartialGeneratorProvider.Instance.Generators)
             {
-                var content = generator.GetContent();
+                var content = generator.GetContent(attributeDescriptor);
                 if (!string.IsNullOrEmpty(content))
                 {
                     output = string.IsNullOrEmpty(output) ? content : $"{output}, {content}";

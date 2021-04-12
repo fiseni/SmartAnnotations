@@ -4,27 +4,22 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.Required
 {
-    internal class RequiredAttributeGenerator : IContentGenerator
+    internal class RequiredAttributeGenerator : IAttributeGenerator
     {
-        private readonly IContentGenerator[] generators;
+        private RequiredAttributeGenerator() { }
+        internal static RequiredAttributeGenerator Instance { get; } = new();
 
-        internal RequiredAttributeGenerator(AnnotationDescriptor descriptor)
+        public string GetContent(AnnotationDescriptor descriptor)
         {
-            var attributeDescriptor = descriptor.Get<RequiredAttributeDescriptor>();
-
-            this.generators = attributeDescriptor == null
-                            ? Array.Empty<IContentGenerator>()
-                            : new RequiredPartialGeneratorProvider(attributeDescriptor).GetGenerators();
-        }
-        public string GetContent()
-        {
-            if (this.generators.Length < 1) return string.Empty;
-
             string output = string.Empty;
 
-            foreach (var generator in generators)
+            var attributeDescriptor = descriptor.Get<RequiredAttributeDescriptor>();
+
+            if (attributeDescriptor == null) return output;
+
+            foreach (var generator in RequiredPartialGeneratorProvider.Instance.Generators)
             {
-                var content = generator.GetContent();
+                var content = generator.GetContent(attributeDescriptor);
                 if (!string.IsNullOrEmpty(content))
                 {
                     output = string.IsNullOrEmpty(output) ? content : $"{output}, {content}";

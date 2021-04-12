@@ -24,9 +24,9 @@ namespace SmartAnnotations.UnitTests.Internal
         public void ReturnsRequiredPartialGeneratorsInOrder()
         {
             var descriptor = new AnnotationDescriptor("PropertyName");
-            var provider = new AttributeGeneratorProvider(descriptor);
+            var provider = AttributeGeneratorProvider.Instance;
 
-            var generators = provider.GetGenerators().Select(x => x.GetType());
+            var generators = provider.Generators.Select(x => x.GetType());
 
             generators.Should().ContainInOrder(
                 typeof(ReadOnlyAttributeGenerator),

@@ -16,55 +16,55 @@ namespace SmartAnnotations.UnitTests.Attributes.Display
         public void ReturnsContentWithAttributeResource_GivenHasAttributeAndModelResourceTypeAndSomeOfTheStringPatametersHaveValue()
         {
             var descriptor = new DisplayAttributeDescriptor(typeof(AttributeTestResource).FullName, typeof(ModelTestResource).FullName) { Description = "SomeDescription" };
-            var generator = new ResourceTypeGenerator(descriptor);
+            var generator = ResourceTypeGenerator.Instance;
 
             var expected = @"ResourceType = typeof(SmartAnnotations.UnitTests.Fixture.AttributeTestResource)";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsContentWithAttributeResource_GivenHasAttributeResourceTypeAndSomeOfTheStringPatametersHaveValue()
         {
             var descriptor = new DisplayAttributeDescriptor(typeof(AttributeTestResource).FullName) { Description = "SomeDescription" };
-            var generator = new ResourceTypeGenerator(descriptor);
+            var generator = ResourceTypeGenerator.Instance;
 
             var expected = @"ResourceType = typeof(SmartAnnotations.UnitTests.Fixture.AttributeTestResource)";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsContentWithModelResource_GivenHasModelResourceTypeAndSomeOfTheStringPatametersHaveValue()
         {
             var descriptor = new DisplayAttributeDescriptor(null, typeof(ModelTestResource).FullName) { Description = "SomeDescription" };
-            var generator = new ResourceTypeGenerator(descriptor);
+            var generator = ResourceTypeGenerator.Instance;
 
             var expected = @"ResourceType = typeof(SmartAnnotations.UnitTests.Fixture.ModelTestResource)";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenHasNoResourceType()
         {
             var descriptor = new DisplayAttributeDescriptor();
-            var generator = new ResourceTypeGenerator(descriptor);
+            var generator = ResourceTypeGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenHasResourceTypeAndHasNoStringParameters()
         {
             var descriptor = new DisplayAttributeDescriptor(typeof(AttributeTestResource).FullName);
-            var generator = new ResourceTypeGenerator(descriptor);
+            var generator = ResourceTypeGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

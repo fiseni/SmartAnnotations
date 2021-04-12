@@ -16,33 +16,33 @@ namespace SmartAnnotations.UnitTests.Attributes.Validation
         public void ReturnsContentWithAttributeResource_GivenHasAttributeAndModelResourceTypeAndHasErrorMessageResourceName()
         {
             var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource).FullName, typeof(ModelTestResource).FullName) { ErrorMessageResourceName = "SomeResourceKey" };
-            var generator = new ResourceTypeGenerator(descriptor);
+            var generator = ResourceTypeGenerator.Instance;
 
             var expected = @"ErrorMessageResourceType = typeof(SmartAnnotations.UnitTests.Fixture.AttributeTestResource)";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsContentWithAttributeResource_GivenHasAttributeResourceTypeAndHasErrorMessageResourceName()
         {
             var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource).FullName) { ErrorMessageResourceName = "SomeResourceKey" };
-            var generator = new ResourceTypeGenerator(descriptor);
+            var generator = ResourceTypeGenerator.Instance;
 
             var expected = @"ErrorMessageResourceType = typeof(SmartAnnotations.UnitTests.Fixture.AttributeTestResource)";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsContentWithModelResource_GivenHasModelResourceTypeAndHasErrorMessageResourceName()
         {
             var descriptor = new ValidationAttributeDescriptor(null, typeof(ModelTestResource).FullName) { ErrorMessageResourceName = "SomeResourceKey" };
-            var generator = new ResourceTypeGenerator(descriptor);
+            var generator = ResourceTypeGenerator.Instance;
 
             var expected = @"ErrorMessageResourceType = typeof(SmartAnnotations.UnitTests.Fixture.ModelTestResource)";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -54,33 +54,33 @@ namespace SmartAnnotations.UnitTests.Attributes.Validation
                 ErrorMessageResourceName = "SomeResourceKey"
             };
 
-            var generator = new ResourceNameGenerator(descriptor);
+            var generator = ResourceTypeGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenHasNoResourceType()
         {
             var descriptor = new ValidationAttributeDescriptor();
-            var generator = new ResourceTypeGenerator(descriptor);
+            var generator = ResourceTypeGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenHasResourceTypeAndHasNoErrorMessageResourceName()
         {
             var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource).FullName);
-            var generator = new ResourceTypeGenerator(descriptor);
+            var generator = ResourceTypeGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

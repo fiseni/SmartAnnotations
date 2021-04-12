@@ -7,20 +7,14 @@ namespace SmartAnnotations.Attributes.MinLength
 {
     internal class MinLengthPartialGeneratorProvider
     {
-        private readonly MinLengthAttributeDescriptor descriptor;
+        private MinLengthPartialGeneratorProvider() { }
+        internal static MinLengthPartialGeneratorProvider Instance { get; } = new();
 
-        internal MinLengthPartialGeneratorProvider(MinLengthAttributeDescriptor descriptor)
+        internal IContentGenerator<MinLengthAttributeDescriptor>[] Generators { get; }
+            = new IContentGenerator<MinLengthAttributeDescriptor>[]
         {
-            this.descriptor = descriptor;
-        }
-
-        internal IContentGenerator[] GetGenerators()
-        {
-            return new IContentGenerator[]
-            {
-                new LengthGenerator(descriptor),
-                new ValidationParametersGenerator(descriptor)
-            };
-        }
+            LengthGenerator.Instance,
+            ValidationParametersGenerator.Instance
+        };
     }
 }

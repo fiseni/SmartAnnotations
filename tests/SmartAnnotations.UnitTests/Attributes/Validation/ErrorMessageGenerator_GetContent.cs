@@ -16,22 +16,22 @@ namespace SmartAnnotations.UnitTests.Attributes.Validation
         public void ReturnsContent_GivenErrorMessage()
         {
             var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource).FullName) { ErrorMessage = "SomeErrorMessage" };
-            var generator = new ErrorMessageGenerator(descriptor);
+            var generator = ErrorMessageGenerator.Instance;
 
             var expected = @"ErrorMessage = ""SomeErrorMessage""";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenNullOrEmptyErrorMessage()
         {
             var descriptor = new ValidationAttributeDescriptor(typeof(AttributeTestResource).FullName);
-            var generator = new ErrorMessageGenerator(descriptor);
+            var generator = ErrorMessageGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

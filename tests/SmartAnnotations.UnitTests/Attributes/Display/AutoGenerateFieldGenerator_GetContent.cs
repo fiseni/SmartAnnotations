@@ -15,33 +15,33 @@ namespace SmartAnnotations.UnitTests.Attributes.Display
         public void ReturnsContent_GivenAutoGenerateFieldIsTrue()
         {
             var descriptor = new DisplayAttributeDescriptor() { AutoGenerateField = true };
-            var generator = new AutoGenerateFieldGenerator(descriptor);
+            var generator = AutoGenerateFieldGenerator.Instance;
 
             var expected = @"AutoGenerateField = true";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsContent_GivenAutoGenerateFieldIsFalse()
         {
             var descriptor = new DisplayAttributeDescriptor() { AutoGenerateField = false };
-            var generator = new AutoGenerateFieldGenerator(descriptor);
+            var generator = AutoGenerateFieldGenerator.Instance;
 
             var expected = @"AutoGenerateField = false";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenAutoGenerateFieldIsNull()
         {
             var descriptor = new DisplayAttributeDescriptor() { AutoGenerateField = null };
-            var generator = new AutoGenerateFieldGenerator(descriptor);
+            var generator = AutoGenerateFieldGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

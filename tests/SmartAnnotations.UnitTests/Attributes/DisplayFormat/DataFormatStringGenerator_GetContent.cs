@@ -15,22 +15,22 @@ namespace SmartAnnotations.UnitTests.Attributes.DisplayFormat
         public void ReturnsContent_GivenDataFormatStringHasValue()
         {
             var descriptor = new DisplayFormatAttributeDescriptor() { DataFormatString = "{0:n2} Kg" };
-            var generator = new DataFormatStringGenerator(descriptor);
+            var generator = DataFormatStringGenerator.Instance;
 
             var expected = @"DataFormatString = ""{0:n2} Kg""";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenDataFormatStringIsNull()
         {
             var descriptor = new DisplayFormatAttributeDescriptor() { DataFormatString = null };
-            var generator = new DataFormatStringGenerator(descriptor);
+            var generator = DataFormatStringGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

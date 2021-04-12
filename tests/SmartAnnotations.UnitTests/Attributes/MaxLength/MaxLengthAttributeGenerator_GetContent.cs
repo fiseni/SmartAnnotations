@@ -23,11 +23,11 @@ namespace SmartAnnotations.UnitTests.Attributes.MaxLength
 
             var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
-            var generator = new MaxLengthAttributeGenerator(annotationDescriptor);
+            var generator = MaxLengthAttributeGenerator.Instance;
 
             var expected = @"[MaxLength(10, ErrorMessage = ""SomeErrorMessage"")]";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -41,11 +41,11 @@ namespace SmartAnnotations.UnitTests.Attributes.MaxLength
 
             var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
-            var generator = new MaxLengthAttributeGenerator(annotationDescriptor);
+            var generator = MaxLengthAttributeGenerator.Instance;
 
             var expected = @"[MaxLength(ErrorMessage = ""SomeErrorMessage"")]";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -53,11 +53,11 @@ namespace SmartAnnotations.UnitTests.Attributes.MaxLength
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName");
 
-            var generator = new MaxLengthAttributeGenerator(annotationDescriptor);
+            var generator = MaxLengthAttributeGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
     }
 }

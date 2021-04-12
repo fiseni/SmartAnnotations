@@ -4,16 +4,12 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.DisplayFormat
 {
-    internal class HtmlEncodeGenerator : IContentGenerator
+    internal class HtmlEncodeGenerator : IContentGenerator<DisplayFormatAttributeDescriptor>
     {
-        private readonly DisplayFormatAttributeDescriptor descriptor;
+        private HtmlEncodeGenerator() { }
+        internal static HtmlEncodeGenerator Instance { get; } = new();
 
-        internal HtmlEncodeGenerator(DisplayFormatAttributeDescriptor descriptor)
-        {
-            this.descriptor = descriptor;
-        }
-
-        public string GetContent()
+        public string GetContent(DisplayFormatAttributeDescriptor descriptor)
         {
             if (descriptor.HtmlEncode == null) return string.Empty;
 

@@ -4,16 +4,12 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.Compare
 {
-    internal class OtherPropertyGenerator : IContentGenerator
+    internal class OtherPropertyGenerator : IContentGenerator<CompareAttributeDescriptor>
     {
-        private readonly CompareAttributeDescriptor descriptor;
+        private OtherPropertyGenerator() { }
+        internal static OtherPropertyGenerator Instance { get; } = new();
 
-        internal OtherPropertyGenerator(CompareAttributeDescriptor descriptor)
-        {
-            this.descriptor = descriptor;
-        }
-
-        public string GetContent()
+        public string GetContent(CompareAttributeDescriptor descriptor)
         {
             return $"\"{descriptor.OtherProperty}\"";
         }

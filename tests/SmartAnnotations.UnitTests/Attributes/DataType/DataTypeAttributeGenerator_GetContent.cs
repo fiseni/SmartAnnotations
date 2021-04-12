@@ -23,11 +23,11 @@ namespace SmartAnnotations.UnitTests.Attributes.DataType
 
             var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
-            var generator = new DataTypeAttributeGenerator(annotationDescriptor);
+            var generator = DataTypeAttributeGenerator.Instance;
 
             var expected = @"[DataType(DataType.CreditCard, ErrorMessage = ""SomeErrorMessage"")]";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -41,11 +41,11 @@ namespace SmartAnnotations.UnitTests.Attributes.DataType
 
             var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
-            var generator = new DataTypeAttributeGenerator(annotationDescriptor);
+            var generator = DataTypeAttributeGenerator.Instance;
 
             var expected = @"[DataType(""CustomDataType"", ErrorMessage = ""SomeErrorMessage"")]";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -53,11 +53,11 @@ namespace SmartAnnotations.UnitTests.Attributes.DataType
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName");
 
-            var generator = new DataTypeAttributeGenerator(annotationDescriptor);
+            var generator = DataTypeAttributeGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
     }
 }

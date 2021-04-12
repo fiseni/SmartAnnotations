@@ -11,7 +11,7 @@ namespace SmartAnnotations
     public class AnnotationDescriptor
     {
         // Refactor this to TypedDictionary if performance is an issue.
-        private readonly Dictionary<Type, AttributeDescriptor> attributeDescriptors = new Dictionary<Type, AttributeDescriptor>();
+        private readonly Dictionary<Type, AttributeDescriptor> attributeDescriptors = new();
         
         public string PropertyName { get; }
         public string? ModelResourceTypeFullName { get; }

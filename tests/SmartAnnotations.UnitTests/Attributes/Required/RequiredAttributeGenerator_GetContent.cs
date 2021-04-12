@@ -24,11 +24,11 @@ namespace SmartAnnotations.UnitTests.Attributes.Required
 
             var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
-            var generator = new RequiredAttributeGenerator(annotationDescriptor);
+            var generator = RequiredAttributeGenerator.Instance;
 
             var expected = @"[Required(AllowEmptyStrings = true, ErrorMessage = ""SomeErrorMessage"")]";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -36,11 +36,11 @@ namespace SmartAnnotations.UnitTests.Attributes.Required
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName");
 
-            var generator = new RequiredAttributeGenerator(annotationDescriptor);
+            var generator = RequiredAttributeGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
     }
 }

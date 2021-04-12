@@ -4,16 +4,12 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.Display
 {
-    internal class OrderGenerator : IContentGenerator
+    internal class OrderGenerator : IContentGenerator<DisplayAttributeDescriptor>
     {
-        private readonly DisplayAttributeDescriptor descriptor;
+        private OrderGenerator() { }
+        internal static OrderGenerator Instance { get; } = new();
 
-        internal OrderGenerator(DisplayAttributeDescriptor descriptor)
-        {
-            this.descriptor = descriptor;
-        }
-
-        public string GetContent()
+        public string GetContent(DisplayAttributeDescriptor descriptor)
         {
             if (descriptor.Order == null) return string.Empty;
 

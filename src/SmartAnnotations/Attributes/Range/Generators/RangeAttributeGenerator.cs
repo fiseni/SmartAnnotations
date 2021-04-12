@@ -4,27 +4,22 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.Range
 {
-    internal class RangeAttributeGenerator : IContentGenerator
+    internal class RangeAttributeGenerator : IAttributeGenerator
     {
-        private readonly IContentGenerator[] generators;
+        private RangeAttributeGenerator() { }
+        internal static RangeAttributeGenerator Instance { get; } = new();
 
-        internal RangeAttributeGenerator(AnnotationDescriptor descriptor)
+        public string GetContent(AnnotationDescriptor descriptor)
         {
-            var attributeDescriptor = descriptor.Get<RangeAttributeDescriptor>();
-
-            this.generators = attributeDescriptor == null
-                            ? Array.Empty<IContentGenerator>()
-                            : new RangePartialGeneratorProvider(attributeDescriptor).GetGenerators();
-        }
-        public string GetContent()
-        {
-            if (this.generators.Length < 1) return string.Empty;
-
             string output = string.Empty;
 
-            foreach (var generator in generators)
+            var attributeDescriptor = descriptor.Get<RangeAttributeDescriptor>();
+
+            if (attributeDescriptor == null) return output;
+
+            foreach (var generator in RangePartialGeneratorProvider.Instance.Generators)
             {
-                var content = generator.GetContent();
+                var content = generator.GetContent(attributeDescriptor);
                 if (!string.IsNullOrEmpty(content))
                 {
                     output = string.IsNullOrEmpty(output) ? content : $"{output}, {content}";

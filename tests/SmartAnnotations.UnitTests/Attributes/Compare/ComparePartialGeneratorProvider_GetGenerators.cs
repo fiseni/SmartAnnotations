@@ -16,9 +16,9 @@ namespace SmartAnnotations.UnitTests.Attributes.Compare
         public void ReturnsRequiredCompareGeneratorsInOrder()
         {
             var descriptor = new CompareAttributeDescriptor("OtherProperty");
-            var provider = new ComparePartialGeneratorProvider(descriptor);
+            var provider = ComparePartialGeneratorProvider.Instance;
 
-            var generators = provider.GetGenerators().Select(x=>x.GetType());
+            var generators = provider.Generators.Select(x=>x.GetType());
 
             generators.Should().ContainInOrder(
                 typeof(OtherPropertyGenerator),

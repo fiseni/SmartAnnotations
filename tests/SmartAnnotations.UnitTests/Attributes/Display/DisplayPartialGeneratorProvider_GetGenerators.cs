@@ -16,9 +16,9 @@ namespace SmartAnnotations.UnitTests.Attributes.Display
         public void ReturnsRequiredDisplayGeneratorsInOrder()
         {
             var descriptor = new DisplayAttributeDescriptor();
-            var provider = new DisplayPartialGeneratorProvider(descriptor);
+            var provider = DisplayPartialGeneratorProvider.Instance;
 
-            var generators = provider.GetGenerators().Select(x=>x.GetType());
+            var generators = provider.Generators.Select(x=>x.GetType());
 
             generators.Should().ContainInOrder(
                 typeof(OrderGenerator),

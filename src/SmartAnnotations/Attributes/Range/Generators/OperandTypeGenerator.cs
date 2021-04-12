@@ -4,16 +4,12 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.Range
 {
-    internal class OperandTypeGenerator : IContentGenerator
+    internal class OperandTypeGenerator : IContentGenerator<RangeAttributeDescriptor>
     {
-        private readonly RangeAttributeDescriptor descriptor;
+        private OperandTypeGenerator() { }
+        internal static OperandTypeGenerator Instance { get; } = new();
 
-        internal OperandTypeGenerator(RangeAttributeDescriptor descriptor)
-        {
-            this.descriptor = descriptor;
-        }
-
-        public string GetContent()
+        public string GetContent(RangeAttributeDescriptor descriptor)
         {
             if (descriptor.OperandTypeFullName == null) return string.Empty;
 

@@ -4,16 +4,12 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.StringLength
 {
-    internal class MaximumLengthGenerator : IContentGenerator
+    internal class MaximumLengthGenerator : IContentGenerator<StringLengthAttributeDescriptor>
     {
-        private readonly StringLengthAttributeDescriptor descriptor;
+        private MaximumLengthGenerator() { }
+        internal static MaximumLengthGenerator Instance { get; } = new();
 
-        internal MaximumLengthGenerator(StringLengthAttributeDescriptor descriptor)
-        {
-            this.descriptor = descriptor;
-        }
-
-        public string GetContent()
+        public string GetContent(StringLengthAttributeDescriptor descriptor)
         {
             return $"maximumLength: {descriptor.MaximumLength}";
         }

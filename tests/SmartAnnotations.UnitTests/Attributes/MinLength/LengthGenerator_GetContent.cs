@@ -15,11 +15,11 @@ namespace SmartAnnotations.UnitTests.Attributes.MinLength
         public void ReturnsContent_GivenDescriptorWithLength()
         {
             var descriptor = new MinLengthAttributeDescriptor(10);
-            var generator = new LengthGenerator(descriptor);
+            var generator = LengthGenerator.Instance;
 
             var expected = @"10";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

@@ -23,11 +23,11 @@ namespace SmartAnnotations.UnitTests.Attributes.StringLength
 
             var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
-            var generator = new StringLengthAttributeGenerator(annotationDescriptor);
+            var generator = StringLengthAttributeGenerator.Instance;
 
             var expected = @"[StringLength(maximumLength: 10, MinimumLength = 1, ErrorMessage = ""SomeErrorMessage"")]";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -41,11 +41,11 @@ namespace SmartAnnotations.UnitTests.Attributes.StringLength
 
             var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
-            var generator = new StringLengthAttributeGenerator(annotationDescriptor);
+            var generator = StringLengthAttributeGenerator.Instance;
 
             var expected = @"[StringLength(maximumLength: 10, ErrorMessage = ""SomeErrorMessage"")]";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -53,11 +53,11 @@ namespace SmartAnnotations.UnitTests.Attributes.StringLength
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName");
 
-            var generator = new StringLengthAttributeGenerator(annotationDescriptor);
+            var generator = StringLengthAttributeGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
     }
 }

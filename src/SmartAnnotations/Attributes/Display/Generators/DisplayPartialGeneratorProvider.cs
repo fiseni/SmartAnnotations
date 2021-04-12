@@ -6,27 +6,21 @@ namespace SmartAnnotations.Attributes.Display
 {
     internal class DisplayPartialGeneratorProvider
     {
-        private readonly DisplayAttributeDescriptor descriptor;
+        private DisplayPartialGeneratorProvider() { }
+        internal static DisplayPartialGeneratorProvider Instance { get; } = new();
 
-        internal DisplayPartialGeneratorProvider(DisplayAttributeDescriptor descriptor)
+        internal IContentGenerator<DisplayAttributeDescriptor>[] Generators { get; }
+            = new IContentGenerator<DisplayAttributeDescriptor>[]
         {
-            this.descriptor = descriptor;
-        }
-
-        internal IContentGenerator[] GetGenerators()
-        {
-            return new IContentGenerator[]
-            {
-                new OrderGenerator(descriptor),
-                new AutoGenerateFieldGenerator(descriptor),
-                new AutoGenerateFilterGenerator(descriptor),
-                new NameGenerator(descriptor),
-                new ShortNameGenerator(descriptor),
-                new PromptGenerator(descriptor),
-                new DescriptionGenerator(descriptor),
-                new GroupNameGenerator(descriptor),
-                new ResourceTypeGenerator(descriptor)
-            };
-        }
+            OrderGenerator.Instance,
+            AutoGenerateFieldGenerator.Instance,
+            AutoGenerateFilterGenerator.Instance,
+            NameGenerator.Instance,
+            ShortNameGenerator.Instance,
+            PromptGenerator.Instance,
+            DescriptionGenerator.Instance,
+            GroupNameGenerator.Instance,
+            ResourceTypeGenerator.Instance
+        };
     }
 }

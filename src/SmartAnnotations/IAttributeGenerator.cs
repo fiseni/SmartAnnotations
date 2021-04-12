@@ -5,8 +5,8 @@ using System.Text;
 
 namespace SmartAnnotations
 {
-    public interface IContentGenerator<in T>
+    public interface IAttributeGenerator
     {
-        string GetContent(T descriptor);
+        string GetContent(AnnotationDescriptor descriptor);
     }
 }

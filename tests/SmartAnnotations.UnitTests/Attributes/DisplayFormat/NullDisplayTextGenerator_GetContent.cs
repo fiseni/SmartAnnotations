@@ -15,22 +15,22 @@ namespace SmartAnnotations.UnitTests.Attributes.DisplayFormat
         public void ReturnsContent_GivenNullDisplayTextHasValue()
         {
             var descriptor = new DisplayFormatAttributeDescriptor() { NullDisplayText = "SomeText" };
-            var generator = new NullDisplayTextGenerator(descriptor);
+            var generator = NullDisplayTextGenerator.Instance;
 
             var expected = @"NullDisplayText = ""SomeText""";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenNullDisplayTextIsNull()
         {
             var descriptor = new DisplayFormatAttributeDescriptor() { NullDisplayText = null };
-            var generator = new NullDisplayTextGenerator(descriptor);
+            var generator = NullDisplayTextGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

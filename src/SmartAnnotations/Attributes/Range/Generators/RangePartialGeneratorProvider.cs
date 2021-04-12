@@ -7,22 +7,16 @@ namespace SmartAnnotations.Attributes.Range
 {
     internal class RangePartialGeneratorProvider
     {
-        private readonly RangeAttributeDescriptor descriptor;
+        private RangePartialGeneratorProvider() { }
+        internal static RangePartialGeneratorProvider Instance { get; } = new();
 
-        internal RangePartialGeneratorProvider(RangeAttributeDescriptor descriptor)
+        internal IContentGenerator<RangeAttributeDescriptor>[] Generators { get; }
+            = new IContentGenerator<RangeAttributeDescriptor>[]
         {
-            this.descriptor = descriptor;
-        }
-
-        internal IContentGenerator[] GetGenerators()
-        {
-            return new IContentGenerator[]
-            {
-                new OperandTypeGenerator(descriptor),
-                new MinimumGenerator(descriptor),
-                new MaximumGenerator(descriptor),
-                new ValidationParametersGenerator(descriptor)
-            };
-        }
+            OperandTypeGenerator.Instance,
+            MinimumGenerator.Instance,
+            MaximumGenerator.Instance,
+            ValidationParametersGenerator.Instance
+        };
     }
 }

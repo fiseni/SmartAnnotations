@@ -23,11 +23,11 @@ namespace SmartAnnotations.UnitTests.Attributes.MinLength
 
             var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
-            var generator = new MinLengthAttributeGenerator(annotationDescriptor);
+            var generator = MinLengthAttributeGenerator.Instance;
 
             var expected = @"[MinLength(10, ErrorMessage = ""SomeErrorMessage"")]";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
 
         [Fact]
@@ -35,11 +35,11 @@ namespace SmartAnnotations.UnitTests.Attributes.MinLength
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName");
 
-            var generator = new MinLengthAttributeGenerator(annotationDescriptor);
+            var generator = MinLengthAttributeGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
     }
 }

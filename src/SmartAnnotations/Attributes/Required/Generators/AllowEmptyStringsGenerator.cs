@@ -4,16 +4,12 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.Required
 {
-    internal class AllowEmptyStringsGenerator : IContentGenerator
+    internal class AllowEmptyStringsGenerator : IContentGenerator<RequiredAttributeDescriptor>
     {
-        private readonly RequiredAttributeDescriptor descriptor;
+        private AllowEmptyStringsGenerator() { }
+        internal static AllowEmptyStringsGenerator Instance { get; } = new();
 
-        internal AllowEmptyStringsGenerator(RequiredAttributeDescriptor descriptor)
-        {
-            this.descriptor = descriptor;
-        }
-
-        public string GetContent()
+        public string GetContent(RequiredAttributeDescriptor descriptor)
         {
             if (descriptor.AllowEmptyStrings == null) return string.Empty;
 

@@ -7,20 +7,14 @@ namespace SmartAnnotations.Attributes.Required
 {
     internal class RequiredPartialGeneratorProvider
     {
-        private readonly RequiredAttributeDescriptor descriptor;
+        private RequiredPartialGeneratorProvider() { }
+        internal static RequiredPartialGeneratorProvider Instance { get; } = new();
 
-        internal RequiredPartialGeneratorProvider(RequiredAttributeDescriptor descriptor)
+        internal IContentGenerator<RequiredAttributeDescriptor>[] Generators { get; }
+            = new IContentGenerator<RequiredAttributeDescriptor>[]
         {
-            this.descriptor = descriptor;
-        }
-
-        internal IContentGenerator[] GetGenerators()
-        {
-            return new IContentGenerator[]
-            {
-                new AllowEmptyStringsGenerator(descriptor),
-                new ValidationParametersGenerator(descriptor)
-            };
-        }
+            AllowEmptyStringsGenerator.Instance,
+            ValidationParametersGenerator.Instance
+        };
     }
 }

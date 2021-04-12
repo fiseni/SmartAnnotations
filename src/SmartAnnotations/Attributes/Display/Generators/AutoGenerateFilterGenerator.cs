@@ -4,16 +4,12 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.Display
 {
-    internal class AutoGenerateFilterGenerator : IContentGenerator
+    internal class AutoGenerateFilterGenerator : IContentGenerator<DisplayAttributeDescriptor>
     {
-        private readonly DisplayAttributeDescriptor descriptor;
+        private AutoGenerateFilterGenerator() { }
+        internal static AutoGenerateFilterGenerator Instance { get; } = new();
 
-        internal AutoGenerateFilterGenerator(DisplayAttributeDescriptor descriptor)
-        {
-            this.descriptor = descriptor;
-        }
-
-        public string GetContent()
+        public string GetContent(DisplayAttributeDescriptor descriptor)
         {
             if (descriptor.AutoGenerateFilter == null) return string.Empty;
 

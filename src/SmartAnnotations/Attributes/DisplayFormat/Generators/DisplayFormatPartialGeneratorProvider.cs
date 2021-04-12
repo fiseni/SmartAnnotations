@@ -6,24 +6,18 @@ namespace SmartAnnotations.Attributes.DisplayFormat
 {
     internal class DisplayFormatPartialGeneratorProvider
     {
-        private readonly DisplayFormatAttributeDescriptor descriptor;
+        private DisplayFormatPartialGeneratorProvider() { }
+        internal static DisplayFormatPartialGeneratorProvider Instance { get; } = new();
 
-        internal DisplayFormatPartialGeneratorProvider(DisplayFormatAttributeDescriptor descriptor)
+        internal IContentGenerator<DisplayFormatAttributeDescriptor>[] Generators { get; }
+            = new IContentGenerator<DisplayFormatAttributeDescriptor>[]
         {
-            this.descriptor = descriptor;
-        }
-
-        internal IContentGenerator[] GetGenerators()
-        {
-            return new IContentGenerator[]
-            {
-                new ApplyFormatInEditModeGenerator(descriptor),
-                new ConvertEmptyStringToNullGenerator(descriptor),
-                new HtmlEncodeGenerator(descriptor),
-                new DataFormatStringGenerator(descriptor),
-                new NullDisplayTextGenerator(descriptor),
-                new ResourceTypeGenerator(descriptor)
-            };
-        }
+            ApplyFormatInEditModeGenerator.Instance,
+            ConvertEmptyStringToNullGenerator.Instance,
+            HtmlEncodeGenerator.Instance,
+            DataFormatStringGenerator.Instance,
+            NullDisplayTextGenerator.Instance,
+            ResourceTypeGenerator.Instance
+        };
     }
 }

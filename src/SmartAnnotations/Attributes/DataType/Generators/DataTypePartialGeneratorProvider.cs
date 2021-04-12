@@ -7,20 +7,14 @@ namespace SmartAnnotations.Attributes.DataType
 {
     internal class DataTypePartialGeneratorProvider
     {
-        private readonly DataTypeAttributeDescriptor descriptor;
+        private DataTypePartialGeneratorProvider() { }
+        internal static DataTypePartialGeneratorProvider Instance { get; } = new();
 
-        internal DataTypePartialGeneratorProvider(DataTypeAttributeDescriptor descriptor)
+        internal IContentGenerator<DataTypeAttributeDescriptor>[] Generators { get; }
+            = new IContentGenerator<DataTypeAttributeDescriptor>[]
         {
-            this.descriptor = descriptor;
-        }
-
-        internal IContentGenerator[] GetGenerators()
-        {
-            return new IContentGenerator[]
-            {
-                new DataTypeGenerator(descriptor),
-                new ValidationParametersGenerator(descriptor)
-            };
-        }
+            DataTypeGenerator.Instance,
+            ValidationParametersGenerator.Instance
+        };
     }
 }

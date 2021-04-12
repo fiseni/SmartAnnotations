@@ -4,16 +4,12 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.Validation
 {
-    internal class ResourceNameGenerator : IContentGenerator
+    internal class ResourceNameGenerator : IContentGenerator<ValidationAttributeDescriptor>
     {
-        private readonly ValidationAttributeDescriptor descriptor;
+        private ResourceNameGenerator() { }
+        internal static ResourceNameGenerator Instance { get; } = new();
 
-        internal ResourceNameGenerator(ValidationAttributeDescriptor descriptor)
-        {
-            this.descriptor = descriptor;
-        }
-
-        public string GetContent()
+        public string GetContent(ValidationAttributeDescriptor descriptor)
         {
             if (!descriptor.HasResourceType) return string.Empty;
 

@@ -4,16 +4,12 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.DisplayFormat
 {
-    internal class ConvertEmptyStringToNullGenerator : IContentGenerator
+    internal class ConvertEmptyStringToNullGenerator : IContentGenerator<DisplayFormatAttributeDescriptor>
     {
-        private readonly DisplayFormatAttributeDescriptor descriptor;
+        private ConvertEmptyStringToNullGenerator() { }
+        internal static ConvertEmptyStringToNullGenerator Instance { get; } = new();
 
-        internal ConvertEmptyStringToNullGenerator(DisplayFormatAttributeDescriptor descriptor)
-        {
-            this.descriptor = descriptor;
-        }
-
-        public string GetContent()
+        public string GetContent(DisplayFormatAttributeDescriptor descriptor)
         {
             if (descriptor.ConvertEmptyStringToNull == null) return string.Empty;
 

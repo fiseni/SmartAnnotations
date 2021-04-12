@@ -4,28 +4,22 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.Display
 {
-    internal class DisplayAttributeGenerator : IContentGenerator
+    internal class DisplayAttributeGenerator : IAttributeGenerator
     {
-        private readonly IContentGenerator[] generators;
+        private DisplayAttributeGenerator() { }
+        internal static DisplayAttributeGenerator Instance { get; } = new();
 
-        internal DisplayAttributeGenerator(AnnotationDescriptor descriptor)
+        public string GetContent(AnnotationDescriptor descriptor)
         {
-            var attributeDescriptor = descriptor.Get<DisplayAttributeDescriptor>();
-
-            this.generators = attributeDescriptor == null
-                            ? Array.Empty<IContentGenerator>()
-                            : new DisplayPartialGeneratorProvider(attributeDescriptor).GetGenerators();
-        }
-
-        public string GetContent()
-        {
-            if (this.generators.Length < 1) return string.Empty;
-
             string output = string.Empty;
 
-            foreach (var generator in generators)
+            var attributeDescriptor = descriptor.Get<DisplayAttributeDescriptor>();
+
+            if (attributeDescriptor == null) return output;
+
+            foreach (var generator in DisplayPartialGeneratorProvider.Instance.Generators)
             {
-                var content = generator.GetContent();
+                var content = generator.GetContent(attributeDescriptor);
                 if (!string.IsNullOrEmpty(content))
                 {
                     output = string.IsNullOrEmpty(output) ? content : $"{output}, {content}";

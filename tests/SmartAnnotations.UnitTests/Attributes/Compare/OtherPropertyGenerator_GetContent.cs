@@ -15,11 +15,11 @@ namespace SmartAnnotations.UnitTests.Attributes.Compare
         public void ReturnsContent_GivenDescriptorWithOtherProperty()
         {
             var descriptor = new CompareAttributeDescriptor("OtherProperty");
-            var generator = new OtherPropertyGenerator(descriptor);
+            var generator = OtherPropertyGenerator.Instance;
 
             var expected = @"""OtherProperty""";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

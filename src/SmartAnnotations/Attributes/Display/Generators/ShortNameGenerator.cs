@@ -4,17 +4,13 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.Display
 {
-    internal class ShortNameGenerator : IContentGenerator
+    internal class ShortNameGenerator : IContentGenerator<DisplayAttributeDescriptor>
     {
-        private readonly DisplayAttributeDescriptor descriptor;
+        private ShortNameGenerator() { }
+        internal static ShortNameGenerator Instance { get; } = new();
 
-        internal ShortNameGenerator(DisplayAttributeDescriptor descriptor)
-        {
-            this.descriptor = descriptor;
-        }
-
-        public string GetContent()
-        {
+        public string GetContent(DisplayAttributeDescriptor descriptor)
+        { 
             if (descriptor.ShortName == null) return string.Empty;
 
             return $"ShortName = \"{descriptor.ShortName}\"";

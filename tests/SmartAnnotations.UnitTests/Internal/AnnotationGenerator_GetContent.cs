@@ -18,9 +18,9 @@ namespace SmartAnnotations.UnitTests.Internal
                 .Add(new ReadOnlyAttributeDescriptor(true))
                 .Add(new DisplayAttributeDescriptor() { Name = "SomeName" });
 
-            var generator = new AnnotationGenerator(annotationDescriptor);
+            var generator = AnnotationGenerator.Instance;
 
-            generator.GetContent().Should().Be(GetContentForReadOnlyAndDisplayAttribute());
+            generator.GetContent(annotationDescriptor).Should().Be(GetContentForReadOnlyAndDisplayAttribute());
         }
 
         [Fact]
@@ -29,21 +29,21 @@ namespace SmartAnnotations.UnitTests.Internal
             var annotationDescriptor = new AnnotationDescriptor("TestProperty")
                 .Add(new ReadOnlyAttributeDescriptor(true));
 
-            var generator = new AnnotationGenerator(annotationDescriptor);
+            var generator = AnnotationGenerator.Instance;
 
-            generator.GetContent().Should().Be(GetContentForReadOnlyAttribute());
+            generator.GetContent(annotationDescriptor).Should().Be(GetContentForReadOnlyAttribute());
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenNoDescriptors()
         {
             var annotationDescriptor = new AnnotationDescriptor("TestProperty");
-            var generator = new AnnotationGenerator(annotationDescriptor);
+            var generator = AnnotationGenerator.Instance;
 
-            generator.GetContent().Should().Be(string.Empty);
+            generator.GetContent(annotationDescriptor).Should().Be(string.Empty);
         }
 
-        private string GetContentForReadOnlyAttribute()
+        private static string GetContentForReadOnlyAttribute()
         {
             return
 @"        [ReadOnly(true)]
@@ -51,7 +51,7 @@ namespace SmartAnnotations.UnitTests.Internal
 ";
         }
 
-        private string GetContentForReadOnlyAndDisplayAttribute()
+        private static string GetContentForReadOnlyAndDisplayAttribute()
         {
             return
 @"        [ReadOnly(true)]

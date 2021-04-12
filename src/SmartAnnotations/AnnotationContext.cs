@@ -15,7 +15,7 @@ namespace SmartAnnotations
         public string? ResourceTypeFullName { get; internal set; }
 
         internal IReadOnlyDictionary<string, AnnotationDescriptor> Descriptors => _descriptors;
-        private readonly Dictionary<string, AnnotationDescriptor> _descriptors = new Dictionary<string, AnnotationDescriptor>();
+        private readonly Dictionary<string, AnnotationDescriptor> _descriptors = new();
 
         public AnnotationContext(string typeName, string? typeNamespace)
         {

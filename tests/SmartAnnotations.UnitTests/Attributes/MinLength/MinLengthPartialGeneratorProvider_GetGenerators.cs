@@ -16,9 +16,9 @@ namespace SmartAnnotations.UnitTests.Attributes.MinLength
         public void ReturnsRequiredMinLengthGeneratorsInOrder()
         {
             var descriptor = new MinLengthAttributeDescriptor(10);
-            var provider = new MinLengthPartialGeneratorProvider(descriptor);
+            var provider = MinLengthPartialGeneratorProvider.Instance;
 
-            var generators = provider.GetGenerators().Select(x=>x.GetType());
+            var generators = provider.Generators.Select(x=>x.GetType());
 
             generators.Should().ContainInOrder(
                 typeof(LengthGenerator),

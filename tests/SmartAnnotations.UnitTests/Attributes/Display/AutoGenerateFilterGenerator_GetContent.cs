@@ -15,33 +15,33 @@ namespace SmartAnnotations.UnitTests.Attributes.Display
         public void ReturnsContent_GivenAutoGenerateFilterIsTrue()
         {
             var descriptor = new DisplayAttributeDescriptor() { AutoGenerateFilter = true };
-            var generator = new AutoGenerateFilterGenerator(descriptor);
+            var generator = AutoGenerateFilterGenerator.Instance;
 
             var expected = @"AutoGenerateFilter = true";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsContent_GivenAutoGenerateFilterIsFalse()
         {
             var descriptor = new DisplayAttributeDescriptor() { AutoGenerateFilter = false };
-            var generator = new AutoGenerateFilterGenerator(descriptor);
+            var generator = AutoGenerateFilterGenerator.Instance;
 
             var expected = @"AutoGenerateFilter = false";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenAutoGenerateFilterIsNull()
         {
             var descriptor = new DisplayAttributeDescriptor() { AutoGenerateFilter = null };
-            var generator = new AutoGenerateFilterGenerator(descriptor);
+            var generator = AutoGenerateFilterGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

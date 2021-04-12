@@ -15,22 +15,22 @@ namespace SmartAnnotations.UnitTests.Attributes.Display
         public void ReturnsContent_GivenGroupNameHasValue()
         {
             var descriptor = new DisplayAttributeDescriptor() { GroupName = "SomeGroupName" };
-            var generator = new GroupNameGenerator(descriptor);
+            var generator = GroupNameGenerator.Instance;
 
             var expected = @"GroupName = ""SomeGroupName""";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenGroupNameIsNull()
         {
             var descriptor = new DisplayAttributeDescriptor() { GroupName = null };
-            var generator = new GroupNameGenerator(descriptor);
+            var generator = GroupNameGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

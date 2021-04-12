@@ -7,21 +7,15 @@ namespace SmartAnnotations.Attributes.StringLength
 {
     internal class StringLengthPartialGeneratorProvider
     {
-        private readonly StringLengthAttributeDescriptor descriptor;
+        private StringLengthPartialGeneratorProvider() { }
+        internal static StringLengthPartialGeneratorProvider Instance { get; } = new();
 
-        internal StringLengthPartialGeneratorProvider(StringLengthAttributeDescriptor descriptor)
+        internal IContentGenerator<StringLengthAttributeDescriptor>[] Generators { get; }
+            = new IContentGenerator<StringLengthAttributeDescriptor>[]
         {
-            this.descriptor = descriptor;
-        }
-
-        internal IContentGenerator[] GetGenerators()
-        {
-            return new IContentGenerator[]
-            {
-                new MaximumLengthGenerator(descriptor),
-                new MinimumLengthGenerator(descriptor),
-                new ValidationParametersGenerator(descriptor)
-            };
-        }
+            MaximumLengthGenerator.Instance,
+            MinimumLengthGenerator.Instance,
+            ValidationParametersGenerator.Instance
+        };
     }
 }

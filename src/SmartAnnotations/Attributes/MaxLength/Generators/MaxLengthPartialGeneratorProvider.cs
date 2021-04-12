@@ -7,20 +7,14 @@ namespace SmartAnnotations.Attributes.MaxLength
 {
     internal class MaxLengthPartialGeneratorProvider
     {
-        private readonly MaxLengthAttributeDescriptor descriptor;
+        private MaxLengthPartialGeneratorProvider() { }
+        internal static MaxLengthPartialGeneratorProvider Instance { get; } = new();
 
-        internal MaxLengthPartialGeneratorProvider(MaxLengthAttributeDescriptor descriptor)
+        internal IContentGenerator<MaxLengthAttributeDescriptor>[] Generators { get; }
+            = new IContentGenerator<MaxLengthAttributeDescriptor>[]
         {
-            this.descriptor = descriptor;
-        }
-
-        internal IContentGenerator[] GetGenerators()
-        {
-            return new IContentGenerator[]
-            {
-                new LengthGenerator(descriptor),
-                new ValidationParametersGenerator(descriptor)
-            };
-        }
+            LengthGenerator.Instance,
+            ValidationParametersGenerator.Instance
+        };
     }
 }

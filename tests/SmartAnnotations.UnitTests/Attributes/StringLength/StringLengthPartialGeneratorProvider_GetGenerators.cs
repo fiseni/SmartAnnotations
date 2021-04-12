@@ -16,9 +16,9 @@ namespace SmartAnnotations.UnitTests.Attributes.StringLength
         public void ReturnsRequiredStringLengthGeneratorsInOrder()
         {
             var descriptor = new StringLengthAttributeDescriptor(10);
-            var provider = new StringLengthPartialGeneratorProvider(descriptor);
+            var provider = StringLengthPartialGeneratorProvider.Instance;
 
-            var generators = provider.GetGenerators().Select(x=>x.GetType());
+            var generators = provider.Generators.Select(x=>x.GetType());
 
             generators.Should().ContainInOrder(
                 typeof(MaximumLengthGenerator),

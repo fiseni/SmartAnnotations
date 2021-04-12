@@ -15,33 +15,33 @@ namespace SmartAnnotations.UnitTests.Attributes.DisplayFormat
         public void ReturnsContent_GivenApplyFormatInEditModeIsTrue()
         {
             var descriptor = new DisplayFormatAttributeDescriptor() { ApplyFormatInEditMode = true };
-            var generator = new ApplyFormatInEditModeGenerator(descriptor);
+            var generator = ApplyFormatInEditModeGenerator.Instance;
 
             var expected = @"ApplyFormatInEditMode = true";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsContent_GivenApplyFormatInEditModeIsFalse()
         {
             var descriptor = new DisplayFormatAttributeDescriptor() { ApplyFormatInEditMode = false };
-            var generator = new ApplyFormatInEditModeGenerator(descriptor);
+            var generator = ApplyFormatInEditModeGenerator.Instance;
 
             var expected = @"ApplyFormatInEditMode = false";
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
 
         [Fact]
         public void ReturnsEmptyContent_GivenApplyFormatInEditModeIsNull()
         {
             var descriptor = new DisplayFormatAttributeDescriptor() { ApplyFormatInEditMode = null };
-            var generator = new ApplyFormatInEditModeGenerator(descriptor);
+            var generator = ApplyFormatInEditModeGenerator.Instance;
 
             var expected = string.Empty;
 
-            generator.GetContent().Should().Be(expected);
+            generator.GetContent(descriptor).Should().Be(expected);
         }
     }
 }

@@ -4,18 +4,14 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.DataType
 {
-    internal class DataTypeGenerator : IContentGenerator
+    internal class DataTypeGenerator : IContentGenerator<DataTypeAttributeDescriptor>
     {
-        private readonly DataTypeAttributeDescriptor descriptor;
+        private DataTypeGenerator() { }
+        internal static DataTypeGenerator Instance { get; } = new();
 
-        internal DataTypeGenerator(DataTypeAttributeDescriptor descriptor)
+        public string GetContent(DataTypeAttributeDescriptor descriptor)
         {
-            this.descriptor = descriptor;
-        }
-
-        public string GetContent()
-        {
-            if (descriptor.DataType != null) return $"DataType.{descriptor.DataType.ToString()}";
+            if (descriptor.DataType != null) return $"DataType.{descriptor.DataType}";
 
             return $"\"{descriptor.CustomDataType}\""; // not null, throws on constructor.
         }

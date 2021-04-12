@@ -6,21 +6,15 @@ namespace SmartAnnotations.Attributes.Validation
 {
     internal class ValidationPartialGeneratorProvider
     {
-        private readonly ValidationAttributeDescriptor descriptor;
+        private ValidationPartialGeneratorProvider() { }
+        internal static ValidationPartialGeneratorProvider Instance { get; } = new();
 
-        internal ValidationPartialGeneratorProvider(ValidationAttributeDescriptor descriptor)
+        internal IContentGenerator<ValidationAttributeDescriptor>[] Generators { get; }
+            = new IContentGenerator<ValidationAttributeDescriptor>[]
         {
-            this.descriptor = descriptor;
-        }
-
-        internal IContentGenerator[] GetGenerators()
-        {
-            return new IContentGenerator[]
-            {
-                new ErrorMessageGenerator(descriptor),
-                new ResourceNameGenerator(descriptor),
-                new ResourceTypeGenerator(descriptor)
-            };
-        }
+            ErrorMessageGenerator.Instance,
+            ResourceNameGenerator.Instance,
+            ResourceTypeGenerator.Instance
+        };
     }
 }

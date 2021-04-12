@@ -16,9 +16,9 @@ namespace SmartAnnotations.UnitTests.Attributes.Range
         public void ReturnsRequiredRangeGeneratorsInOrder()
         {
             var descriptor = new RangeAttributeDescriptor(1, 10);
-            var provider = new RangePartialGeneratorProvider(descriptor);
+            var provider = RangePartialGeneratorProvider.Instance;
 
-            var generators = provider.GetGenerators().Select(x=>x.GetType());
+            var generators = provider.Generators.Select(x=>x.GetType());
 
             generators.Should().ContainInOrder(
                 typeof(OperandTypeGenerator),

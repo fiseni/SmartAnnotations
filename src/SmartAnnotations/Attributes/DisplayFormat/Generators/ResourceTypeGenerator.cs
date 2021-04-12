@@ -4,16 +4,12 @@ using System.Text;
 
 namespace SmartAnnotations.Attributes.DisplayFormat
 {
-    internal class ResourceTypeGenerator : IContentGenerator
+    internal class ResourceTypeGenerator : IContentGenerator<DisplayFormatAttributeDescriptor>
     {
-        private readonly DisplayFormatAttributeDescriptor descriptor;
+        private ResourceTypeGenerator() { }
+        internal static ResourceTypeGenerator Instance { get; } = new();
 
-        internal ResourceTypeGenerator(DisplayFormatAttributeDescriptor descriptor)
-        {
-            this.descriptor = descriptor;
-        }
-
-        public string GetContent()
+        public string GetContent(DisplayFormatAttributeDescriptor descriptor)
         {
             if (!descriptor.HasResourceType) return string.Empty;
 
