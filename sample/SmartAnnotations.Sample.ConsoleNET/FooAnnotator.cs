@@ -21,12 +21,37 @@ namespace SmartAnnotations.Sample.ConsoleNET
 
             DefineFor(x => x.LastName)
                 .Required().AllowEmptyStrings().Message("This is the message itself, not a key to resource file.")
-                .Display().Name("LastNameKey").Prompt("LastNamePromptKey");
+                .Display().Name("LastNameKey").Prompt(nameof(FooResource.LastNamePromptKey)); // You can use it this way to avoid magic strings.
+
+            DefineFor(x => x.Quantity)
+                .Range(1, 10);
+
+            DefineFor(x => x.Weight)
+                .DisplayFormat().DataFormatString("{0:n2} Kg.");
 
             DefineFor(x => x.Email)
-                .Required().AllowEmptyStrings()
-                .Display().Name(nameof(FooResource.EmailNameKey)).Prompt(nameof(FooResource.EmailPromptKey)); // You can use it this way to avoid magic strings.
-                // Email and other validation attributes will be added soon.
+                .Display().Name(nameof(FooResource.EmailNameKey)).Prompt(nameof(FooResource.EmailPromptKey)) 
+                .Email();
+
+            DefineFor(x => x.Password)
+                .DataType(DataTypeEnum.Password)
+                .Min(6)
+                .Max(150);
+
+            DefineFor(x => x.ConfirmPassword)
+                .DataType(DataTypeEnum.Password)
+                .Compare(nameof(Foo.Password))
+                .Min(6)
+                .Max(150);
+
+            DefineFor(x => x.Phone)
+                .Phone();
+
+            DefineFor(x => x.CreditCard)
+                .CreditCard();
+
+            DefineFor(x => x.Url)
+                .Url();
         }
     }
 }

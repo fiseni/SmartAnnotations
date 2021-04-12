@@ -38,7 +38,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SmartAnnotations, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SmartAnnotations.1.0.0-beta3\lib\netstandard2.0\SmartAnnotations.dll</HintPath>
+      <HintPath>..\..\packages\SmartAnnotations.1.0.0-beta4\lib\netstandard2.0\SmartAnnotations.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -64,7 +64,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\packages\SmartAnnotations.1.0.0-beta3\analyzers\dotnet\cs\SmartAnnotations.dll" />
+    <Analyzer Include="..\..\packages\SmartAnnotations.1.0.0-beta4\analyzers\dotnet\cs\SmartAnnotations.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
