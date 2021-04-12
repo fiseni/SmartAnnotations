@@ -77,7 +77,7 @@ steps:
   displayName: 'Copy *.nupkg Files'
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: '**\*.nupkg'
+    Contents: 'src/**/*.nupkg'
     TargetFolder: '$(Build.ArtifactStagingDirectory)\Package'
     flattenFolders: true
   condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
