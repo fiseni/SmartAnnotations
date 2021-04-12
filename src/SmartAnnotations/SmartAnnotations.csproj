@@ -11,7 +11,7 @@
 
   <PropertyGroup>
     <PackageId>SmartAnnotations</PackageId>
-    <Version>1.0.0-beta3</Version>
+    <Version>1.0.0-beta4</Version>
     <Authors>Fati Iseni</Authors>
     <Company>Pozitron Group LLC</Company>
     <Product>Smart Annotations</Product>
