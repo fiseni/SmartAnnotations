@@ -47,7 +47,7 @@ namespace SmartAnnotations.UnitTests.Internal
         {
             return
 @"        [ReadOnly(true)]
-        public object TestProperty;
+        public object TestProperty { get; }
 ";
         }
 
@@ -56,7 +56,7 @@ namespace SmartAnnotations.UnitTests.Internal
             return
 @"        [ReadOnly(true)]
         [Display(Name = ""SomeName"")]
-        public object TestProperty;
+        public object TestProperty { get; }
 ";
         }
     }

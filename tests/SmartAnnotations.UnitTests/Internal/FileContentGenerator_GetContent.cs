@@ -87,7 +87,7 @@ namespace SmartAnnotations.UnitTests.Fixture
     public class TestTypeMetaData 
     {
         [Display(Name = ""SomeName"")]
-        public object TestProperty;
+        public object TestProperty { get; }
 
     }
 }
@@ -111,10 +111,10 @@ namespace SmartAnnotations.UnitTests.Fixture
     public class TestTypeMetaData 
     {
         [Display(Name = ""SomeName"")]
-        public object TestProperty;
+        public object TestProperty { get; }
 
         [ReadOnly(true)]
-        public object TestProperty2;
+        public object TestProperty2 { get; }
 
     }
 }
