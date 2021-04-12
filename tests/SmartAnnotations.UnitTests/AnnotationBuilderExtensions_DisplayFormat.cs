@@ -59,7 +59,7 @@ namespace SmartAnnotations.UnitTests
         }
 
         [Fact]
-        public void SetsRequiredDescriptorWithModelResourceType_GivenNoResourceTypeParameterAndHasModelResourceType()
+        public void SetsDisplayFormatDescriptorWithModelResourceType_GivenNoResourceTypeParameterAndHasModelResourceType()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName", typeof(ModelTestResource).FullName);
             var annotationBuilder = new AnnotationBuilder(annotationDescriptor);

@@ -15,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xunit;
+using SmartAnnotations.Attributes.EmailAddress;
 
 namespace SmartAnnotations.UnitTests.Internal
 {
@@ -37,7 +38,8 @@ namespace SmartAnnotations.UnitTests.Internal
                 typeof(MaxLengthAttributeGenerator),
                 typeof(MinLengthAttributeGenerator),
                 typeof(CompareAttributeGenerator),
-                typeof(RangeAttributeGenerator)
+                typeof(RangeAttributeGenerator),
+                typeof(EmailAddressAttributeGenerator)
             );
         }
     }
