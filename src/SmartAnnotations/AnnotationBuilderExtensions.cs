@@ -157,5 +157,14 @@ namespace SmartAnnotations
 
             return new EmailAddressAttributeBuilder(source.Descriptor);
         }
+
+        public static ICreditCardAttributeBuilder CreditCard(
+            this IAnnotationBuilder source,
+            Type? resourceType = null)
+        {
+            source.Descriptor.Add(new CreditCardAttributeDescriptor(resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
+
+            return new CreditCardAttributeBuilder(source.Descriptor);
+        }
     }
 }
