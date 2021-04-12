@@ -25,7 +25,7 @@ namespace SmartAnnotations.Internal
 
             if (!string.IsNullOrEmpty(output))
             {
-                output = $"{output}{Environment.NewLine}{Utils.AddIndent(2)}public object {annotationDescriptor.PropertyName};{Environment.NewLine}";
+                output = $"{output}{Environment.NewLine}{Utils.AddIndent(2)}public object {annotationDescriptor.PropertyName} {{ get; }}{Environment.NewLine}";
             }
 
             return output;

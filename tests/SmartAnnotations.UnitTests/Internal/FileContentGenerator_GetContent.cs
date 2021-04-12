@@ -16,17 +16,17 @@ namespace SmartAnnotations.UnitTests.Internal
         [Fact]
         public void ReturnsMetadataWithDisplayAndReadOnlyAttributes_GivenDisplayNameAndReadOnlyAnnotations()
         {
-            var generator = new FileContentGenerator(new TestAnnotatorWithDisplayNameAndReadOnly("SomeName"));
+            var content = FileContentGenerator.Instance.GetContent(new TestAnnotatorWithDisplayNameAndReadOnly("SomeName"));
 
-            generator.GetContent().Should().Be(GetContentForTestAnnotatorWithDisplayNameAndReadOnly());
+            content.Should().Be(GetContentForTestAnnotatorWithDisplayNameAndReadOnly());
         }
 
         [Fact]
         public void ReturnsMetadataWithDisplayAttribute_GivenDisplayNameAnnotation()
         {
-            var generator = new FileContentGenerator(new TestAnnotatorWithDisplayName("SomeName"));
+            var content = FileContentGenerator.Instance.GetContent(new TestAnnotatorWithDisplayName("SomeName"));
 
-            generator.GetContent().Should().Be(GetContentForTestAnnotatorWithDisplayName());
+            content.Should().Be(GetContentForTestAnnotatorWithDisplayName());
         }
 
         [Fact]
@@ -35,17 +35,17 @@ namespace SmartAnnotations.UnitTests.Internal
             var context = new TestAnnotatorWithDisplayName("SomeName");
             context.AddDescriptor(new AnnotationDescriptor("SomeProperty"));
 
-            var generator = new FileContentGenerator(context);
+            var content = FileContentGenerator.Instance.GetContent(context);
 
-            generator.GetContent().Should().Be(GetContentForTestAnnotatorWithDisplayName());
+            content.Should().Be(GetContentForTestAnnotatorWithDisplayName());
         }
 
         [Fact]
         public void ReturnsEmptyLayout_GivenNoDescriptors()
         {
-            var generator = new FileContentGenerator(new TestAnnotatorEmpty());
+            var content = FileContentGenerator.Instance.GetContent(new TestAnnotatorEmpty());
 
-            generator.GetContent().Should().Be(GetContentForTestAnnotatorEmpty());
+            content.Should().Be(GetContentForTestAnnotatorEmpty());
         }
 
 

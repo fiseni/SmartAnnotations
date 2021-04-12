@@ -6,14 +6,10 @@ namespace SmartAnnotations.Internal
 {
     internal class FileContentGenerator
     {
-        private readonly AnnotationContext context;
+        private FileContentGenerator() { }
+        internal static FileContentGenerator Instance { get; } = new();
 
-        internal FileContentGenerator(AnnotationContext context)
-        {
-            this.context = context;
-        }
-
-        public string GetContent()
+        public string GetContent(AnnotationContext context)
         {
             var output = string.Empty;
 
@@ -26,10 +22,10 @@ namespace SmartAnnotations.Internal
                 }
             }
 
-            return GetFileContent(output);
+            return GetFileContent(context, output);
         }
 
-        private string GetFileContent(string innerContent)
+        private string GetFileContent(AnnotationContext context, string innerContent)
         {
             var content = string.Format(
 
