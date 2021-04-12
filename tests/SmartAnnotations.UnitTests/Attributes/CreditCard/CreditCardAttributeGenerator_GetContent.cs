@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using SmartAnnotations.Attributes.EmailAddress;
+using SmartAnnotations.Attributes.CreditCard;
 using SmartAnnotations.UnitTests.Fixture;
 using System;
 using System.Collections.Generic;
@@ -8,14 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace SmartAnnotations.UnitTests.Attributes.EmailAddress
+namespace SmartAnnotations.UnitTests.Attributes.CreditCard
 {
-    public class EmailAddressAttributeGenerator_GetContent
+    public class CreditCardAttributeGenerator_GetContent
     {
         [Fact]
-        public void ReturnsEmailAddressAttributeWithMessageOnly_GivenAllParameters()
+        public void ReturnsCreditCardAttributeWithMessageOnly_GivenAllParameters()
         {
-            var descriptor = new EmailAddressAttributeDescriptor(typeof(AttributeTestResource).FullName)
+            var descriptor = new CreditCardAttributeDescriptor(typeof(AttributeTestResource).FullName)
             {
                 ErrorMessage = "SomeErrorMessage",
                 ErrorMessageResourceName = "SomeErrorKey"
@@ -23,33 +23,33 @@ namespace SmartAnnotations.UnitTests.Attributes.EmailAddress
 
             var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
-            var generator = EmailAddressAttributeGenerator.Instance;
+            var generator = CreditCardAttributeGenerator.Instance;
 
-            var expected = @"[EmailAddress(ErrorMessage = ""SomeErrorMessage"")]";
+            var expected = @"[CreditCard(ErrorMessage = ""SomeErrorMessage"")]";
 
             generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
 
         [Fact]
-        public void ReturnsParameterlessEmailAddressAttribute_GivenEmptyEmailAddressDescriptor()
+        public void ReturnsParameterlessCreditCardAttribute_GivenEmptyCreditCardDescriptor()
         {
-            var descriptor = new EmailAddressAttributeDescriptor();
+            var descriptor = new CreditCardAttributeDescriptor();
 
             var annotationDescriptor = new AnnotationDescriptor("PropertyName").Add(descriptor);
 
-            var generator = EmailAddressAttributeGenerator.Instance;
+            var generator = CreditCardAttributeGenerator.Instance;
 
-            var expected = @"[EmailAddress()]";
+            var expected = @"[CreditCard()]";
 
             generator.GetContent(annotationDescriptor).Should().Be(expected);
         }
 
         [Fact]
-        public void ReturnsEmptyContent_GivenNullEmailAddressDescriptor()
+        public void ReturnsEmptyContent_GivenNullCreditCardDescriptor()
         {
             var annotationDescriptor = new AnnotationDescriptor("PropertyName");
 
-            var generator = EmailAddressAttributeGenerator.Instance;
+            var generator = CreditCardAttributeGenerator.Instance;
 
             var expected = string.Empty;
 
