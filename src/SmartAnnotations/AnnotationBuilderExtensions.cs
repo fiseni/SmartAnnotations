@@ -175,5 +175,14 @@ namespace SmartAnnotations
 
             return new PhoneAttributeBuilder(source.Descriptor);
         }
+
+        public static IUrlAttributeBuilder Url(
+            this IAnnotationBuilder source,
+            Type? resourceType = null)
+        {
+            source.Descriptor.Add(new UrlAttributeDescriptor(resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
+
+            return new UrlAttributeBuilder(source.Descriptor);
+        }
     }
 }

@@ -10,6 +10,7 @@ using SmartAnnotations.Attributes.Range;
 using SmartAnnotations.Attributes.ReadOnly;
 using SmartAnnotations.Attributes.Required;
 using SmartAnnotations.Attributes.StringLength;
+using SmartAnnotations.Attributes.Url;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -35,7 +36,8 @@ namespace SmartAnnotations.Internal
             RangeAttributeGenerator.Instance,
             EmailAddressAttributeGenerator.Instance,
             CreditCardAttributeGenerator.Instance,
-            PhoneAttributeGenerator.Instance
+            PhoneAttributeGenerator.Instance,
+            UrlAttributeGenerator.Instance
         };
     }
 }
