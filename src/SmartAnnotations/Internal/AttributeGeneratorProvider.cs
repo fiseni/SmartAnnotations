@@ -5,6 +5,7 @@ using SmartAnnotations.Attributes.DisplayFormat;
 using SmartAnnotations.Attributes.EmailAddress;
 using SmartAnnotations.Attributes.MaxLength;
 using SmartAnnotations.Attributes.MinLength;
+using SmartAnnotations.Attributes.Phone;
 using SmartAnnotations.Attributes.Range;
 using SmartAnnotations.Attributes.ReadOnly;
 using SmartAnnotations.Attributes.Required;
@@ -33,7 +34,8 @@ namespace SmartAnnotations.Internal
             CompareAttributeGenerator.Instance,
             RangeAttributeGenerator.Instance,
             EmailAddressAttributeGenerator.Instance,
-            CreditCardAttributeGenerator.Instance
+            CreditCardAttributeGenerator.Instance,
+            PhoneAttributeGenerator.Instance
         };
     }
 }

@@ -166,5 +166,14 @@ namespace SmartAnnotations
 
             return new CreditCardAttributeBuilder(source.Descriptor);
         }
+
+        public static IPhoneAttributeBuilder Phone(
+            this IAnnotationBuilder source,
+            Type? resourceType = null)
+        {
+            source.Descriptor.Add(new PhoneAttributeDescriptor(resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
+
+            return new PhoneAttributeBuilder(source.Descriptor);
+        }
     }
 }
