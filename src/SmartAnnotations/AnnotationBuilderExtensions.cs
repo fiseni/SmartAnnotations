@@ -15,15 +15,6 @@ namespace SmartAnnotations
             return source;
         }
 
-        public static IDisplayAttributeBuilder Display(
-            this IAnnotationBuilder source,
-            Type? resourceType = null)
-        {
-            source.Descriptor.Add(new DisplayAttributeDescriptor(resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
-
-            return new DisplayAttributeBuilder(source.Descriptor);
-        }
-
         public static IRequiredAttributeBuilder Required(
             this IAnnotationBuilder source,
             Type? resourceType = null)
@@ -33,6 +24,15 @@ namespace SmartAnnotations
             return new RequiredAttributeBuilder(source.Descriptor);
         }
 
+        public static IDisplayAttributeBuilder Display(
+            this IAnnotationBuilder source,
+            Type? resourceType = null)
+        {
+            source.Descriptor.Add(new DisplayAttributeDescriptor(resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
+
+            return new DisplayAttributeBuilder(source.Descriptor);
+        }
+
         public static IDisplayFormatAttributeBuilder DisplayFormat(
             this IAnnotationBuilder source,
             Type? resourceType = null)
@@ -40,26 +40,6 @@ namespace SmartAnnotations
             source.Descriptor.Add(new DisplayFormatAttributeDescriptor(resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
 
             return new DisplayFormatAttributeBuilder(source.Descriptor);
-        }
-
-        public static IDataTypeAttributeBuilder DataType(
-            this IAnnotationBuilder source,
-            DataTypeEnum dataType,
-            Type? resourceType = null)
-        {
-            source.Descriptor.Add(new DataTypeAttributeDescriptor(dataType, resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
-
-            return new DataTypeAttributeBuilder(source.Descriptor);
-        }
-
-        public static IDataTypeAttributeBuilder DataType(
-            this IAnnotationBuilder source,
-            string customDataType,
-            Type? resourceType = null)
-        {
-            source.Descriptor.Add(new DataTypeAttributeDescriptor(customDataType, resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
-
-            return new DataTypeAttributeBuilder(source.Descriptor);
         }
 
         public static IStringLengthAttributeBuilder Length(
@@ -147,6 +127,26 @@ namespace SmartAnnotations
             source.Descriptor.Add(new RangeAttributeDescriptor(type.FullName, minimum, maximum, resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
 
             return new RangeAttributeBuilder(source.Descriptor);
+        }
+
+        public static IDataTypeAttributeBuilder DataType(
+            this IAnnotationBuilder source,
+            DataTypeEnum dataType,
+            Type? resourceType = null)
+        {
+            source.Descriptor.Add(new DataTypeAttributeDescriptor(dataType, resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
+
+            return new DataTypeAttributeBuilder(source.Descriptor);
+        }
+
+        public static IDataTypeAttributeBuilder DataType(
+            this IAnnotationBuilder source,
+            string customDataType,
+            Type? resourceType = null)
+        {
+            source.Descriptor.Add(new DataTypeAttributeDescriptor(customDataType, resourceType?.FullName, source.Descriptor.ModelResourceTypeFullName));
+
+            return new DataTypeAttributeBuilder(source.Descriptor);
         }
 
         public static IEmailAddressAttributeBuilder Email(

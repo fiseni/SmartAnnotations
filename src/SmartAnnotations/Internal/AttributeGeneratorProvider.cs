@@ -1,5 +1,6 @@
 ﻿using SmartAnnotations.Attributes.Compare;
 using SmartAnnotations.Attributes.CreditCard;
+using SmartAnnotations.Attributes.DataType;
 using SmartAnnotations.Attributes.Display;
 using SmartAnnotations.Attributes.DisplayFormat;
 using SmartAnnotations.Attributes.EmailAddress;
@@ -34,6 +35,7 @@ namespace SmartAnnotations.Internal
             MinLengthAttributeGenerator.Instance,
             CompareAttributeGenerator.Instance,
             RangeAttributeGenerator.Instance,
+            DataTypeAttributeGenerator.Instance,
             EmailAddressAttributeGenerator.Instance,
             CreditCardAttributeGenerator.Instance,
             PhoneAttributeGenerator.Instance,

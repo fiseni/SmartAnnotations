@@ -19,6 +19,7 @@ using SmartAnnotations.Attributes.EmailAddress;
 using SmartAnnotations.Attributes.CreditCard;
 using SmartAnnotations.Attributes.Phone;
 using SmartAnnotations.Attributes.Url;
+using SmartAnnotations.Attributes.DataType;
 
 namespace SmartAnnotations.UnitTests.Internal
 {
@@ -42,6 +43,7 @@ namespace SmartAnnotations.UnitTests.Internal
                 typeof(MinLengthAttributeGenerator),
                 typeof(CompareAttributeGenerator),
                 typeof(RangeAttributeGenerator),
+                typeof(DataTypeAttributeGenerator),
                 typeof(EmailAddressAttributeGenerator),
                 typeof(CreditCardAttributeGenerator),
                 typeof(PhoneAttributeGenerator),
